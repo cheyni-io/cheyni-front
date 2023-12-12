@@ -12,8 +12,8 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { APP_BAR_HEIGHT } from "src/constant";
 import useOffSetTop from "src/hooks/useOffSetTop";
-import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
+import CheyniNavigationLink from "../NetflixNavigationLink";
 import SearchBox from "../SearchBox";
 
 const pages = [""];

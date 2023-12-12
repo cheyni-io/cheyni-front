@@ -21,11 +21,10 @@ import { useGetSimilarVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
 import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
-import CheyniIconButton from "./CheyniIconButton";
 import MaxLineTypography from "./MaxLineTypography";
+import CheyniIconButton from "./NetflixIconButton";
 import PlayButton from "./PlayButton";
 import QualityChip from "./QualityChip";
-import VideoJSPlayer from "./watch/VideoJSPlayer";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -84,7 +83,7 @@ export default function DetailModal() {
                 height: "calc(9 / 16 * 100%)",
               }}
             >
-              <VideoJSPlayer
+              {/* <VideoJSPlayer
                 options={{
                   loop: true,
                   autoplay: true,
@@ -94,15 +93,15 @@ export default function DetailModal() {
                   techOrder: ["youtube"],
                   sources: [
                     {
-                      type: "video/youtube",
-                      src: `https://www.youtube.com/watch?v=${detail.mediaDetail?.videos.results[0]?.key ||
-                        "L3oOldViIgY"
-                        }`,
+                      type: "image/jpeg",
+                      src: "https://1.bp.blogspot.com/-IwYDXbaVa1U/X1j_PP2RrzI/AAAAAAAACY8/CKTUUwl_19Ag-7LxKhwElsxYHn98MN3fACPcBGAYYCw/w919/colorful-background-abstract-digital-art-uhdpaper.com-4K-6.2640-wp.thumbnail.jpg",
                     },
                   ],
                 }}
                 onReady={handleReady}
-              />
+              /> */}
+              <img src={`https://image.tmdb.org/t/p/original${detail.mediaDetail?.backdrop_path}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+
 
               <Box
                 sx={{

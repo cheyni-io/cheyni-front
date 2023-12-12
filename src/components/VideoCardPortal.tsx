@@ -17,9 +17,9 @@ import { MEDIA_TYPE } from "src/types/Common";
 import { Movie } from "src/types/Movie";
 import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
-import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
 import MaxLineTypography from "./MaxLineTypography";
+import CheyniIconButton from "./NetflixIconButton";
 import QualityChip from "./QualityChip";
 
 interface VideoCardModalProps {
