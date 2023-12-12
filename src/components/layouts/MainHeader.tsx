@@ -1,20 +1,20 @@
-import * as React from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import useOffSetTop from "src/hooks/useOffSetTop";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { APP_BAR_HEIGHT } from "src/constant";
+import useOffSetTop from "src/hooks/useOffSetTop";
+import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
-import NetflixNavigationLink from "../NetflixNavigationLink";
 
 const pages = ["Movies"];
 
@@ -111,7 +111,7 @@ const MainHeader = () => {
             textDecoration: "none",
           }}
         >
-          Netflix
+          Cheyni
         </Typography>
         <Stack
           direction="row"
@@ -119,14 +119,14 @@ const MainHeader = () => {
           sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
         >
           {pages.map((page) => (
-            <NetflixNavigationLink
+            <CheyniNavigationLink
               to=""
               variant="subtitle1"
               key={page}
               onClick={handleCloseNavMenu}
             >
               {page}
-            </NetflixNavigationLink>
+            </CheyniNavigationLink>
           ))}
         </Stack>
 

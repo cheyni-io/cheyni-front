@@ -1,10 +1,10 @@
-import {
-  Link as RouterLink,
-  LinkProps as RouterLinkProps,
-} from "react-router-dom";
 import Link, { LinkProps } from "@mui/material/Link";
+import {
+    Link as RouterLink,
+    LinkProps as RouterLinkProps,
+} from "react-router-dom";
 
-export default function NetflixNavigationLink({
+export default function CheyniNavigationLink({
   sx,
   children,
   ...others

@@ -1,7 +1,7 @@
-import { forwardRef } from "react";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import { forwardRef } from "react";
 
-const NetflixIconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
+const CheyniIconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ children, sx, ...others }, ref) => {
     return (
       <IconButton
@@ -24,4 +24,4 @@ const NetflixIconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   }
 );
 
-export default NetflixIconButton;
+export default CheyniIconButton;

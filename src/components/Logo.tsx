@@ -9,8 +9,8 @@ export default function Logo({ sx }: BoxProps) {
         component="img"
         alt="Cheyni Logo"
         src="/assets/cheyni-logo.png"
-        width={100}
-        height={25}
+        width={90}
+        height={22}
         sx={{
           ...sx,
         }}

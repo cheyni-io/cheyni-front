@@ -1,14 +1,14 @@
-import Stack from "@mui/material/Stack";
+import AddIcon from "@mui/icons-material/Add";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import AddIcon from "@mui/icons-material/Add";
+import { useGetConfigurationQuery } from "src/store/slices/configuration";
 import { Movie } from "src/types/Movie";
-import NetflixIconButton from "./NetflixIconButton";
-import MaxLineTypography from "./MaxLineTypography";
 import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
-import { useGetConfigurationQuery } from "src/store/slices/configuration";
+import CheyniIconButton from "./CheyniIconButton";
+import MaxLineTypography from "./MaxLineTypography";
 
 interface SimilarVideoCardProps {
   video: Movie;
@@ -81,9 +81,9 @@ export default function SimilarVideoCard({ video }: SimilarVideoCardProps) {
               </Stack>
             </div>
             <div style={{ flexGrow: 1 }} />
-            <NetflixIconButton>
+            <CheyniIconButton>
               <AddIcon />
-            </NetflixIconButton>
+            </CheyniIconButton>
           </Stack>
           <MaxLineTypography maxLine={4} variant="subtitle2">
             {video.overview}

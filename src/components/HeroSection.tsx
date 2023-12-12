@@ -1,24 +1,24 @@
-import { useEffect, useState, useMemo, useCallback, useRef } from "react";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 
-import { getRandomNumber } from "src/utils/common";
-import MaxLineTypography from "./MaxLineTypography";
-import PlayButton from "./PlayButton";
-import MoreInfoButton from "./MoreInfoButton";
-import NetflixIconButton from "./NetflixIconButton";
-import MaturityRate from "./MaturityRate";
 import useOffSetTop from "src/hooks/useOffSetTop";
 import { useDetailModal } from "src/providers/DetailModalProvider";
-import { MEDIA_TYPE } from "src/types/Common";
 import {
   useGetVideosByMediaTypeAndCustomGenreQuery,
   useLazyGetAppendedVideosQuery,
 } from "src/store/slices/discover";
+import { MEDIA_TYPE } from "src/types/Common";
 import { Movie } from "src/types/Movie";
+import { getRandomNumber } from "src/utils/common";
+import CheyniIconButton from "./CheyniIconButton";
+import MaturityRate from "./MaturityRate";
+import MaxLineTypography from "./MaxLineTypography";
+import MoreInfoButton from "./MoreInfoButton";
+import PlayButton from "./PlayButton";
 import VideoJSPlayer from "./watch/VideoJSPlayer";
 
 interface TopTrailerProps {
@@ -122,7 +122,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                       sources: [
                         {
                           type: "video/youtube",
-                          src: "https://www.youtube.com/watch?v=FD7YenJJS0w",
+                          src: "https://www.youtube.com/watch?v=dz1rTZE9xgE",
                         },
                       ],
                     }}
@@ -167,13 +167,13 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     bottom: "35%",
                   }}
                 >
-                  <NetflixIconButton
+                  <CheyniIconButton
                     size="large"
                     onClick={() => handleMute(muted)}
                     sx={{ zIndex: 2 }}
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </NetflixIconButton>
+                  </CheyniIconButton>
                   <MaturityRate>{`${maturityRate}+`}</MaturityRate>
                 </Stack>
               </Box>

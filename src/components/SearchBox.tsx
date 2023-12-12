@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
-import { styled } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import InputBase from "@mui/material/InputBase";
+import { styled } from "@mui/material/styles";
+import { useRef, useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -21,7 +21,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
-  "& .NetflixInputBase-input": {
+  "& .CheyniInputBase-input": {
     width: 0,
     transition: theme.transitions.create("width", {
       duration: theme.transitions.duration.complex,

@@ -1,29 +1,29 @@
+import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
-import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import PlayerControlButton from "./PlayerControlButton";
 
 const StyledSlider = styled(Slider)({
   height: 5,
   borderRadius: 0,
   padding: 0,
-  "& .NetflixSlider-track": {
+  "& .CheyniSlider-track": {
     border: "none",
     backgroundColor: "#191761",
   },
-  "& .NetflixSlider-rail": {
+  "& .CheyniSlider-rail": {
     border: "none",
     backgroundColor: "#FFF",
     opacity: 0.85,
   },
-  "& .NetflixSlider-thumb": {
+  "& .CheyniSlider-thumb": {
     height: 12,
     width: 10,
     backgroundColor: "#191761",
-    "&:focus, &:hover, &.Netflix-active, &.Netflix-focusVisible": {
+    "&:focus, &:hover, &.Cheyni-active, &.Cheyni-focusVisible": {
       boxShadow: "inherit",
       height: 17,
       width: 15,
@@ -51,7 +51,7 @@ export default function VolumeControllers({
       alignItems="center"
       spacing={{ xs: 0.5, sm: 1 }}
       // sx={{
-      //   "&:hover NetflixSlider-root": {
+      //   "&:hover CheyniSlider-root": {
       //     display: "inline-block",
       //   },
       // }}

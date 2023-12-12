@@ -1,31 +1,30 @@
-import { forwardRef, useCallback, useRef, useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import Stack from "@mui/material/Stack";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
 import Slide from "@mui/material/Slide";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { TransitionProps } from "@mui/material/transitions";
-import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import { forwardRef, useCallback, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 
-import MaxLineTypography from "./MaxLineTypography";
-import PlayButton from "./PlayButton";
-import NetflixIconButton from "./NetflixIconButton";
-import AgeLimitChip from "./AgeLimitChip";
-import QualityChip from "./QualityChip";
-import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
-import SimilarVideoCard from "./SimilarVideoCard";
 import { useDetailModal } from "src/providers/DetailModalProvider";
 import { useGetSimilarVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
+import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
+import AgeLimitChip from "./AgeLimitChip";
+import CheyniIconButton from "./CheyniIconButton";
+import MaxLineTypography from "./MaxLineTypography";
+import PlayButton from "./PlayButton";
+import QualityChip from "./QualityChip";
 import VideoJSPlayer from "./watch/VideoJSPlayer";
 
 const Transition = forwardRef(function Transition(
@@ -167,20 +166,20 @@ export default function DetailModal() {
                 </MaxLineTypography>
                 <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
                   <PlayButton sx={{ color: "black", py: 0 }} />
-                  <NetflixIconButton>
+                  <CheyniIconButton>
                     <AddIcon />
-                  </NetflixIconButton>
-                  <NetflixIconButton>
+                  </CheyniIconButton>
+                  <CheyniIconButton>
                     <ThumbUpOffAltIcon />
-                  </NetflixIconButton>
+                  </CheyniIconButton>
                   <Box flexGrow={1} />
-                  <NetflixIconButton
+                  <CheyniIconButton
                     size="large"
                     onClick={() => handleMute(muted)}
                     sx={{ zIndex: 2 }}
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </NetflixIconButton>
+                  </CheyniIconButton>
                 </Stack>
 
                 <Container
