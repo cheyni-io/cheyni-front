@@ -19,7 +19,13 @@ export function Component() {
   if (isSuccess && genres && genres.length > 0) {
     return (
       <Stack spacing={2}>
-        <HeroSection mediaType={MEDIA_TYPE.Movie} />
+         {[...COMMON_TITLES, ...genres].map((genre: Genre | CustomGenre) => (
+          <SliderRowForGenre
+            key={genre.id || genre.name}
+            genre={genre}
+            mediaType={MEDIA_TYPE.Movie}
+          />
+        ))}
         {[...COMMON_TITLES, ...genres].map((genre: Genre | CustomGenre) => (
           <SliderRowForGenre
             key={genre.id || genre.name}
