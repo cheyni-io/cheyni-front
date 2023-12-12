@@ -12,7 +12,7 @@ const StyledSlider = styled(Slider)({
   padding: 0,
   "& .CheyniSlider-track": {
     border: "none",
-    backgroundColor: "#191761",
+    backgroundColor: "#0c0b30",
   },
   "& .CheyniSlider-rail": {
     border: "none",
@@ -22,7 +22,7 @@ const StyledSlider = styled(Slider)({
   "& .CheyniSlider-thumb": {
     height: 12,
     width: 10,
-    backgroundColor: "#191761",
+    backgroundColor: "#0c0b30",
     "&:focus, &:hover, &.Cheyni-active, &.Cheyni-focusVisible": {
       boxShadow: "inherit",
       height: 17,

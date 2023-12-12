@@ -67,7 +67,7 @@ export default function DetailModal() {
         id="detail_dialog"
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ p: 0, bgcolor: "#191761" }}>
+        <DialogContent sx={{ p: 0, bgcolor: "#0c0b30" }}>
           <Box
             sx={{
               top: 0,
@@ -120,7 +120,7 @@ export default function DetailModal() {
                 sx={{
                   backgroundColor: "transparent",
                   backgroundImage:
-                    "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#191761 68%,#191761)",
+                    "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0c0b30 68%,#0c0b30)",
                   backgroundRepeat: "repeat-x",
                   backgroundPosition: "0px top",
                   backgroundSize: "100% 100%",

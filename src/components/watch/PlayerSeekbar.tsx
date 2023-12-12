@@ -6,7 +6,7 @@ import { formatTime } from "src/utils/common";
 const StyledSlider = styled(Slider)({
   borderRadius: 0,
   "& .CheyniSlider-track": {
-    backgroundColor: "#191761 !important",
+    backgroundColor: "#0c0b30 !important",
     border: 0,
   },
   "& .CheyniSlider-rail": {
@@ -18,7 +18,7 @@ const StyledSlider = styled(Slider)({
     borderRadius: "50%",
     height: 10,
     width: 10,
-    backgroundColor: "#191761",
+    backgroundColor: "#0c0b30",
     "&:focus, &:hover, &.Cheyni-active, &.Cheyni-focusVisible": {
       boxShadow: "inherit",
       height: 15,

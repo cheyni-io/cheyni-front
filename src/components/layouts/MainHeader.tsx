@@ -16,7 +16,7 @@ import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
 
-const pages = ["Movies"];
+const pages = [""];
 
 const MainHeader = () => {
   const isOffset = useOffSetTop(APP_BAR_HEIGHT);
