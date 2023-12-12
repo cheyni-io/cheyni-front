@@ -165,22 +165,23 @@ const data2 = {
     },
     {
       "adult": false,
-      "backdrop_path": "/mt8jzIufQBqxTH4MkaHY1XMKQKr.jpg",
+      "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
       "genre_ids": [
-        99
+        28,
+        18
       ],
-      "id": 752099,
-      "original_language": "pt",
-      "original_title": "Canto Para a Liberdade",
-      "overview": "An image of a boat going down a river, a voice of impostation declaiming direct verses that warn us: we, the poor, have value only in the face of the rich's need. A documentary about the celebration of the Ticumbi festivities in Conceição da Barra, north of Espírito Santo - Brazil.",
-      "popularity": 1.201,
-      "poster_path": "/mt8jzIufQBqxTH4MkaHY1XMKQKr.jpg",
-      "release_date": "1978-01-01",
-      "title": "A Song for Freedom",
+      "id": 678512,
+      "original_language": "en",
+      "original_title": "Sound of Freedom",
+      "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
+      "popularity": 263.457,
+      "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
+      "release_date": "2023-07-03",
+      "title": "Sound of Freedom",
       "video": false,
-      "vote_average": 0,
-      "vote_count": 0
-    }
+      "vote_average": 8.1,
+      "vote_count": 1585
+    },
   ]
 }
 

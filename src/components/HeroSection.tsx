@@ -111,7 +111,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
               >
                 {detail && (
                   <img
-                    src={`https://image.tmdb.org/t/p/original//qxTw8OKJLRX1Xb5nR5CcIDnLKoq.jpg`}
+                    src={`https://image.tmdb.org/t/p/original//pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg`}
                     alt={detail.title}
                     width="100%"
                     height="100%"
@@ -194,14 +194,15 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     maxLine={1}
                     color="text.primary"
                   >
-                    Black Swan
+                    Sound of Freedom
                   </MaxLineTypography>
                   <MaxLineTypography
                     variant="h5"
                     maxLine={3}
                     color="text.primary"
                   >
-                    A journey through the psyche of a young ballerina whose starring role as the duplicitous swan queen turns out to be a part for which she becomes frighteningly perfect.                  </MaxLineTypography>
+                    The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.                
+                  </MaxLineTypography>
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                     <PlayButton size="large" />
                     <MoreInfoButton
