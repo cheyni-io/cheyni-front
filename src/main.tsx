@@ -17,7 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 store.dispatch(extendedApi.endpoints.getConfiguration.initiate(undefined));
 
 const App = () => {
-  const themeMode = useSelector((state: any) => state.theme.mode);
+  const themeMode: 'light' | 'dark' = useSelector((state: any) => state.theme.mode);
 
   const theme = React.useMemo(
     () =>

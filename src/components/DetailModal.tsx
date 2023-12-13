@@ -38,6 +38,7 @@ const Transition = forwardRef(function Transition(
 
 export default function DetailModal() {
   const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   const { detail, setDetailType } = useDetailModal();
   const { data: similarVideos } = useGetSimilarVideosQuery(
     { mediaType: detail.mediaType ?? MEDIA_TYPE.Movie, id: detail.id ?? 0 },
@@ -68,7 +69,7 @@ export default function DetailModal() {
         id="detail_dialog"
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ p: 0, bgcolor: "primary.main" }}>
+        <DialogContent sx={{ p: 0, bgcolor: `${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light}` }}>
           <Box
             sx={{
               top: 0,
@@ -125,8 +126,8 @@ export default function DetailModal() {
                     hsla(0,0%,8%,.15) 15%,
                     hsla(0,0%,8%,.35) 29%,
                     hsla(0,0%,8%,.58) 44%,
-                    ${theme.palette.primary.main} 68%,
-                    ${theme.palette.primary.main})`,
+                    ${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light} 68%),
+                    ${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light})`,
                   backgroundRepeat: "repeat-x",
                   backgroundPosition: "0px top",
                   backgroundSize: "100% 100%",

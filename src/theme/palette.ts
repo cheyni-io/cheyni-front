@@ -2,14 +2,14 @@ import type { PaletteMode } from "@mui/material";
 
 const PRIMARY = {
   main: "#000",
-  light: "#FF0000",
+  light: "#FFF",
   dark: "#FF0000",
 };
 
 const lightTheme = {
   primary: { ...PRIMARY, contrastText: "#000" },
   mode: "light" as PaletteMode,
-  background: { paper: "#FF0000", default: "#FF0000" },
+  background: { paper: "#FFF", default: "#FFF" },
   text: { primary: "#000", secondary: "#000", disabled: "#000" },
 };
 
