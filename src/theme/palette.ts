@@ -7,10 +7,10 @@ const PRIMARY = {
 };
 
 const lightTheme = {
-  primary: { ...PRIMARY, contrastText: "#000" },
+  primary: { ...PRIMARY, contrastText: "#0C0B30" },
   mode: "light" as PaletteMode,
   background: { paper: "#FFF", default: "#FFF" },
-  text: { primary: "#000", secondary: "#000", disabled: "#000" },
+  text: { primary: "#0C0B30", secondary: "#0C0B30", disabled: "#000" },
 };
 
 // Separate Dark Theme
