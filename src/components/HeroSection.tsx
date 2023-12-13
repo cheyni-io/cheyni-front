@@ -122,7 +122,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                 )}
                 <Box
                   sx={{
-                    background: `linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)`,
+                    // background: `linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)`,
+                    background: isDarkMode ? "linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)" : "linear-gradient(77deg,rgba(255,255,255,.6),transparent 85%)",
                     top: 0,
                     left: 0,
                     bottom: 0,
