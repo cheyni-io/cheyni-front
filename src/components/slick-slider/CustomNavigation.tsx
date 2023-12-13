@@ -15,12 +15,13 @@ const ArrowStyle = styled(Box)(({ theme }) => ({
   cursor: "pointer",
   alignItems: "center",
   justifyContent: "center",
-  color: theme.palette.common.white,
+  color: "#000",
   // background: theme.palette.grey[700],
   transition: theme.transitions.create("opacity"),
   "&:hover": {
     opacity: 0.8,
     background: "#2c289e",
+    color: "#fff",
   },
   [theme.breakpoints.down("sm")]: {
     display: "none",
@@ -71,6 +72,7 @@ export default function CustomNavigation({
             width: { xs: arrowWidth / 2, sm: arrowWidth },
             borderTopLeftRadius: { xs: "4px" },
             borderBottomLeftRadius: { xs: "4px" },
+            
             // backgroundImage: (theme) =>
             //   `linear-gradient(to left, ${theme.palette.background.default} 0%, rgba(0,0,0,0) 100%)`,
           }}

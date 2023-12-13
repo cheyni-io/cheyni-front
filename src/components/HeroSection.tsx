@@ -157,13 +157,13 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     bottom: "35%",
                   }}
                 >
-                  <NetflixIconButton
+                  {/* <NetflixIconButton
                     size="large"
                     onClick={() => handleMute(muted)}
                     sx={{ zIndex: 2 }}
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </NetflixIconButton>
+                  </NetflixIconButton> */}
                   <MaturityRate>{`${maturityRate}+`}</MaturityRate>
                 </Stack>
               </Box>

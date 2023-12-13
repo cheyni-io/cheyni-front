@@ -1,7 +1,10 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { useTheme } from "@mui/material";
 
 export default function MoreInfoButton({ sx, ...others }: ButtonProps) {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Button
       variant="contained"
@@ -25,9 +28,13 @@ export default function MoreInfoButton({ sx, ...others }: ButtonProps) {
         lineHeight: 1.5,
         fontWeight: "bold",
         textTransform: "capitalize",
-        bgcolor: "#6d6d6eb3",
+        color: isDarkMode ? "#0c0b30" : "#fff",
+        bgcolor: isDarkMode ? "#FFF" : "#0c0b30",
         whiteSpace: "nowrap",
-        "&:hover": { bgcolor: "#6d6d6e66" },
+        "&:hover": { 
+          bgcolor: isDarkMode ? "#0c0b30" : "#fff",
+          color: isDarkMode ? theme.palette.primary.light : "#0c0b30",
+        },
       }}
     >
       More Info
