@@ -167,7 +167,7 @@ export default function DetailModal() {
                   {detail.mediaDetail?.title}
                 </MaxLineTypography>
                 <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-                  <PlayButton sx={{ color: "black", py: 0 }} />
+                  <PlayButton sx={{ color: darkMode ? "#fff" : "#0c0b30" }} />
                   {/* <CheyniIconButton>
                     <AddIcon />
                   </CheyniIconButton>
