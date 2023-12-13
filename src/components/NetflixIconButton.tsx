@@ -1,12 +1,17 @@
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import { useTheme } from "@mui/material/styles";
 import { forwardRef } from "react";
 
 const CheyniIconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   ({ children, sx, ...others }, ref) => {
+
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+
     return (
       <IconButton
         sx={{
-          color: "white",
+          color: isDarkMode ? "grey.200" : "grey.700",
           borderWidth: "2px",
           borderStyle: "solid",
           borderColor: "grey.700",

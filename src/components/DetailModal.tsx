@@ -16,7 +16,6 @@ import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, useCallback, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 
-import { useTheme } from '@mui/material/styles';
 import { useDetailModal } from "src/providers/DetailModalProvider";
 import { useGetSimilarVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
@@ -26,6 +25,7 @@ import MaxLineTypography from "./MaxLineTypography";
 import CheyniIconButton from "./NetflixIconButton";
 import PlayButton from "./PlayButton";
 import QualityChip from "./QualityChip";
+import { useTheme } from "@mui/material";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -38,7 +38,7 @@ const Transition = forwardRef(function Transition(
 
 export default function DetailModal() {
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const darkMode = theme.palette.mode === "dark";
   const { detail, setDetailType } = useDetailModal();
   const { data: similarVideos } = useGetSimilarVideosQuery(
     { mediaType: detail.mediaType ?? MEDIA_TYPE.Movie, id: detail.id ?? 0 },
@@ -69,7 +69,7 @@ export default function DetailModal() {
         id="detail_dialog"
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ p: 0, bgcolor: `${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light}` }}>
+        <DialogContent sx={{ p: 0, bgcolor: darkMode ? "#181818" : "#fff" }}>
           <Box
             sx={{
               top: 0,
@@ -121,13 +121,8 @@ export default function DetailModal() {
               <Box
                 sx={{
                   backgroundColor: "transparent",
-                  backgroundImage: `linear-gradient(180deg,
-                    hsla(0,0%,8%,0) 0,
-                    hsla(0,0%,8%,.15) 15%,
-                    hsla(0,0%,8%,.35) 29%,
-                    hsla(0,0%,8%,.58) 44%,
-                    ${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light} 68%),
-                    ${isDarkMode ? theme.palette.primary.dark : theme.palette.primary.light})`,
+                  backgroundImage:
+                    darkMode ? "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0c0b30 68%,#0c0b30)" : "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#fff 68%,#fff)",
                   backgroundRepeat: "repeat-x",
                   backgroundPosition: "0px top",
                   backgroundSize: "100% 100%",
@@ -173,20 +168,20 @@ export default function DetailModal() {
                 </MaxLineTypography>
                 <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
                   <PlayButton sx={{ color: "black", py: 0 }} />
-                  <CheyniIconButton>
+                  {/* <CheyniIconButton>
                     <AddIcon />
                   </CheyniIconButton>
                   <CheyniIconButton>
                     <ThumbUpOffAltIcon />
-                  </CheyniIconButton>
+                  </CheyniIconButton> */}
                   <Box flexGrow={1} />
-                  <CheyniIconButton
+                  {/* <CheyniIconButton
                     size="large"
                     onClick={() => handleMute(muted)}
                     sx={{ zIndex: 2 }}
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </CheyniIconButton>
+                  </CheyniIconButton> */}
                 </Stack>
 
                 <Container

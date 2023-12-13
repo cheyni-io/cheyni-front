@@ -17,10 +17,15 @@ import CheyniNavigationLink from "../NetflixNavigationLink";
 import SearchBox from "../SearchBox";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "src/store/slices/themeSlice";
+import { useTheme } from "@mui/material";
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const pages = [""];
 
 const MainHeader = () => {
+  const theme2 = useTheme();
+  const isDarkMode = theme2.palette.mode === 'dark';
   const isOffset = useOffSetTop(APP_BAR_HEIGHT);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -62,10 +67,10 @@ const MainHeader = () => {
         backgroundImage: "none",
         ...(isOffset
           ? {
-            bgcolor: "primary.main",
+            bgcolor: isDarkMode ? theme2.palette.primary.dark : theme2.palette.primary.light,
             boxShadow: (theme) => theme.shadows[4],
           }
-          : { boxShadow: 0, bgcolor: "primary.main" }),
+          : { boxShadow: 0, bgcolor: isDarkMode ? theme2.palette.primary.dark : theme2.palette.primary.light }),
       }}
     >
       <Toolbar disableGutters>
@@ -141,7 +146,7 @@ const MainHeader = () => {
 
         <Box sx={{ flexGrow: 0, display: "flex", gap: 2 }}>
         <IconButton onClick={toggleTheme} color="inherit">
-          {theme === 'light' ? '🌙' : '☀️'}
+          {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton> 
           <SearchBox />
           <Tooltip title="Open settings">

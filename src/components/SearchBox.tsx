@@ -1,6 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import { useRef, useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
@@ -34,6 +34,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBox() {
+  const theme = useTheme();
+  const darkMode = theme.palette.mode === "dark";
   const [isFocused, setIsFocused] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>();
 
@@ -46,7 +48,10 @@ export default function SearchBox() {
   return (
     <Search
       sx={
-        isFocused ? { border: "1px solid white", backgroundColor: "black" } : {}
+        isFocused ? { 
+          border: darkMode ? "1px solid #fff" : "1px solid #000",
+          borderRadius: "4px",
+          backgroundColor: darkMode ? theme.palette.primary.dark : theme.palette.primary.light } : {}
       }
     >
       <SearchIconWrapper onClick={handleClickSearchIcon}>

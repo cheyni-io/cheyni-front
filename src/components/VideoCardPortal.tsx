@@ -84,13 +84,14 @@ export default function VideoCardModal({
             maxLine={2}
             sx={{ width: "80%", fontWeight: 700 }}
             variant="h6"
+            color="#FFF"
           >
             {video.title}
           </MaxLineTypography>
           <div style={{ flexGrow: 1 }} />
-          <CheyniIconButton>
+          {/* <CheyniIconButton>
             <VolumeUpIcon />
-          </CheyniIconButton>
+          </CheyniIconButton> */}
         </div>
       </div>
       <CardContent>

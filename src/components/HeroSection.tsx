@@ -20,12 +20,15 @@ import MoreInfoButton from "./MoreInfoButton";
 import NetflixIconButton from "./NetflixIconButton";
 import PlayButton from "./PlayButton";
 import VideoJSPlayer from "./watch/VideoJSPlayer";
+import { useTheme } from "@mui/material";
 
 interface TopTrailerProps {
   mediaType: MEDIA_TYPE;
 }
 
 export default function TopTrailer({ mediaType }: TopTrailerProps) {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark'; 
   const { data } = useGetVideosByMediaTypeAndCustomGenreQuery({
     mediaType,
     apiString: "popular",
@@ -132,8 +135,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                 <Box
                   sx={{
                     backgroundColor: "transparent",
-                    backgroundImage:
-                      "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0C0B30 68%,#0C0B30)",
+                    backgroundImage: isDarkMode ? "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0C0B30 68%,#0C0B30)" : "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%,  rgba(255, 255, 255, 0.15) 15%, rgba(255, 255, 255, 0.35) 29%, rgba(255, 255, 255, 0.58) 44%, #FFFFFF 68%, #FFFFFF)",
                     backgroundRepeat: "repeat-x",
                     backgroundPosition: "0px top",
                     backgroundSize: "100% 100%",
