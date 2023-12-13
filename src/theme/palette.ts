@@ -1,38 +1,26 @@
 import type { PaletteMode } from "@mui/material";
 
 const PRIMARY = {
-  light: "#B8B8B8",
-  main: "#0c0b30",
-  dark: "#0E0A0A",
-};
-const GREY = {
-  100: "#F9FAFB",
-  200: "#F4F6F8",
-  300: "#DFE3E8",
-  400: "#C4CDD5",
-  500: "#919EAB",
-  600: "#637381",
-  700: "#454F5B",
-  800: "#212B36",
-  900: "#161C24",
+  main: "#000",
+  light: "#FF0000",
+  dark: "#FF0000",
 };
 
-const COMMON = {
-  common: { black: "#000", white: "#fff" },
+const lightTheme = {
+  primary: { ...PRIMARY, contrastText: "#000" },
+  mode: "light" as PaletteMode,
+  background: { paper: "#FF0000", default: "#FF0000" },
+  text: { primary: "#000", secondary: "#000", disabled: "#000" },
+};
+
+// Separate Dark Theme
+const darkTheme = {
   primary: { ...PRIMARY, contrastText: "#fff" },
-  grey: GREY,
-  action: {
-    active: GREY[500],
-    hoverOpacity: 0.08,
-    disabledOpacity: 0.48,
-  },
+  mode: "dark" as PaletteMode,
+  background: { paper: "#0c0b30", default: "#0C0B30" },
+  text: { primary: "#fff", secondary: "#fff", disabled: "#fff" },
 };
 
-const palette = {
-  ...COMMON,
-  text: { primary: "#fff", secondary: GREY[500], disabled: GREY[600] },
-  background: { default: PRIMARY.main, paper: PRIMARY.main },
-  mode: "dark" as PaletteMode,
-};
+const palette = { light: lightTheme, dark: darkTheme };
 
 export default palette;

@@ -2,7 +2,6 @@ import { Movie } from "src/types/Movie";
 
 export enum MEDIA_TYPE {
   Movie = "movie",
-  Tv = "tv",
 }
 
 export type Company = {

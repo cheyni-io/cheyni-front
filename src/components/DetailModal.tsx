@@ -16,6 +16,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { forwardRef, useCallback, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 
+import { useTheme } from '@mui/material/styles';
 import { useDetailModal } from "src/providers/DetailModalProvider";
 import { useGetSimilarVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
@@ -36,6 +37,7 @@ const Transition = forwardRef(function Transition(
 });
 
 export default function DetailModal() {
+  const theme = useTheme();
   const { detail, setDetailType } = useDetailModal();
   const { data: similarVideos } = useGetSimilarVideosQuery(
     { mediaType: detail.mediaType ?? MEDIA_TYPE.Movie, id: detail.id ?? 0 },
@@ -66,7 +68,7 @@ export default function DetailModal() {
         id="detail_dialog"
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ p: 0, bgcolor: "#0c0b30" }}>
+        <DialogContent sx={{ p: 0, bgcolor: "primary.main" }}>
           <Box
             sx={{
               top: 0,
@@ -118,8 +120,13 @@ export default function DetailModal() {
               <Box
                 sx={{
                   backgroundColor: "transparent",
-                  backgroundImage:
-                    "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0c0b30 68%,#0c0b30)",
+                  backgroundImage: `linear-gradient(180deg,
+                    hsla(0,0%,8%,0) 0,
+                    hsla(0,0%,8%,.15) 15%,
+                    hsla(0,0%,8%,.35) 29%,
+                    hsla(0,0%,8%,.58) 44%,
+                    ${theme.palette.primary.main} 68%,
+                    ${theme.palette.primary.main})`,
                   backgroundRepeat: "repeat-x",
                   backgroundPosition: "0px top",
                   backgroundSize: "100% 100%",

@@ -15,6 +15,8 @@ import useOffSetTop from "src/hooks/useOffSetTop";
 import Logo from "../Logo";
 import CheyniNavigationLink from "../NetflixNavigationLink";
 import SearchBox from "../SearchBox";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTheme } from "src/store/slices/themeSlice";
 
 const pages = [""];
 
@@ -43,6 +45,14 @@ const MainHeader = () => {
     setAnchorElUser(null);
   };
 
+  const theme = useSelector((state: any) => state.theme);
+  const dispatch = useDispatch();
+
+  const toggleTheme = () => {
+    console.log(theme);
+    dispatch(changeTheme());
+  };
+
   return (
     <AppBar
       sx={{
@@ -52,15 +62,14 @@ const MainHeader = () => {
         backgroundImage: "none",
         ...(isOffset
           ? {
-              bgcolor: "primary.main",
-              boxShadow: (theme) => theme.shadows[4],
-            }
-          : { boxShadow: 0, bgcolor: "primary.main"}),
+            bgcolor: "primary.main",
+            boxShadow: (theme) => theme.shadows[4],
+          }
+          : { boxShadow: 0, bgcolor: "primary.main" }),
       }}
     >
       <Toolbar disableGutters>
         <Logo sx={{ mr: { xs: 2, sm: 4 } }} />
-
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -131,6 +140,9 @@ const MainHeader = () => {
         </Stack>
 
         <Box sx={{ flexGrow: 0, display: "flex", gap: 2 }}>
+        <IconButton onClick={toggleTheme} color="inherit">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </IconButton> 
           <SearchBox />
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

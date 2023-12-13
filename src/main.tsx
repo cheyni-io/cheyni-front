@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./CustomClassNameSetup";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -12,21 +12,42 @@ import { extendedApi } from "./store/slices/configuration";
 import palette from "./theme/palette";
 import router from "./routes";
 import MainLoadingScreen from "./components/MainLoadingScreen";
+import CssBaseline from '@mui/material/CssBaseline';
 
 store.dispatch(extendedApi.endpoints.getConfiguration.initiate(undefined));
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const App = () => {
+  const themeMode = useSelector((state: any) => state.theme.mode);
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: palette[themeMode],
+        components: {
+          MuiCssBaseline: {
+            styleOverrides: `
+              html, body, #root {
+                height: 100%;
+              }
+            `,
+          },
+        },
+      }),
+    [themeMode]
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RouterProvider router={router} fallbackElement={<MainLoadingScreen />} />
+    </ThemeProvider>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ThemeProvider theme={createTheme({ palette })}>
-        <RouterProvider
-          router={router}
-          fallbackElement={<MainLoadingScreen />}
-        />
-      </ThemeProvider>
-    </React.StrictMode>
+    <App /> {/* Render the App component */}
   </Provider>
 );
