@@ -12,7 +12,7 @@ export default function Logo({ sx }: BoxProps) {
         component="img"
         alt="Cheyni Logo"
         src={isDarkMode ? "./assets/logo-light.png" : "./assets/logo-dark.png"}
-        width={90}
+        width={100}
         height={22}
         sx={{
           ...sx,
