@@ -8,7 +8,7 @@ import { styled, Theme, useTheme } from "@mui/material/styles";
 
 import MotionContainer from "src/components/animate/MotionContainer";
 import { varFadeIn } from "src/components/animate/variants/fade/FadeIn";
-import NetflixNavigationLink from "src/components/NetflixNavigationLink";
+import CheyniNavigationLink from "src/components/CheyniNavigationLink";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
 import { ARROW_MAX_WIDTH } from "src/constant";
 import { PaginatedMovieResult } from "src/types/Common";
@@ -36,7 +36,7 @@ const StyledSlider = styled(Slider)(
       "& .slick-list > .slick-track": {
         margin: "0px !important",
       },
-      "& .slick-list > .slick-track > .slick-current > div > .NetflixBox-root > .NetflixPaper-root:hover":
+      "& .slick-list > .slick-track > .slick-current > div > .CheyniBox-root > .CheyniPaper-root:hover":
       {
         transformOrigin: "0% 50% !important",
       },
@@ -270,7 +270,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
             alignItems="center"
             sx={{ mb: 2, pl: { xs: "30px", sm: "60px" } }}
           >
-            <NetflixNavigationLink
+            <CheyniNavigationLink
               variant="h5"
               to={`/genre/${genre.id || genre.name.toLowerCase().replace(" ", "_")
                 }`}
@@ -297,7 +297,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   </motion.span>
                 ))}
               </MotionContainer>
-            </NetflixNavigationLink>
+            </CheyniNavigationLink>
           </Stack>
 
           <RootStyle>

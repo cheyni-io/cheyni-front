@@ -1,10 +1,9 @@
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 
+import { useTheme } from "@mui/material";
 import useOffSetTop from "src/hooks/useOffSetTop";
 import { useDetailModal } from "src/providers/DetailModalProvider";
 import {
@@ -17,10 +16,7 @@ import { getRandomNumber } from "src/utils/common";
 import MaturityRate from "./MaturityRate";
 import MaxLineTypography from "./MaxLineTypography";
 import MoreInfoButton from "./MoreInfoButton";
-import NetflixIconButton from "./NetflixIconButton";
 import PlayButton from "./PlayButton";
-import VideoJSPlayer from "./watch/VideoJSPlayer";
-import { useTheme } from "@mui/material";
 
 interface TopTrailerProps {
   mediaType: MEDIA_TYPE;
@@ -215,13 +211,13 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     bottom: "35%",
                   }}
                 >
-                  {/* <NetflixIconButton
+                  {/* <CheyniIconButton
                     size="large"
                     onClick={() => handleMute(muted)}
                     sx={{ zIndex: 2 }}
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </NetflixIconButton> */}
+                  </CheyniIconButton> */}
                   <MaturityRate>{`${video.age}`}
                   </MaturityRate>
                 </Stack>

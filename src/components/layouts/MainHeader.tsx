@@ -1,4 +1,7 @@
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -10,16 +13,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { APP_BAR_HEIGHT } from "src/constant";
 import useOffSetTop from "src/hooks/useOffSetTop";
-import Logo from "../Logo";
-import CheyniNavigationLink from "../NetflixNavigationLink";
-import SearchBox from "../SearchBox";
-import { useDispatch, useSelector } from "react-redux";
 import { changeTheme } from "src/store/slices/themeSlice";
-import { useTheme } from "@mui/material";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import CheyniNavigationLink from "../CheyniNavigationLink";
+import Logo from "../Logo";
+import SearchBox from "../SearchBox";
 
 const pages = [""];
 

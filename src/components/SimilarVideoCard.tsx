@@ -7,8 +7,8 @@ import { useGetConfigurationQuery } from "src/store/slices/configuration";
 import { Movie } from "src/types/Movie";
 import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
+import CheyniIconButton from "./CheyniIconButton";
 import MaxLineTypography from "./MaxLineTypography";
-import CheyniIconButton from "./NetflixIconButton";
 
 interface SimilarVideoCardProps {
   video: Movie;

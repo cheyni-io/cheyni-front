@@ -2,7 +2,6 @@ import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
@@ -15,11 +14,11 @@ import { useGetConfigurationQuery } from "src/store/slices/configuration";
 import { useGetGenresQuery } from "src/store/slices/genre";
 import { MEDIA_TYPE } from "src/types/Common";
 import { Movie } from "src/types/Movie";
-import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
+import { formatMinuteToReadable } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
+import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
 import MaxLineTypography from "./MaxLineTypography";
-import CheyniIconButton from "./NetflixIconButton";
 import QualityChip from "./QualityChip";
 
 interface VideoCardModalProps {

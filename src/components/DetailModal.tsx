@@ -1,8 +1,4 @@
-import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Dialog from "@mui/material/Dialog";
@@ -13,19 +9,15 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useCallback, useRef, useState } from "react";
-import Player from "video.js/dist/types/player";
+import { forwardRef } from "react";
 
+import { useTheme } from "@mui/material";
 import { useDetailModal } from "src/providers/DetailModalProvider";
-import { useGetSimilarVideosQuery } from "src/store/slices/discover";
-import { MEDIA_TYPE } from "src/types/Common";
-import { formatMinuteToReadable, getRandomNumber } from "src/utils/common";
+import { formatMinuteToReadable } from "src/utils/common";
 import AgeLimitChip from "./AgeLimitChip";
 import MaxLineTypography from "./MaxLineTypography";
-import CheyniIconButton from "./NetflixIconButton";
 import PlayButton from "./PlayButton";
 import QualityChip from "./QualityChip";
-import { useTheme } from "@mui/material";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
