@@ -82,7 +82,7 @@ const data2 = {
       "title": "Black Swan",
       "video": false,
       "vote_average": 7.677,
-      "vote_count": 13700,
+      "vote_count": 13700
     },
     {
       "adult": false,
@@ -195,7 +195,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showExplore, setShowExplore] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
-  const theme = useTheme();
+  const theme = useTheme();  
 
   const beforeChange = async (currentIndex: number, nextIndex: number) => {
     if (currentIndex < nextIndex) {
@@ -315,10 +315,14 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 theme={theme}
               >
                 {data2.results
-                  .filter((i) => !!i.backdrop_path)
+                  .filter(item =>
+                    // Verifica se genre.id está definido antes de usar em includes, incluir todos os filmes no top movies
+                    !!genre.id ? item.genre_ids.includes(genre.id) : true                   
+                  )
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />
                   ))}
+
                 {/* {data3.results
                   .filter((i) => !!i.backdrop_path)
                   .map((item) => (
