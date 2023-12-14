@@ -3,26 +3,26 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Stack } from "@mui/material";
 import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import PlayerControlButton from "./PlayerControlButton";
 
-const StyledSlider = styled(Slider)({
+const StyledSlider = styled(Slider)(({ theme }) => ({
   height: 5,
   borderRadius: 0,
   padding: 0,
   "& .CheyniSlider-track": {
     border: "none",
-    backgroundColor: "#0c0b30",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
   },
   "& .CheyniSlider-rail": {
     border: "none",
-    backgroundColor: "#FFF",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
     opacity: 0.85,
   },
   "& .CheyniSlider-thumb": {
     height: 12,
     width: 10,
-    backgroundColor: "#0c0b30",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
     "&:focus, &:hover, &.Cheyni-active, &.Cheyni-focusVisible": {
       boxShadow: "inherit",
       height: 17,
@@ -32,7 +32,7 @@ const StyledSlider = styled(Slider)({
       display: "none",
     },
   },
-});
+}));
 
 export default function VolumeControllers({
   value,

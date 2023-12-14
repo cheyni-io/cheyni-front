@@ -1,24 +1,24 @@
 import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
 
 import { formatTime } from "src/utils/common";
+import { styled, useTheme } from "@mui/material/styles";
 
-const StyledSlider = styled(Slider)({
+const StyledSlider = styled(Slider)(({ theme }) => ({
   borderRadius: 0,
   "& .CheyniSlider-track": {
-    backgroundColor: "#0c0b30 !important",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
     border: 0,
   },
   "& .CheyniSlider-rail": {
     border: "none",
-    backgroundColor: "white !important",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
     opacity: 0.85,
   },
   "& .CheyniSlider-thumb": {
     borderRadius: "50%",
     height: 10,
     width: 10,
-    backgroundColor: "#0c0b30",
+    backgroundColor: theme.palette.mode === "dark" ? "#fff" : "#0c0b30",
     "&:focus, &:hover, &.Cheyni-active, &.Cheyni-focusVisible": {
       boxShadow: "inherit",
       height: 15,
@@ -50,7 +50,7 @@ const StyledSlider = styled(Slider)({
   //     transform: "rotate(45deg)",
   //   },
   // },
-});
+}));
 
 function PlayerSeekbar({
   playedSeconds,

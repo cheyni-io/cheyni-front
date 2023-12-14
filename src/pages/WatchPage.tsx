@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Player from "video.js/dist/types/player";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -103,6 +103,9 @@ export function Component() {
     navigate("/browse");
   };
 
+  const theme = useTheme();
+  const dark = theme.palette.mode === "dark";
+
   if (!!videoJsOptions.width) {
     return (
       <Box
@@ -152,7 +155,7 @@ export function Component() {
                 right: 0,
               }}
             >
-              <Typography
+              {/* <Typography
                 variant="subtitle2"
                 sx={{
                   px: 1,
@@ -164,12 +167,13 @@ export function Component() {
                 }}
               >
                 12+
-              </Typography>
+              </Typography> */}
             </Box>
 
             <Box
               px={{ xs: 1, sm: 2 }}
-              sx={{ position: "absolute", bottom: 20, left: 0, right: 0 }}
+              sx={{ position: "absolute", bottom: 20, left: 0, right: 0, backgroundColor: dark ? "#0C0B30" : "#FFF" }}
+            
             >
               {/* Seekbar */}
               <Stack direction="row" alignItems="center" spacing={1}>
