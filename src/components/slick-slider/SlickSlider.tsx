@@ -82,7 +82,7 @@ const data2 = {
       "title": "Black Swan",
       "video": false,
       "vote_average": 7.677,
-      "vote_count": 13700
+      "vote_count": 13700,
     },
     {
       "adult": false,
@@ -260,8 +260,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     sliderRef.current?.slickNext();
   };
 
-  console.log("data", data);
-
   return (
     <Box sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}>
       {data.results.length > 0 && (
@@ -321,7 +319,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />
                   ))}
-                {/* {data.results
+                {/* {data3.results
                   .filter((i) => !!i.backdrop_path)
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />

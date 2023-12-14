@@ -1,7 +1,10 @@
+import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import { ReactNode } from "react";
 
 export default function MaturityRate({ children }: { children: ReactNode }) {
+  const theme = useTheme();
+  const darkMode = theme.palette.mode === "dark";
   return (
     <Box
       sx={{
@@ -11,10 +14,10 @@ export default function MaturityRate({ children }: { children: ReactNode }) {
         fontSize: 22,
         display: "flex",
         alignItem: "center",
-        color: "text.primary",
-        border: "3px #dcdcdc",
+        color: darkMode ? "#dcdcdc" : "#333333",
+        border: darkMode ? "3px #dcdcdc" : "3px #333333",
         borderLeftStyle: "solid",
-        bgcolor: "#33333399",
+        bgcolor: darkMode ? "#333333" : "#dcdcdc",
       }}
     >
       {children}

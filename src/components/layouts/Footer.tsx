@@ -22,15 +22,15 @@ export default function Footer() {
           "::before, ::after": { top: "0%" },
         }}
       >
-        <Typography color="grey.700" variant="h6" component="span">
+        <Typography color="grey.700" variant="h6" component="span" fontSize={12}>
           Developed by{" "}
           <Link
             target="_blank"
             underline="none"
             sx={{ color: "text.primary" }}
-            href="https://github.com/crazy-man22"
+            href="https://izzicupoborges.com"
           >
-            Izzicupo borges
+            Izzicupo Borges & Co.
           </Link>
         </Typography>
       </Divider>

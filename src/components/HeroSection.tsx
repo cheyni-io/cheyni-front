@@ -27,8 +27,76 @@ interface TopTrailerProps {
 }
 
 export default function TopTrailer({ mediaType }: TopTrailerProps) {
+  const data2 = {
+    results: [
+      {
+        "adult": false,
+        "backdrop_path": "/qxTw8OKJLRX1Xb5nR5CcIDnLKoq.jpg",
+        "genre_ids": [
+          18,
+          53,
+          27
+        ],
+        "id": 44214,
+        "original_language": "en",
+        "original_title": "Black Swan",
+        "overview": "A journey through the psyche of a young ballerina whose starring role as the duplicitous swan queen turns out to be a part for which she becomes frighteningly perfect.",
+        "popularity": 90.44,
+        "poster_path": "/rH19vkjAzCZ0HIUvrgB3rowm68h.jpg",
+        "release_date": "2010-12-03",
+        "title": "Black Swan",
+        "video": false,
+        "vote_average": 7.677,
+        "vote_count": 13700,
+        "age": '16+'
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/dPE25PbaeE6fCR2SQb4H4MeBmml.jpg",
+        "genre_ids": [
+          18,
+          53,
+          80,
+          9648
+        ],
+        "id": 15472,
+        "original_language": "sv",
+        "original_title": "Män som hatar kvinnor",
+        "overview": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
+        "popularity": 47.784,
+        "poster_path": "/r2pFUXKK20KD9RE3yybpQsNynRE.jpg",
+        "release_date": "2009-02-27",
+        "title": "The Girl with the Dragon Tattoo",
+        "video": false,
+        "vote_average": 7.523,
+        "vote_count": 2766,
+        "age": '16+'
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
+        "genre_ids": [
+          28,
+          18
+        ],
+        "id": 678512,
+        "original_language": "en",
+        "original_title": "Sound of Freedom",
+        "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
+        "popularity": 263.457,
+        "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
+        "release_date": "2023-07-03",
+        "title": "Sound of Freedom",
+        "video": false,
+        "vote_average": 8.1,
+        "vote_count": 1585,
+        "age": '14+'
+      },
+    ]
+  }
+
   const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark'; 
+  const isDarkMode = theme.palette.mode === 'dark';
   const { data } = useGetVideosByMediaTypeAndCustomGenreQuery({
     mediaType,
     apiString: "popular",
@@ -44,10 +112,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     return getRandomNumber(20);
   }, []);
 
-  const handleReady = useCallback((player: Player) => {
-    playerRef.current = player;
-  }, []);
-
   useEffect(() => {
     if (playerRef.current) {
       if (isOffset) {
@@ -61,8 +125,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
   }, [isOffset]);
 
   useEffect(() => {
-    if (data && data.results) {
-      const videos = data.results.filter((item) => !!item.backdrop_path);
+    if (data2 && data2.results) {
+      const videos = data2.results.filter((item) => !!item.backdrop_path);
       setVideo(videos[getRandomNumber(videos.length)]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,13 +138,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [video]);
-
-  const handleMute = useCallback((status: boolean) => {
-    if (playerRef.current) {
-      playerRef.current.muted(!status);
-      setMuted(!status);
-    }
-  }, []);
 
   return (
     <Box sx={{ position: "relative", zIndex: 1 }}>
@@ -114,7 +171,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
               >
                 {detail && (
                   <img
-                    src={`https://image.tmdb.org/t/p/original//pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg`}
+                    src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`}
                     alt={detail.title}
                     width="100%"
                     height="100%"
@@ -165,7 +222,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
                   </NetflixIconButton> */}
-                  <MaturityRate>{`${maturityRate}+`}</MaturityRate>
+                  <MaturityRate>{`${video.age}`}
+                  </MaturityRate>
                 </Stack>
               </Box>
 
@@ -197,14 +255,14 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     maxLine={1}
                     color="text.primary"
                   >
-                    Sound of Freedom
+                    {video.title}
                   </MaxLineTypography>
                   <MaxLineTypography
                     variant="h5"
                     maxLine={3}
                     color="text.primary"
                   >
-                    The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.                
+                    {video.overview}
                   </MaxLineTypography>
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                     <PlayButton size="large" />

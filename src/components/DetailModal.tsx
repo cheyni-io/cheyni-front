@@ -40,24 +40,6 @@ export default function DetailModal() {
   const theme = useTheme();
   const darkMode = theme.palette.mode === "dark";
   const { detail, setDetailType } = useDetailModal();
-  const { data: similarVideos } = useGetSimilarVideosQuery(
-    { mediaType: detail.mediaType ?? MEDIA_TYPE.Movie, id: detail.id ?? 0 },
-    { skip: !detail.id }
-  );
-  const playerRef = useRef<Player | null>(null);
-  const [muted, setMuted] = useState(true);
-
-  const handleReady = useCallback((player: Player) => {
-    playerRef.current = player;
-    setMuted(player.muted());
-  }, []);
-
-  const handleMute = useCallback((status: boolean) => {
-    if (playerRef.current) {
-      playerRef.current.muted(!status);
-      setMuted(!status);
-    }
-  }, []);
 
   if (detail.mediaDetail) {
     return (
@@ -69,7 +51,7 @@ export default function DetailModal() {
         id="detail_dialog"
         TransitionComponent={Transition}
       >
-        <DialogContent sx={{ p: 0, bgcolor: darkMode ? "#181818" : "#fff" }}>
+        <DialogContent sx={{ p: 0, bgcolor: darkMode ? "#0C0B30" : "#fff" }}>
           <Box
             sx={{
               top: 0,
@@ -122,7 +104,7 @@ export default function DetailModal() {
                 sx={{
                   backgroundColor: "transparent",
                   backgroundImage:
-                    darkMode ? "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0c0b30 68%,#0c0b30)" : "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#fff 68%,#fff)",
+                    darkMode ? "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#0C0B30 68%, #0C0B30)" : "linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#fff 68%,#fff)",
                   backgroundRepeat: "repeat-x",
                   backgroundPosition: "0px top",
                   backgroundSize: "100% 100%",
@@ -195,9 +177,15 @@ export default function DetailModal() {
                         <Typography variant="body2">
                           {detail.mediaDetail?.release_date.substring(0, 4)}
                         </Typography>
-                        <AgeLimitChip label={`${getRandomNumber(20)}+`} />
+                        <AgeLimitChip 
+                          label={`${detail.mediaDetail?.title == "Black Swan" ? "16+" : 
+                          detail.mediaDetail?.title == "The Girl with the Dragon Tattoo" ? "16+" : 
+                          detail.mediaDetail?.title == "Jennifer's Body" ? "16+" : 
+                          detail.mediaDetail?.title == "Donnie Darko" ? "14+" :
+                          detail.mediaDetail?.title == "Sound of Freedom" ? "14+" : "18+"}`}
+                        />
                         <Typography variant="subtitle2">{`${formatMinuteToReadable(
-                          getRandomNumber(180)
+                          detail.mediaDetail?.runtime || 0
                         )}`}</Typography>
                         <QualityChip label="HD" />
                       </Stack>

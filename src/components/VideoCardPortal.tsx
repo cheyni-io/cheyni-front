@@ -119,10 +119,19 @@ export default function VideoCardModal({
             </CheyniIconButton>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
-            <AgeLimitChip label={`${getRandomNumber(20)}+`} />
+            <AgeLimitChip label={`${video.title == "Black Swan" ? "16+" :
+              video.title == "The Girl with the Dragon Tattoo" ? "16+" :
+                video.title == "Jennifer's Body" ? "16+" :
+                  video.title == "Donnie Darko" ? "14+" :
+                    video.title == "Sound of Freedom" ? "14+" : "18+"}`}
+            />
             <Typography variant="subtitle2">{`${formatMinuteToReadable(
-              getRandomNumber(180)
-            )}`}</Typography>
+              video.title == "Black Swan" ? 108 :
+              video.title == "The Girl with the Dragon Tattoo" ? 152 :
+                video.title == "Jennifer's Body" ? 107 :
+                  video.title == "Donnie Darko" ? 114 :
+                    video.title == "Sound of Freedom" ? 131 : 154
+            )}`}</Typography>                 
             <QualityChip label="HD" />
           </Stack>
           {genres && (
