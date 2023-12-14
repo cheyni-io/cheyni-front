@@ -86,6 +86,104 @@ const data2 = {
     },
     {
       "adult": false,
+      "backdrop_path": "/dPE25PbaeE6fCR2SQb4H4MeBmml.jpg",
+      "genre_ids": [
+        18,
+        53,
+        80,
+        9648
+      ],
+      "id": 15472,
+      "original_language": "sv",
+      "original_title": "Män som hatar kvinnor",
+      "overview": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
+      "popularity": 47.784,
+      "poster_path": "/r2pFUXKK20KD9RE3yybpQsNynRE.jpg",
+      "release_date": "2009-02-27",
+      "title": "The Girl with the Dragon Tattoo",
+      "video": false,
+      "vote_average": 7.523,
+      "vote_count": 2766
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/aTmh5w201d86lt3juFk8tbK297Y.jpg",
+      "genre_ids": [
+        27,
+        35
+      ],
+      "id": 19994,
+      "original_language": "en",
+      "original_title": "Jennifer's Body",
+      "overview": "Jennifer, a gorgeous, seductive cheerleader takes evil to a whole new level after she's possessed by a sinister demon. Now it's up to her best friend to stop Jennifer's reign of terror before it's too late.",
+      "popularity": 73.912,
+      "poster_path": "/wrkjsGcFJxcQqR56kJUYAEKKg2T.jpg",
+      "release_date": "2009-09-18",
+      "title": "Jennifer's Body",
+      "video": false,
+      "vote_average": 5.913,
+      "vote_count": 3502
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/msCHK5Kh1YbdZ0zPJ2nzPUhhSN9.jpg",
+      "genre_ids": [
+        14,
+        18,
+        9648
+      ],
+      "id": 141,
+      "original_language": "en",
+      "original_title": "Donnie Darko",
+      "overview": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a large bunny rabbit that manipulates him to commit a series of crimes.",
+      "popularity": 65.943,
+      "poster_path": "/fhQoQfejY1hUcwyuLgpBrYs6uFt.jpg",
+      "release_date": "2001-01-19",
+      "title": "Donnie Darko",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+      "genre_ids": [
+        53,
+        80
+      ],
+      "id": 680,
+      "original_language": "en",
+      "original_title": "Pulp Fiction",
+      "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
+      "popularity": 104.335,
+      "poster_path": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
+      "release_date": "1994-09-10",
+      "title": "Pulp Fiction",
+      "video": false,
+      "vote_average": 8.489,
+      "vote_count": 26243
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 678512,
+      "original_language": "en",
+      "original_title": "Sound of Freedom",
+      "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
+      "popularity": 263.457,
+      "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
+      "release_date": "2023-07-03",
+      "title": "Sound of Freedom",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 1585
+    },
+    {
+      "adult": false,
       "backdrop_path": "/g2rhT5dKLsK2ATRw2ri39SdRciD.jpg",
       "genre_ids": [
         35,
@@ -242,104 +340,6 @@ const data2 = {
       "video": false,
       "vote_average": 5.7,
       "vote_count": 41
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/dPE25PbaeE6fCR2SQb4H4MeBmml.jpg",
-      "genre_ids": [
-        18,
-        53,
-        80,
-        9648
-      ],
-      "id": 15472,
-      "original_language": "sv",
-      "original_title": "Män som hatar kvinnor",
-      "overview": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
-      "popularity": 47.784,
-      "poster_path": "/r2pFUXKK20KD9RE3yybpQsNynRE.jpg",
-      "release_date": "2009-02-27",
-      "title": "The Girl with the Dragon Tattoo",
-      "video": false,
-      "vote_average": 7.523,
-      "vote_count": 2766
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/aTmh5w201d86lt3juFk8tbK297Y.jpg",
-      "genre_ids": [
-        27,
-        35
-      ],
-      "id": 19994,
-      "original_language": "en",
-      "original_title": "Jennifer's Body",
-      "overview": "Jennifer, a gorgeous, seductive cheerleader takes evil to a whole new level after she's possessed by a sinister demon. Now it's up to her best friend to stop Jennifer's reign of terror before it's too late.",
-      "popularity": 73.912,
-      "poster_path": "/wrkjsGcFJxcQqR56kJUYAEKKg2T.jpg",
-      "release_date": "2009-09-18",
-      "title": "Jennifer's Body",
-      "video": false,
-      "vote_average": 5.913,
-      "vote_count": 3502
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/msCHK5Kh1YbdZ0zPJ2nzPUhhSN9.jpg",
-      "genre_ids": [
-        14,
-        18,
-        9648
-      ],
-      "id": 141,
-      "original_language": "en",
-      "original_title": "Donnie Darko",
-      "overview": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a large bunny rabbit that manipulates him to commit a series of crimes.",
-      "popularity": 65.943,
-      "poster_path": "/fhQoQfejY1hUcwyuLgpBrYs6uFt.jpg",
-      "release_date": "2001-01-19",
-      "title": "Donnie Darko",
-      "video": false,
-      "vote_average": 7.783,
-      "vote_count": 11668
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
-      "genre_ids": [
-        53,
-        80
-      ],
-      "id": 680,
-      "original_language": "en",
-      "original_title": "Pulp Fiction",
-      "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
-      "popularity": 104.335,
-      "poster_path": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
-      "release_date": "1994-09-10",
-      "title": "Pulp Fiction",
-      "video": false,
-      "vote_average": 8.489,
-      "vote_count": 26243
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
-      "genre_ids": [
-        28,
-        18
-      ],
-      "id": 678512,
-      "original_language": "en",
-      "original_title": "Sound of Freedom",
-      "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
-      "popularity": 263.457,
-      "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
-      "release_date": "2023-07-03",
-      "title": "Sound of Freedom",
-      "video": false,
-      "vote_average": 8.1,
-      "vote_count": 1585
     },
   ]
 }
