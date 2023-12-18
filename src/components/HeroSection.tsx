@@ -27,49 +27,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     results: [
       {
         "adult": false,
-        "backdrop_path": "/qxTw8OKJLRX1Xb5nR5CcIDnLKoq.jpg",
-        "genre_ids": [
-          18,
-          53,
-          27
-        ],
-        "id": 44214,
-        "original_language": "en",
-        "original_title": "Black Swan",
-        "overview": "A journey through the psyche of a young ballerina whose starring role as the duplicitous swan queen turns out to be a part for which she becomes frighteningly perfect.",
-        "popularity": 90.44,
-        "poster_path": "/rH19vkjAzCZ0HIUvrgB3rowm68h.jpg",
-        "release_date": "2010-12-03",
-        "title": "Black Swan",
-        "video": false,
-        "vote_average": 7.677,
-        "vote_count": 13700,
-        "age": '16+'
-      },
-      {
-        "adult": false,
-        "backdrop_path": "/dPE25PbaeE6fCR2SQb4H4MeBmml.jpg",
-        "genre_ids": [
-          18,
-          53,
-          80,
-          9648
-        ],
-        "id": 15472,
-        "original_language": "sv",
-        "original_title": "Män som hatar kvinnor",
-        "overview": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
-        "popularity": 47.784,
-        "poster_path": "/r2pFUXKK20KD9RE3yybpQsNynRE.jpg",
-        "release_date": "2009-02-27",
-        "title": "The Girl with the Dragon Tattoo",
-        "video": false,
-        "vote_average": 7.523,
-        "vote_count": 2766,
-        "age": '16+'
-      },
-      {
-        "adult": false,
         "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
         "genre_ids": [
           28,
@@ -77,12 +34,12 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
         ],
         "id": 678512,
         "original_language": "en",
-        "original_title": "Sound of Freedom",
-        "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
+        "original_title": "Slow Food",
+        "overview": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
         "popularity": 263.457,
         "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
         "release_date": "2023-07-03",
-        "title": "Sound of Freedom",
+        "title": "Slow Food",
         "video": false,
         "vote_average": 8.1,
         "vote_count": 1585,
@@ -167,8 +124,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
               >
                 {detail && (
                   <img
-                    src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`}
-                    alt={detail.title}
+                    src='./public/assets/cheyni-originals.png'
+                    alt={'Slow Food'}
                     width="100%"
                     height="100%"
                   />
@@ -218,7 +175,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
                   </CheyniIconButton> */}
-                  <MaturityRate>{`${video.age}`}
+                  <MaturityRate>{`${maturityRate}+`}
                   </MaturityRate>
                 </Stack>
               </Box>
@@ -251,14 +208,14 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                     maxLine={1}
                     color="text.primary"
                   >
-                    {video.title}
+                    Slow Food
                   </MaxLineTypography>
                   <MaxLineTypography
                     variant="h5"
                     maxLine={3}
                     color="text.primary"
                   >
-                    {video.overview}
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </MaxLineTypography>
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
                     <PlayButton size="large" />
