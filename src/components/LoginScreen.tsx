@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+;import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -10,26 +9,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Logo from './Logo';
-import { createTheme, makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
-import { ThemeProvider } from '@emotion/react';
-
-const CustomTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: 'green', // Cor do texto do label quando focado
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'red', // Cor padrão da borda
-    },
-    '&:hover fieldset': {
-      borderColor: 'blue', // Cor da borda ao passar o mouse
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'green !important', // Cor da borda quando focado
-    },
-  },
-});
-
+import { makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
+import TextField from '@mui/material/TextField';
 
 export default function SignIn() {
   const theme = useTheme();
@@ -62,16 +43,6 @@ export default function SignIn() {
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-        <CustomTextField
-      margin="normal"
-      required
-      fullWidth
-      id="email"
-      label="Email Address"
-      name="email"
-      autoComplete="email"
-      autoFocus
-    />
           <TextField
             margin="normal"
             required
@@ -99,7 +70,7 @@ export default function SignIn() {
             color={dark ? "#FFF" : "#0C0B30"}
           />
           <Button
-            type="submit"
+            href='/browse'
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, color: dark ? "#0C0B30" : "#FFF", backgroundColor: dark ? "#FFF" : "#0C0B30" }}

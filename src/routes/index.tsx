@@ -30,6 +30,10 @@ const router = createBrowserRouter([
         lazy: () => import("src/pages/WatchPage"),
       },
       {
+        path: MAIN_PATH.signup,
+        lazy: () => import("src/pages/SignUpPage")
+      },
+      {
         path: MAIN_PATH.login,
         lazy: () => import("src/pages/LoginPage"),
       }

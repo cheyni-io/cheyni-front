@@ -1,7 +1,13 @@
 import type { PaletteMode } from "@mui/material";
 
 const PRIMARY = {
-  main: "#000",
+  main: "#0C0B30",
+  light: "#FFF",
+  dark: "#0C0B30",
+};
+
+const SECONDARY = {
+  main: "#FFF",
   light: "#FFF",
   dark: "#0C0B30",
 };
@@ -15,7 +21,7 @@ const lightTheme = {
 
 // Separate Dark Theme
 const darkTheme = {
-  primary: { ...PRIMARY, contrastText: "#fff" },
+  primary: { ...SECONDARY, contrastText: "#fff" },
   mode: "dark" as PaletteMode,
   background: { paper: "#0c0b30", default: "#0C0B30" },
   text: { primary: "#fff", secondary: "#fff", disabled: "#fff" },

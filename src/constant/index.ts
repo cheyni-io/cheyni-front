@@ -9,6 +9,7 @@ export const MAIN_PATH = {
   genreExplore: "genre",
   watch: "watch",
   login: "login",
+  signup: "signup",
 };
 
 export const ARROW_MAX_WIDTH = 60;
