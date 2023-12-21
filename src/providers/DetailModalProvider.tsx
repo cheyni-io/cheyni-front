@@ -42,6 +42,7 @@ export default function DetailModalProvider({
         } else {
           response = mockMovieDetails;
         }
+        //@ts-ignore
         setDetail({ ...newDetailType, mediaDetail: response });
         console.log(response);
       } else {
