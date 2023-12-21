@@ -16,6 +16,7 @@ import { Alert, Snackbar, SnackbarOrigin } from '@mui/material';
 import dayjs from 'dayjs';
 import router from 'src/routes';
 import { useNavigate } from 'react-router-dom';
+import { DateField } from '@mui/x-date-pickers';
 
 interface State extends SnackbarOrigin {
   open: boolean;
@@ -55,7 +56,7 @@ export default function Profile() {
       setUserData({
         name: response.data.name,
         birthDate: response.data.birthDate,
-        email: response.data.email
+        email: response.data.email,
       });
     }).catch((error) => {
       console.log(error);
@@ -112,9 +113,15 @@ export default function Profile() {
   useEffect(() => {
     if (tokens === null) {
       navigate('/login');
-    } 
+    }
   }, []);
 
+  const handleDateChange = (event) => {
+    const { value } = event.target;
+    // Regex para garantir a formatação yyyy-mm-dd
+    const formattedDate = value.replace(/(\d{4})-(\d{2})-(\d{2})/, '$1-$2-$3');
+    setUserData({ ...userData, birthDate: formattedDate });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -156,12 +163,14 @@ export default function Profile() {
                 fullWidth
                 name="birthDate"
                 label="Birthdate"
-                type="birthDate"
+                type="date" // Define o tipo como 'date' para usar o seletor de data nativo
                 id="birthDate"
                 value={userData.birthDate}
-                autoComplete="new-password"
-                // @ts-ignore
-                onChange={(e) => setUserData({ ...userData, birthDate: e.target.value })}
+                onChange={handleDateChange}
+                InputLabelProps={{
+                  shrink: true, // Isso garante que o rótulo se comporta corretamente com o tipo 'date'
+                }}
+                sx={{ width: '100%' }}
               />
             </Grid>
             <Grid item xs={12}>
