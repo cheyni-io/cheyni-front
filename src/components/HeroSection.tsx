@@ -124,7 +124,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
               >
                 {detail && (
                   <img
-                    src='./public/assets/cheyni-originals.png'
+                    src='https://i.imgur.com/TrPiloH.png'
                     alt={'Slow Food'}
                     width="100%"
                     height="100%"
