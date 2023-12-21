@@ -13,6 +13,7 @@ interface GridWithInfiniteScrollProps {
   data: PaginatedMovieResult;
   handleNext: (page: number) => void;
 }
+
 export default function GridWithInfiniteScroll({
   genre,
   data,
@@ -30,6 +31,7 @@ export default function GridWithInfiniteScroll({
       handleNext(data.page + 1);
     }
   }, [intersection]);
+
 
   return (
     <>

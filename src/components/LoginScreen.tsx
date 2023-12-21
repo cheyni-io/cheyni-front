@@ -11,16 +11,26 @@ import Container from '@mui/material/Container';
 import Logo from './Logo';
 import { makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
 import TextField from '@mui/material/TextField';
+import api from 'src/services/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
   const theme = useTheme();
   const dark = theme.palette.mode === 'dark';
+  const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    api.post('/auth/signIn', {
       email: data.get('email'),
-      password: data.get('password'),
+      password: data.get('password')
+    }).then((response) => {
+      if (response.data.access_token) {
+        localStorage.setItem('accessToken', response.data.access_token);
+        navigate('/browse');
+      }
+    }).catch((error) => {
+      console.log(error);
     });
   };
 
@@ -70,7 +80,7 @@ export default function SignIn() {
             color={dark ? "#FFF" : "#0C0B30"}
           />
           <Button
-            href='/browse'
+            type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, color: dark ? "#0C0B30" : "#FFF", backgroundColor: dark ? "#FFF" : "#0C0B30" }}
@@ -78,13 +88,13 @@ export default function SignIn() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
-              <Link href="#" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
+              <Link href="/signUp" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

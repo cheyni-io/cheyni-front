@@ -20,6 +20,7 @@ import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
 import MaxLineTypography from "./MaxLineTypography";
 import QualityChip from "./QualityChip";
+import { mockMovieDetails } from "src/types/mocMovieDetails";
 
 interface VideoCardModalProps {
   video: Movie;
@@ -56,7 +57,7 @@ export default function VideoCardModal({
         }}
       >
         <img
-          src={`${configuration?.images.base_url}w780${video.backdrop_path}`}
+          src={`https://imgur.com${video.backdrop_path}`}
           style={{
             top: 0,
             height: "100%",
@@ -111,26 +112,30 @@ export default function VideoCardModal({
             <div style={{ flexGrow: 1 }} />
             <CheyniIconButton
               onClick={() => {
-                setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
+                // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
+                console.log("video.id", video.id);
+                const movieMock = mockMovieDetails.find(movie => movie.id === video.id);
+                setDetailType({ mediaType: MEDIA_TYPE.Movie, id: movieMock?.id });
+                console.log("movieMock", movieMock);
               }}
             >
               <ExpandMoreIcon />
             </CheyniIconButton>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
-            <AgeLimitChip label={`${video.title == "Black Swan" ? "16+" :
+            {/* <AgeLimitChip label={`${video.title == "Black Swan" ? "16+" :
               video.title == "The Girl with the Dragon Tattoo" ? "16+" :
                 video.title == "Jennifer's Body" ? "16+" :
                   video.title == "Donnie Darko" ? "14+" :
                     video.title == "Sound of Freedom" ? "14+" : "18+"}`}
-            />
+            /> */}
             <Typography variant="subtitle2">{`${formatMinuteToReadable(
-              video.title == "Black Swan" ? 108 :
-              video.title == "The Girl with the Dragon Tattoo" ? 152 :
-                video.title == "Jennifer's Body" ? 107 :
-                  video.title == "Donnie Darko" ? 114 :
-                    video.title == "Sound of Freedom" ? 131 : 154
-            )}`}</Typography>                 
+              video.title == "Generation Z" ? 3 :
+                video.title == "Mascara" ? 4 :
+                  video.title == "Travva" ? 2 :
+                    video.title == "United Creators" ? 5 :
+                      video.title == "Sound of Freedom" ? 131 : 154
+            )}`}</Typography>
             <QualityChip label="HD" />
           </Stack>
           {genres && (

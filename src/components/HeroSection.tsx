@@ -175,8 +175,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   >
                     {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
                   </CheyniIconButton> */}
-                  <MaturityRate>{`${maturityRate}+`}
-                  </MaturityRate>
+                  {/* <MaturityRate>{`${maturityRate}+`}
+                  </MaturityRate> */}
                 </Stack>
               </Box>
 
@@ -191,7 +191,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   height: "100%",
                 }}
               >
-                <Stack
+                {/* <Stack
                   spacing={4}
                   sx={{
                     bottom: "35%",
@@ -226,7 +226,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                       }}
                     />
                   </Stack>
-                </Stack>
+                </Stack> */}
               </Box>
             </>
           )}

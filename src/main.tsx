@@ -14,6 +14,9 @@ import router from "./routes";
 import MainLoadingScreen from "./components/MainLoadingScreen";
 import CssBaseline from '@mui/material/CssBaseline';
 
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+
 store.dispatch(extendedApi.endpoints.getConfiguration.initiate(undefined));
 
 const App = () => {
@@ -38,8 +41,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+
       <CssBaseline />
       <RouterProvider router={router} fallbackElement={<MainLoadingScreen />} />
+      </LocalizationProvider>
     </ThemeProvider>
   );
 };

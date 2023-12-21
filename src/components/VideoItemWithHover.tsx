@@ -24,7 +24,8 @@ export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
     <VideoItemWithHoverPure
       ref={elementRef}
       handleHover={setIsHovered}
-      src={`${configuration?.images.base_url}w300${video.backdrop_path}`}
+      // src={`${configuration?.images.base_url}w300${video.backdrop_path}`}
+      src={`https://imgur.com${video.poster_path}`}
     />
   );
 }

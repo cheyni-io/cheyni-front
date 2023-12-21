@@ -64,283 +64,302 @@ function SlideItem({ item }: SlideItemProps) {
 //Mocked Data
 const data2 = {
   results: [
+    //Branded Content
     {
       "adult": false,
-      "backdrop_path": "/qxTw8OKJLRX1Xb5nR5CcIDnLKoq.jpg",
+      "backdrop_path": "/hjMtzqK.png",
       "genre_ids": [
-        18,
-        53,
-        27
+        28, 16
       ],
-      "id": 44214,
+      "id": 5,
       "original_language": "en",
-      "original_title": "Black Swan",
-      "overview": "A journey through the psyche of a young ballerina whose starring role as the duplicitous swan queen turns out to be a part for which she becomes frighteningly perfect.",
+      "original_title": "Assosyal Otel",
+      "overview": "Behramkale's preserved stone houses offer an oasis unchanged by time. Experience century-old interiors tailored to your needs—nothing excessive, nothing missing. Amidst ancient city walls, not skyscrapers, find solace devoid of city chaos. No TVs, no pollution—just nature's symphony. Witness sunrise in our garden, sunset at the temple, and embrace Kadırga beach's azure waters. 'Associative' grants every heart's desire, whether it's an old moonlit night or a canvas of stars. Your haven awaits, free from city clamor.",
       "popularity": 90.44,
-      "poster_path": "/rH19vkjAzCZ0HIUvrgB3rowm68h.jpg",
+      "poster_path": "/hjMtzqK.png",
       "release_date": "2010-12-03",
-      "title": "Black Swan",
+      "title": "Assosyal Otel",
       "video": false,
       "vote_average": 7.677,
       "vote_count": 13700
     },
     {
       "adult": false,
-      "backdrop_path": "/dPE25PbaeE6fCR2SQb4H4MeBmml.jpg",
+      "backdrop_path": "/BDu45oq.png",
       "genre_ids": [
-        18,
-        53,
-        80,
-        9648
+        28, 16
       ],
-      "id": 15472,
+      "id": 6,
       "original_language": "sv",
-      "original_title": "Män som hatar kvinnor",
-      "overview": "Swedish thriller based on Stieg Larsson's novel about a male journalist and a young female hacker. In the opening of the movie, Mikael Blomkvist, a middle-aged publisher for the magazine Millennium, loses a libel case brought by corrupt Swedish industrialist Hans-Erik Wennerström. Nevertheless, he is hired by Henrik Vanger in order to solve a cold case, the disappearance of Vanger's niece",
+      "original_title": "Bihrat Mavitan",
+      "overview": "Bihrat Mavitan, participating in numerous collective exhibitions, organizing solo exhibitions, and receiving awards, works in both sculpture and painting. Utilizing materials like metal, leather, and bronze in his sculptures, he creates original works inspired by his dreams, presenting figurative and decorative styles",
       "popularity": 47.784,
-      "poster_path": "/r2pFUXKK20KD9RE3yybpQsNynRE.jpg",
+      "poster_path": "/BDu45oq.png",
       "release_date": "2009-02-27",
-      "title": "The Girl with the Dragon Tattoo",
+      "title": "Bihrat Mavitan",
       "video": false,
       "vote_average": 7.523,
       "vote_count": 2766
     },
     {
       "adult": false,
-      "backdrop_path": "/aTmh5w201d86lt3juFk8tbK297Y.jpg",
+      "backdrop_path": "/wr5dvYB.png",
       "genre_ids": [
-        27,
-        35
+        28, 16
       ],
-      "id": 19994,
+      "id": 7,
       "original_language": "en",
-      "original_title": "Jennifer's Body",
-      "overview": "Jennifer, a gorgeous, seductive cheerleader takes evil to a whole new level after she's possessed by a sinister demon. Now it's up to her best friend to stop Jennifer's reign of terror before it's too late.",
+      "original_title": "Billie Eilish x T-Mobile",
+      "overview": "Deutsche Telekom partners with Billie Eilish to highlight Gen Z's positive phone usage. Using Eilish's song When the Party’s Over the ad portrays screen-centric youth engaged in real-world activism. Launching on International Youth Day, the campaign urges showcasing online actions offline. Directed by Vincent Haycock, the ad emphasizes social impact. Accompanied by BTS interviews, it echoes Eilish's advocacy work. Similar to Three's approach, it celebrates smartphones in modern activism.",
       "popularity": 73.912,
-      "poster_path": "/wrkjsGcFJxcQqR56kJUYAEKKg2T.jpg",
+      "poster_path": "/wr5dvYB.png",
       "release_date": "2009-09-18",
-      "title": "Jennifer's Body",
+      "title": "Billie Eilish x T-Mobile",
       "video": false,
       "vote_average": 5.913,
       "vote_count": 3502
     },
     {
       "adult": false,
-      "backdrop_path": "/msCHK5Kh1YbdZ0zPJ2nzPUhhSN9.jpg",
+      "backdrop_path": "/BS5TDLR.png",
       "genre_ids": [
-        14,
-        18,
-        9648
+        28,
+        35
       ],
-      "id": 141,
+      "id": 8,
       "original_language": "en",
-      "original_title": "Donnie Darko",
-      "overview": "After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a large bunny rabbit that manipulates him to commit a series of crimes.",
+      "original_title": "Jannis Kounellis",
+      "overview": "Kounellis, spanning 1960 to the 1980s, revolutionized art, blending painting, sculpture, and performance. From stenciled urban imagery on canvases to integrating found objects like live animals, fire, and bed frames, his avant-garde approach defied traditional art. By the '80s, his unconventional materials and performances captivated Europe, securing his place in esteemed international museum collections.",
       "popularity": 65.943,
-      "poster_path": "/fhQoQfejY1hUcwyuLgpBrYs6uFt.jpg",
+      "poster_path": "/BS5TDLR.png",
       "release_date": "2001-01-19",
-      "title": "Donnie Darko",
+      "title": "Jannis Kounellis",
       "video": false,
       "vote_average": 7.783,
       "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
+      "backdrop_path": "/D6gP9yF.png",
       "genre_ids": [
-        53,
-        80
+        28, 16
       ],
-      "id": 680,
+      "id": 9,
       "original_language": "en",
-      "original_title": "Pulp Fiction",
-      "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
-      "popularity": 104.335,
-      "poster_path": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
-      "release_date": "1994-09-10",
-      "title": "Pulp Fiction",
+      "original_title": "Huawei P Smart",
+      "overview": "Huawei Ireland capitalizes on TikTok's allure with a campaign featuring Tadhg Fleming and his father. Riding a wave of TikTok fame post-lockdown, the duo stars in promoting the Huawei P Smart 2021. With Irish smartphone usage soaring, this integrated campaign spans PR, social, influencer marketing, TV, and a bespoke TikTok challenge. Expectations? Over 10m impressions and a significant digital impact.",
+      "popularity": 65.943,
+      "poster_path": "/D6gP9yF.png",
+      "release_date": "2001-01-19",
+      "title": "Huawei P Smart",
       "video": false,
-      "vote_average": 8.489,
-      "vote_count": 26243
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/pA3vdhadJPxF5GA1uo8OPTiNQDT.jpg",
+      "backdrop_path": "/LnNMx3i.png",
+      "genre_ids": [
+        28, 16
+      ],
+      "id": 10,
+      "original_language": "en",
+      "original_title": "Kids for Kids",
+      "overview": "The Kyiv Volunteer Charity Foundation spearheads a heartwarming initiative, 'Kids for Kids,' aiming to bridge the gap between children amidst conflict. This project empowers distant youngsters to curate personalized care packages destined for their counterparts in Ukraine. Each contributing child fills a box with cherished items akin to sharing with a best friend: toys, secret-filled notebooks, superhero socks, sentimental tokens like pebbles or seashells, treats, and heartfelt letters. Through these carefully crafted parcels, they transcend geographical boundaries, nurturing solidarity and reminding both sides of the joy of receiving love and warmth.      . With Irish smartphone usage soaring, this integrated campaign spans PR, social, influencer marketing, TV, and a bespoke TikTok challenge. Expectations? Over 10m impressions and a significant digital impact.",
+      "popularity": 65.943,
+      "poster_path": "/LnNMx3i.png",
+      "release_date": "2001-01-19",
+      "title": "Kids for Kids",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bR02GCV.png",
       "genre_ids": [
         28,
         18
       ],
-      "id": 678512,
+      "id": 11,
       "original_language": "en",
-      "original_title": "Sound of Freedom",
-      "overview": "The story of Tim Ballard, a former US government agent, who quits his job in order to devote his life to rescuing children from global sex traffickers.",
-      "popularity": 263.457,
-      "poster_path": "/qA5kPYZA7FkVvqcEfJRoOy4kpHg.jpg",
-      "release_date": "2023-07-03",
-      "title": "Sound of Freedom",
+      "original_title": "Mark Knight",
+      "overview": "Mark Knight, a British DJ and founder of Toolroom Records, shaped the UK's dance scene. His label hosts icons like David Guetta, Deadmau5, and more. Grammy-nominated for work on Black Eyed Peas' album, he's known for hits like 'Man with the Red Face' and 'Second Story.' His albums, 'A Year in the Life' and 'Untold Business,' solidify his legacy in electronic music. Knight's recent collaboration 'Get with You Tonight' garnered praise in 2022.",
+      "popularity": 65.943,
+      "poster_path": "/bR02GCV.png",
+      "release_date": "2001-01-19",
+      "title": "Mark Knight",
       "video": false,
-      "vote_average": 8.1,
-      "vote_count": 1585
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/g2rhT5dKLsK2ATRw2ri39SdRciD.jpg",
+      "backdrop_path": "/CA1hyfs.png",
       "genre_ids": [
-        35,
-        99
+        28, 16
       ],
-      "id": 1217902,
+      "id": 12,
       "original_language": "en",
-      "original_title": "I Know Feathers: The Annabel McConnachie Story",
-      "overview": "Annabel McConnachie was a typical Australian girl in her early 20's - until one day, she wasn't. Come the 2022 release of book to movie adaptation 'Where the Crawdads Sing', everything changed. Overnight, Annabel from Sydney became Kya from North Carolina marsh land. Take an 8 minute deep dive into the psychosis and rampant delusion of an unhinged 24 year old method actor turned compulsive liar and witness the destruction her all-consuming fantasy has upon her friends, her family and ultimately herself.",
-      "popularity": 0,
-      "poster_path": "/cTSrcQZ1bWoaHcDN4vn6lsltwvp.jpg",
-      "release_date": "2023-05-12",
-      "title": "I Know Feathers: The Annabel McConnachie Story",
+      "original_title": "Nike - Lightspeed",
+      "overview": "De'Aaron Martez Fox is an American professional basketball player for the Sacramento Kings of the National Basketball Association. He played college basketball for the Kentucky Wildcats before being selected fifth overall by the Kings in the 2017 NBA draft.",
+      "popularity": 65.943,
+      "poster_path": "/CA1hyfs.png",
+      "release_date": "2001-01-19",
+      "title": "Nike - Lightspeed",
       "video": false,
-      "vote_average": 10,
-      "vote_count": 1
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
+      "backdrop_path": "/oiCkj9V.png",
       "genre_ids": [
-        18,
-        36
+        28, 12
       ],
-      "id": 872585,
+      "id": 13,
       "original_language": "en",
-      "original_title": "Oppenheimer",
-      "overview": "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
-      "popularity": 818.431,
-      "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-      "release_date": "2023-07-19",
-      "title": "Oppenheimer",
+      "original_title": "Rain Seed Nutrition",
+      "overview": "Common Sense Science by The Seed Nutrition Co. believes in health through nature's most potent source: seeds. Our seed-based products, crafted by doctors and scientists, offer unparalleled health benefits. Founded on 11.11.11, Rain focuses on health, abundance, and giving back. Our synergistic products boost vitality while our sharing model offers financial freedom. Through our nonprofit Seeds For Change, we give thousands the opportunity for a better life. Join our unified family and experience the transformative power of Rain.",
+      "popularity": 65.943,
+      "poster_path": "/oiCkj9V.png",
+      "release_date": "2001-01-19",
+      "title": "Rain Seed Nutrition",
       "video": false,
-      "vote_average": 8.135,
-      "vote_count": 5379
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/qF0q4ea83N1zwfStSsTCXvplY5I.jpg",
+      "backdrop_path": "/afEoWgn.png",
       "genre_ids": [
-        10749,
-        35
+        28, 16
       ],
-      "id": 1176139,
+      "id": 14,
       "original_language": "en",
-      "original_title": "Your Christmas or Mine 2",
-      "overview": "They've swapped Christmas – again. Can Hayley and James' relationship survive another turbulent family Christmas or has their future together gone off-piste?!",
-      "popularity": 236.971,
-      "poster_path": "/zswSOwzHmP90XXsbdcAIKhchOKL.jpg",
-      "release_date": "2023-12-07",
-      "title": "Your Christmas or Mine 2",
+      "original_title": "Skate Nation - Facebook",
+      "overview": "Skate Nation Culture thrives on freedom, creativity, and inclusivity. We embrace individuality, defy boundaries, and build community through our shared passion. We celebrate diversity, amplify voices, and carve our paths with respect for each other and the world around us. Skateboarding is our art, our sport, our lifestyle—a canvas for expression and a catalyst for positive change.",
+      "popularity": 65.943,
+      "poster_path": "/afEoWgn.png",
+      "release_date": "2001-01-19",
+      "title": "Skate Nation - Facebook",
       "video": false,
-      "vote_average": 6.8,
-      "vote_count": 33
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
+    //CHAPTERS
     {
       "adult": false,
-      "backdrop_path": "/6eY3V5Exj0kEriaS2aLNHssi0je.jpg",
+      "backdrop_path": "/8Trl7gb.png",
       "genre_ids": [
-        10770,
-        35,
-        10749
+        28, 16
       ],
-      "id": 962367,
+      "id": 15,
       "original_language": "en",
-      "original_title": "When Christmas Was Young",
-      "overview": "The story follows a headstrong music manager in desperate need of a hit song for his last remaining client, who finds himself falling for a gifted singer-songwriter with abandoned dreams of making it big, as he attempts to secure the rights to a Christmas song she wrote years ago.",
-      "popularity": 77.597,
-      "poster_path": "/6Fdku46UeJnny4xZK8E1sTVMBRe.jpg",
-      "release_date": "2022-12-18",
-      "title": "When Christmas Was Young",
+      "original_title": "Google Pixel",
+      "overview": "Young people forge their days with curiosity, resilience, and a hunger for connection. We navigate a digital landscape, balancing screens with human touch. We champion authenticity, nurture bonds, and celebrate diversity. In a world of constant change, we honor our mental health, seek meaningful experiences, and build relationships rooted in empathy, trust, and mutual growth.",
+      "popularity": 65.943,
+      "poster_path": "/8Trl7gb.png",
+      "release_date": "2001-01-19",
+      "title": "Google Pixel",
       "video": false,
-      "vote_average": 6.2,
-      "vote_count": 10
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/yQIBS8B9l2qXoPoPtxSXvH7CfoT.jpg",
+      "backdrop_path": "/1X1nNiz.png",
       "genre_ids": [
-        18,
-        36,
-        10752
+        28, 18
       ],
-      "id": 324786,
+      "id": 16,
       "original_language": "en",
-      "original_title": "Hacksaw Ridge",
-      "overview": "WWII American Army Medic Desmond T. Doss, who served during the Battle of Okinawa, refuses to kill people and becomes the first Conscientious Objector in American history to receive the Congressional Medal of Honor.",
-      "popularity": 91.038,
-      "poster_path": "/jcStBvbQt78tPeId5hC7a9jcDOK.jpg",
-      "release_date": "2016-10-07",
-      "title": "Hacksaw Ridge",
+      "original_title": "Film Ekimi",
+      "overview": "The Istanbul Foundation for Culture and Arts (İKSV) is a pivotal non-profit institution enhancing Istanbul's cultural landscape since 1973. Renowned for its diverse festivals in music, film, theatre, jazz, and the iconic Istanbul Biennial, İKSV also hosts events at Salon İKSV and fosters creative programs for youth at İKSV Alt Kat. Their impactful initiatives extend globally, managing the Türkiye Pavilion at the Venice Biennale, contributing to cultural policy, supporting artistic endeavors through awards, commissions, and artist residencies. İKSV's role in UNESCO's Turkish National Commission underscores its commitment to cultural enrichment and global dialogue.",
+      "popularity": 65.943,
+      "poster_path": "/1X1nNiz.png",
+      "release_date": "2001-01-19",
+      "title": "Film Ekimi",
       "video": false,
-      "vote_average": 8.193,
-      "vote_count": 12865
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
+
+
+    //DANCE MOVIES
     {
       "adult": false,
-      "backdrop_path": "/LfUXJQOhBa0cfQsGnYwuSUaHId.jpg",
+      "backdrop_path": "/lSMS9oG.png",
       "genre_ids": [
-        37
-      ],
-      "id": 940175,
-      "original_language": "en",
-      "original_title": "A Tale of Two Guns",
-      "overview": "In the lawless West, The Cowboys, a notorious brotherhood of killers and thieves, reigned over the land with brutal fists and fast guns. Fate had finally caught up with them and now the merciless gang has but a single surviving member. When a deputized gunslinger takes up the call to hunt down the last Cowboy, the chase is on and the bullets fly, and only one of these hardened men can survive.",
-      "popularity": 529.134,
-      "poster_path": "/kT3Zy7kOQERHnpEHT1wMwXEpJsk.jpg",
-      "release_date": "2022-02-17",
-      "title": "A Tale of Two Guns",
-      "video": false,
-      "vote_average": 6.278,
-      "vote_count": 9
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/gWCWHybWuVg3GmZpdY8qWGb85HR.jpg",
-      "genre_ids": [
-        10751,
-        16,
-        14,
         12,
-        35,
-        10402
       ],
-      "id": 136799,
+      "id": 1,
       "original_language": "en",
-      "original_title": "Trolls",
-      "overview": "After the monstrous Bergens invade Troll Village, Princess Poppy, the happiest Troll ever born, and overly-cautious, curmudgeonly outcast Branch set off on a journey to rescue her friends. Their mission is full of adventure and mishaps, as this mismatched duo try to tolerate each other long enough to get the job done.",
-      "popularity": 101.744,
-      "poster_path": "/9VlK2j0THZWzhQPq0W3Oc0IIdBB.jpg",
-      "release_date": "2016-10-13",
-      "title": "Trolls",
+      "original_title": "Generation Z",
+      "overview": "Generation Z, colloquially known as zoomers, is the demographic cohort succeeding millennials and preceding Generation Alpha. Researchers and popular media use the mid-to-late 1990s as starting birth years and the early 2010s as ending birth years.",
+      "popularity": 65.943,
+      "poster_path": "/lSMS9oG.png",
+      "release_date": "2001-01-19",
+      "title": "Generation Z",
       "video": false,
-      "vote_average": 6.668,
-      "vote_count": 3372
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
     {
       "adult": false,
-      "backdrop_path": "/jhpsTzbXEu5bkCPmBqxv7vUTjIT.jpg",
+      "backdrop_path": "/sQ9xUjc.png",
       "genre_ids": [
-        14,
         12,
-        878,
-        28
       ],
-      "id": 566810,
+      "id": 2,
       "original_language": "en",
-      "original_title": "Dragon Kingdom",
-      "overview": "To save their Kingdom from an army of undead, a group of warriors must travel through the forbidden lands fighting the fearsome beasts that call The Dark Kingdom their home.",
-      "popularity": 721.477,
-      "poster_path": "/o7StI2iR8yY1N67meSkNcXfojyD.jpg",
-      "release_date": "2018-11-26",
-      "title": "The Dark Kingdom",
+      "original_title": "Mascara",
+      "overview": "Can Eren, an award-winning artist, navigates the convergence of philosophy and daily happenstance, unraveling collective consciousness. His mission intertwines art, tech, business, and modern life, probing existential concepts. Through dynamic cultural ventures, he shares this journey, sparking contemplation and exploration. As an art-driven entrepreneur, his avant-garde projects urge reflection, offering a unique lens on our reality by merging fragmented phenomena and emerging ideas, fostering mass engagement.",
+      "popularity": 65.943,
+      "poster_path": "/sQ9xUjc.png",
+      "release_date": "2001-01-19",
+      "title": "Mascara",
       "video": false,
-      "vote_average": 5.7,
-      "vote_count": 41
+      "vote_average": 7.783,
+      "vote_count": 11668
     },
+    {
+      "adult": false,
+      "backdrop_path": "/xrJGGGb.png",
+      "genre_ids": [
+        12,
+      ],
+      "id": 3,
+      "original_language": "en",
+      "original_title": "Travva",
+      "overview": "Meet Camille Marotte, a French director and photographer famed for his cinematic prowess. Combining tech passion with an eye for natural beauty, he crafts emotionally charged stories in stunning style. Graduating from the E-Art Institute in Paris, he swiftly directed for top-tier clients—Ralph Lauren, Hugo Boss, Maybelline, Calvin Klein—garnering acclaim with 3 Vimeo Staff Picks. His portfolio spans luxury brands like Cartier, Piaget, BMW, and collaborations with Omega, Chanel, and more, showcasing a delicate yet powerful cinematic flair across fashion, cars, tech, and luxury realms.",
+      "popularity": 65.943,
+      "poster_path": "/xrJGGGb.png",
+      "release_date": "2001-01-19",
+      "title": "Travva",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5HBoRzS.png",
+      "genre_ids": [
+        12,
+      ],
+      "id": 4,
+      "original_language": "en",
+      "original_title": "United Creators",
+      "overview": "Meet Camille Marotte, a French director and photographer famed for his cinematic prowess. Combining tech passion with an eye for natural beauty, he crafts emotionally charged stories in stunning style. Graduating from the E-Art Institute in Paris, he swiftly directed for top-tier clients—Ralph Lauren, Hugo Boss, Maybelline, Calvin Klein—garnering acclaim with 3 Vimeo Staff Picks. His portfolio spans luxury brands like Cartier, Piaget, BMW, and collaborations with Omega, Chanel, and more, showcasing a delicate yet powerful cinematic flair across fashion, cars, tech, and luxury realms.",
+      "popularity": 65.943,
+      "poster_path": "/5HBoRzS.png",
+      "release_date": "2001-01-19",
+      "title": "United Creators",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+
   ]
 }
 

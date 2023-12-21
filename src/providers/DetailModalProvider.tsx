@@ -5,7 +5,8 @@ import { INITIAL_DETAIL_STATE } from "src/constant";
 import createSafeContext from "src/lib/createSafeContext";
 import { useLazyGetAppendedVideosQuery } from "src/store/slices/discover";
 import { MEDIA_TYPE } from "src/types/Common";
-import { MovieDetail } from "src/types/Movie";
+import { MovieDetail, MovieDetails } from "src/types/Movie";
+import { mockMovieDetails } from "src/types/mocMovieDetails";
 
 interface DetailType {
   id?: number;
@@ -26,7 +27,7 @@ export default function DetailModalProvider({
 }) {
   const location = useLocation();
   const [detail, setDetail] = useState<
-    { mediaDetail?: MovieDetail } & DetailType
+    { mediaDetail?: MovieDetails } & DetailType
   >(INITIAL_DETAIL_STATE);
 
   const [getAppendedVideos] = useLazyGetAppendedVideosQuery();
@@ -34,17 +35,22 @@ export default function DetailModalProvider({
   const handleChangeDetail = useCallback(
     async (newDetailType: { mediaType?: MEDIA_TYPE; id?: number }) => {
       if (!!newDetailType.id && newDetailType.mediaType) {
-        const response = await getAppendedVideos({
-          mediaType: newDetailType.mediaType,
-          id: newDetailType.id as number,
-        }).unwrap();
+        let response;
+  
+        if (newDetailType.mediaType === MEDIA_TYPE.Movie) {
+          response = mockMovieDetails;
+        } else {
+          response = mockMovieDetails;
+        }
         setDetail({ ...newDetailType, mediaDetail: response });
+        console.log(response);
       } else {
         setDetail(INITIAL_DETAIL_STATE);
       }
     },
     []
   );
+  
 
   useEffect(() => {
     setDetail(INITIAL_DETAIL_STATE);
