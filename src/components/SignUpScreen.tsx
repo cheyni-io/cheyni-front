@@ -88,7 +88,7 @@ export default function SignUp() {
                 autoComplete="new-password"
               />
             </Grid>
-            <Grid item xs={16}>
+            <Grid item xs={12}>
               <DatePicker 
                 label="Birthdate" 
                 name="birthday"
@@ -97,6 +97,7 @@ export default function SignUp() {
                     helperText: 'MM/DD/YYYY',
                   },
                 }}
+                sx={{ width: '100%' }}
               />
             </Grid>
             <Grid item xs={12}>
