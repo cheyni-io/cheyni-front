@@ -44,7 +44,6 @@ export default function DetailModalProvider({
         }
         //@ts-ignore
         setDetail({ ...newDetailType, mediaDetail: response });
-        console.log(response);
       } else {
         setDetail(INITIAL_DETAIL_STATE);
       }

@@ -6,6 +6,9 @@ import { MEDIA_TYPE } from "src/types/Common";
 import { CustomGenre, Genre } from "src/types/Genre";
 import SliderRowForGenre from "src/components/VideoSlider";
 import store from "src/store";
+import { parseCookies } from "nookies";
+import { useNavigate } from "react-router-dom";
+import SignIn from "src/components/LoginScreen";
 
 export async function loader() {
   await store.dispatch(
@@ -15,8 +18,13 @@ export async function loader() {
 }
 export function Component() {
   const { data: genres, isSuccess } = useGetGenresQuery(MEDIA_TYPE.Movie);
+  const navigate = useNavigate();
+  //Obter token de acesso do localStorage
+  const tokens = localStorage.getItem('accessToken');
+  
+  console.log("Token no componente:", tokens);
 
-  if (isSuccess && genres && genres.length > 0) {
+  if (genres && tokens !== null) {
     return (
       <Stack spacing={2}>
         <HeroSection mediaType={MEDIA_TYPE.Movie} />
@@ -29,8 +37,14 @@ export function Component() {
         ))}
       </Stack>
     );
+  } else {
+    navigate('/login');
+    return (
+      <Stack spacing={2}>
+        <SignIn />
+      </Stack>
+    )
   }
-  return null;
 }
 
 Component.displayName = "HomePage";

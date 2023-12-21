@@ -112,10 +112,8 @@ export default function VideoCardModal({
             <CheyniIconButton
               onClick={() => {
                 // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
-                console.log("video.id", video.id);
                 const movieMock = mockMovieDetails.find(movie => movie.id === video.id);
                 setDetailType({ mediaType: MEDIA_TYPE.Movie, id: movieMock?.id });
-                console.log("movieMock", movieMock);
               }}
             >
               <ExpandMoreIcon />

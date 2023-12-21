@@ -13,6 +13,7 @@ import { makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
 import TextField from '@mui/material/TextField';
 import api from 'src/services/api';
 import { useNavigate } from 'react-router-dom';
+import { setCookie } from 'nookies';
 
 export default function SignIn() {
   const theme = useTheme();
@@ -26,7 +27,12 @@ export default function SignIn() {
       password: data.get('password')
     }).then((response) => {
       if (response.data.access_token) {
+        setCookie(null, 'accessToken', response.data.access_token, { 
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/'
+        });
         localStorage.setItem('accessToken', response.data.access_token);
+        console.log(response.data.access_token);
         navigate('/browse');
       }
     }).catch((error) => {
