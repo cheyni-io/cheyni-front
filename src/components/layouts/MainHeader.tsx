@@ -20,6 +20,7 @@ import { changeTheme } from "src/store/slices/themeSlice";
 import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
+import { useNavigate } from 'react-router-dom';
 
 const pages = [""];
 
@@ -49,6 +50,20 @@ const MainHeader = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navigation = useNavigate();
+
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    //Clear local storage
+    localStorage.clear();
+    navigation("/login");
+  }
+
+  const handleGoToProfile = () => {
+    handleCloseUserMenu();
+    navigation("/profile");
+  }
 
   const theme = useSelector((state: any) => state.theme);
   const dispatch = useDispatch();
@@ -170,11 +185,9 @@ const MainHeader = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {["Account", "Wallet", "Logout"].map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
-              </MenuItem>
-            ))}
+            <MenuItem onClick={handleGoToProfile}>Profile</MenuItem>
+            {/* <MenuItem onClick={handleCloseUserMenu}>My account</MenuItem> */}
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Box>
       </Toolbar>

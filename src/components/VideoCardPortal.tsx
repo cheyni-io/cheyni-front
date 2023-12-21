@@ -131,7 +131,20 @@ export default function VideoCardModal({
                 video.title == "Mascara" ? 4 :
                   video.title == "Travva" ? 2 :
                     video.title == "United Creators" ? 5 :
-                      video.title == "Sound of Freedom" ? 131 : 154
+                      video.title == "Assosyal Otel" ? 4 :
+                        video.title == "Bihrat Mavitan" ? 1 :
+                        video.title == "Billie Eilish x T-Mobile" ? 2 :
+                        video.title == "Film Ekimi" ? 1 : 
+                        video.title == "Kadınlar Günü" ? 2 :
+                        video.title == "Google Pixel" ? 3 :
+                        video.title == "Huawei P Smart" ? 1 : 
+                        video.title == "Jannis Kounellis" ? 1 :
+                        video.title == "Kids for Kids" ? 1 :
+                        video.title == "Mark Knight" ? 1 :
+                        video.title == "Nike - Lightspeed" ? 1 :
+                        video.title == "Rain Seed Nutrition" ? 1 :
+                        video.title == "Skate Nation - Facebook" ? 2 : 4 
+                        
             )}`}</Typography>
             <QualityChip label="HD" />
           </Stack>

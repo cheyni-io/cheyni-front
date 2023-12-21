@@ -85,6 +85,60 @@ const data2 = {
     },
     {
       "adult": false,
+      "backdrop_path": "/lSMS9oG.png",
+      "genre_ids": [
+        12,
+      ],
+      "id": 1,
+      "original_language": "en",
+      "original_title": "Generation Z",
+      "overview": "Generation Z, colloquially known as zoomers, is the demographic cohort succeeding millennials and preceding Generation Alpha. Researchers and popular media use the mid-to-late 1990s as starting birth years and the early 2010s as ending birth years.",
+      "popularity": 65.943,
+      "poster_path": "/lSMS9oG.png",
+      "release_date": "2001-01-19",
+      "title": "Generation Z",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sQ9xUjc.png",
+      "genre_ids": [
+        12,
+      ],
+      "id": 2,
+      "original_language": "en",
+      "original_title": "Mascara",
+      "overview": "Can Eren, an award-winning artist, navigates the convergence of philosophy and daily happenstance, unraveling collective consciousness. His mission intertwines art, tech, business, and modern life, probing existential concepts. Through dynamic cultural ventures, he shares this journey, sparking contemplation and exploration. As an art-driven entrepreneur, his avant-garde projects urge reflection, offering a unique lens on our reality by merging fragmented phenomena and emerging ideas, fostering mass engagement.",
+      "popularity": 65.943,
+      "poster_path": "/sQ9xUjc.png",
+      "release_date": "2001-01-19",
+      "title": "Mascara",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/xrJGGGb.png",
+      "genre_ids": [
+        12,
+      ],
+      "id": 3,
+      "original_language": "en",
+      "original_title": "Travva",
+      "overview": "Meet Camille Marotte, a French director and photographer famed for his cinematic prowess. Combining tech passion with an eye for natural beauty, he crafts emotionally charged stories in stunning style. Graduating from the E-Art Institute in Paris, he swiftly directed for top-tier clients—Ralph Lauren, Hugo Boss, Maybelline, Calvin Klein—garnering acclaim with 3 Vimeo Staff Picks. His portfolio spans luxury brands like Cartier, Piaget, BMW, and collaborations with Omega, Chanel, and more, showcasing a delicate yet powerful cinematic flair across fashion, cars, tech, and luxury realms.",
+      "popularity": 65.943,
+      "poster_path": "/xrJGGGb.png",
+      "release_date": "2001-01-19",
+      "title": "Travva",
+      "video": false,
+      "vote_average": 7.783,
+      "vote_count": 11668
+    },
+    {
+      "adult": false,
       "backdrop_path": "/BDu45oq.png",
       "genre_ids": [
         28, 16
@@ -289,60 +343,6 @@ const data2 = {
     //DANCE MOVIES
     {
       "adult": false,
-      "backdrop_path": "/lSMS9oG.png",
-      "genre_ids": [
-        12,
-      ],
-      "id": 1,
-      "original_language": "en",
-      "original_title": "Generation Z",
-      "overview": "Generation Z, colloquially known as zoomers, is the demographic cohort succeeding millennials and preceding Generation Alpha. Researchers and popular media use the mid-to-late 1990s as starting birth years and the early 2010s as ending birth years.",
-      "popularity": 65.943,
-      "poster_path": "/lSMS9oG.png",
-      "release_date": "2001-01-19",
-      "title": "Generation Z",
-      "video": false,
-      "vote_average": 7.783,
-      "vote_count": 11668
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/sQ9xUjc.png",
-      "genre_ids": [
-        12,
-      ],
-      "id": 2,
-      "original_language": "en",
-      "original_title": "Mascara",
-      "overview": "Can Eren, an award-winning artist, navigates the convergence of philosophy and daily happenstance, unraveling collective consciousness. His mission intertwines art, tech, business, and modern life, probing existential concepts. Through dynamic cultural ventures, he shares this journey, sparking contemplation and exploration. As an art-driven entrepreneur, his avant-garde projects urge reflection, offering a unique lens on our reality by merging fragmented phenomena and emerging ideas, fostering mass engagement.",
-      "popularity": 65.943,
-      "poster_path": "/sQ9xUjc.png",
-      "release_date": "2001-01-19",
-      "title": "Mascara",
-      "video": false,
-      "vote_average": 7.783,
-      "vote_count": 11668
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/xrJGGGb.png",
-      "genre_ids": [
-        12,
-      ],
-      "id": 3,
-      "original_language": "en",
-      "original_title": "Travva",
-      "overview": "Meet Camille Marotte, a French director and photographer famed for his cinematic prowess. Combining tech passion with an eye for natural beauty, he crafts emotionally charged stories in stunning style. Graduating from the E-Art Institute in Paris, he swiftly directed for top-tier clients—Ralph Lauren, Hugo Boss, Maybelline, Calvin Klein—garnering acclaim with 3 Vimeo Staff Picks. His portfolio spans luxury brands like Cartier, Piaget, BMW, and collaborations with Omega, Chanel, and more, showcasing a delicate yet powerful cinematic flair across fashion, cars, tech, and luxury realms.",
-      "popularity": 65.943,
-      "poster_path": "/xrJGGGb.png",
-      "release_date": "2001-01-19",
-      "title": "Travva",
-      "video": false,
-      "vote_average": 7.783,
-      "vote_count": 11668
-    },
-    {
-      "adult": false,
       "backdrop_path": "/5HBoRzS.png",
       "genre_ids": [
         12,
@@ -373,7 +373,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showExplore, setShowExplore] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
-  const theme = useTheme();  
+  const theme = useTheme();
 
   const beforeChange = async (currentIndex: number, nextIndex: number) => {
     if (currentIndex < nextIndex) {
@@ -495,7 +495,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 {data2.results
                   .filter(item =>
                     // Verifica se genre.id está definido antes de usar em includes, incluir todos os filmes no top movies
-                    !!genre.id ? item.genre_ids.includes(genre.id) : true                   
+                    !!genre.id ? item.genre_ids.includes(genre.id) : true
                   )
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />

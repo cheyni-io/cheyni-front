@@ -10,6 +10,7 @@ export const MAIN_PATH = {
   watch: "watch",
   login: "login",
   signup: "signup",
+  profile: "profile",
 };
 
 export const ARROW_MAX_WIDTH = 60;

@@ -6,7 +6,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 5,
     "original_language": "en",
     "original_title": "Assosyal Otel",
@@ -25,7 +25,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 6,
     "original_language": "sv",
     "original_title": "Bihrat Mavitan",
@@ -44,7 +44,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 7,
     "original_language": "en",
     "original_title": "Billie Eilish x T-Mobile",
@@ -64,7 +64,7 @@ export const mockMovieDetails = [
       28,
       35
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Artist Documentary",
     "id": 8,
     "original_language": "en",
     "original_title": "Jannis Kounellis",
@@ -83,7 +83,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 9,
     "original_language": "en",
     "original_title": "Huawei P Smart",
@@ -102,7 +102,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 10,
     "original_language": "en",
     "original_title": "Kids for Kids",
@@ -122,7 +122,7 @@ export const mockMovieDetails = [
       28,
       18
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film Series",
     "id": 11,
     "original_language": "en",
     "original_title": "Mark Knight",
@@ -141,7 +141,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 12,
     "original_language": "en",
     "original_title": "Nike - Lightspeed",
@@ -160,7 +160,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 12
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Dance",
     "id": 13,
     "original_language": "en",
     "original_title": "Rain Seed Nutrition",
@@ -179,7 +179,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 14,
     "original_language": "en",
     "original_title": "Skate Nation - Facebook",
@@ -199,7 +199,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 16
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film",
     "id": 15,
     "original_language": "en",
     "original_title": "Google Pixel",
@@ -218,7 +218,7 @@ export const mockMovieDetails = [
     "genre_ids": [
       28, 18
     ],
-    "genre": "Branded Content",
+    "genre": "Branded Content, Short Film Series",
     "id": 16,
     "original_language": "en",
     "original_title": "Film Ekimi",
