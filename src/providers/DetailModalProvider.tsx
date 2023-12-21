@@ -13,7 +13,7 @@ interface DetailType {
   mediaType?: MEDIA_TYPE;
 }
 export interface DetailModalConsumerProps {
-  detail: { mediaDetail?: MovieDetail } & DetailType;
+  detail: { mediaDetail?: MovieDetails } & DetailType;
   setDetailType: (newDetailType: DetailType) => void;
 }
 

@@ -184,9 +184,9 @@ export default function DetailModal() {
                           detail.mediaDetail?.title == "Donnie Darko" ? "14+" :
                           detail.mediaDetail?.title == "Sound of Freedom" ? "14+" : "18+"}`}
                         /> */}
-                        <Typography variant="subtitle2">{`${formatMinuteToReadable(
+                        {/* <Typography variant="subtitle2">{`${formatMinuteToReadable(
                           movieDetail?.runtime || 0
-                        )}`}</Typography>
+                        )}`}</Typography> */}
                         <QualityChip label="HD" />
                       </Stack>
 

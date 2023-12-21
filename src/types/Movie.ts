@@ -47,10 +47,12 @@ export type MovieDetail = {
 export type MovieDetails = {
   adult?: boolean;
   backdrop_path?: string | null;
-  belongs_to_collection?: null;
-  budget?: number;
+  // belongs_to_collection?: null;
+  // budget?: number;
   genres?: Genre[];
-  homepage?: string;
+  genres_ids?: number[];
+  genre?: string;
+  // homepage?: string;
   id?: number;
   imdb_id?: string;
   original_language?: string;
@@ -58,20 +60,20 @@ export type MovieDetails = {
   overview?: string;
   popularity?: number;
   poster_path?: string | null;
-  production_companies?: Company[];
-  production_countries?: Country[];
+  // production_companies?: Company[];
+  // production_countries?: Country[];
   release_date?: string;
-  revenue?: number;
-  runtime?: number;
-  spoken_languages?: Language[];
-  status?: string;
-  tagline?: string;
+  // revenue?: number;
+  // runtime?: number;
+  // spoken_languages?: Language[];
+  // status?: string;
+  // tagline?: string;
   title?: string;
   video?: boolean;
-  videos?: { results: Appended_Video[] };
+  // videos?: { results: Appended_Video[] };
   vote_average?: number;
   vote_count?: number;
-  age?: string;
+  // age?: string;
 };
 
 // Novo tipo para representar um array de MovieDetail
