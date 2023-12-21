@@ -176,7 +176,7 @@ export default function Profile() {
                 onChange={(e) => setUserData({ ...userData, email: e.target.value })}
               />
             </Grid>
-            {/* <Grid item xs={12}>
+            <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
@@ -186,8 +186,9 @@ export default function Profile() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
               />
-            </Grid> */}
+            </Grid>
             {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
