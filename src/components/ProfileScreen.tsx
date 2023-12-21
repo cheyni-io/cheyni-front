@@ -173,6 +173,7 @@ export default function Profile() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
               />
             </Grid>
             {/* <Grid item xs={12}>
