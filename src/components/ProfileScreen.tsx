@@ -109,6 +109,12 @@ export default function Profile() {
     });
   }
 
+  useEffect(() => {
+    if (tokens === null) {
+      navigate('/login');
+    } 
+  }, []);
+
 
   return (
     <Container component="main" maxWidth="xs">

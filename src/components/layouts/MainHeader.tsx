@@ -54,9 +54,8 @@ const MainHeader = () => {
   const navigation = useNavigate();
 
   const handleLogout = () => {
-    handleCloseUserMenu();
-    //Clear local storage
-    localStorage.clear();
+    handleCloseUserMenu();    
+    localStorage.removeItem('accessToken'); // Remove o token do Local Storage
     navigation("/login");
   }
 
@@ -72,6 +71,18 @@ const MainHeader = () => {
     console.log(theme);
     dispatch(changeTheme());
   };
+
+  const token = localStorage.getItem('accessToken');
+
+  const [display, setDisplay] = React.useState<string>('');
+
+  React.useEffect(() => {
+    if (token === null) {
+      setDisplay('none');
+    } else {
+      setDisplay('flex');
+    }
+  }, [token]);
 
   return (
     <AppBar
@@ -165,7 +176,7 @@ const MainHeader = () => {
         </IconButton> 
           <SearchBox />
           <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: display }}>
               <Avatar alt="user_avatar" src="/avatar.png" variant="rounded" />
             </IconButton>
           </Tooltip>
@@ -186,7 +197,7 @@ const MainHeader = () => {
             onClose={handleCloseUserMenu}
           >
             <MenuItem onClick={handleGoToProfile}>Profile</MenuItem>
-            {/* <MenuItem onClick={handleCloseUserMenu}>My account</MenuItem> */}
+            <MenuItem onClick={handleCloseUserMenu}>Wallet</MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Box>
