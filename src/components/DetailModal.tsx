@@ -13,12 +13,10 @@ import { forwardRef } from "react";
 
 import { useTheme } from "@mui/material";
 import { useDetailModal } from "src/providers/DetailModalProvider";
-import { formatMinuteToReadable } from "src/utils/common";
-import AgeLimitChip from "./AgeLimitChip";
+import { mockMovieDetails } from "src/types/mockMovieDetails";
 import MaxLineTypography from "./MaxLineTypography";
 import PlayButton from "./PlayButton";
 import QualityChip from "./QualityChip";
-import { mockMovieDetails } from "src/types/mocMovieDetails";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {

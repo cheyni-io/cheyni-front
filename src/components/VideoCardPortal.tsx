@@ -14,13 +14,12 @@ import { useGetConfigurationQuery } from "src/store/slices/configuration";
 import { useGetGenresQuery } from "src/store/slices/genre";
 import { MEDIA_TYPE } from "src/types/Common";
 import { Movie } from "src/types/Movie";
+import { mockMovieDetails } from "src/types/mockMovieDetails";
 import { formatMinuteToReadable } from "src/utils/common";
-import AgeLimitChip from "./AgeLimitChip";
 import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
 import MaxLineTypography from "./MaxLineTypography";
 import QualityChip from "./QualityChip";
-import { mockMovieDetails } from "src/types/mocMovieDetails";
 
 interface VideoCardModalProps {
   video: Movie;

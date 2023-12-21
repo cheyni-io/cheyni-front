@@ -103,7 +103,7 @@ const data2 = {
     },
     {
       "adult": false,
-      "backdrop_path": "/wr5dvYB.png",
+      "backdrop_path": "/aZwnrSi.png",
       "genre_ids": [
         28, 16
       ],
@@ -112,7 +112,7 @@ const data2 = {
       "original_title": "Billie Eilish x T-Mobile",
       "overview": "Deutsche Telekom partners with Billie Eilish to highlight Gen Z's positive phone usage. Using Eilish's song When the Party’s Over the ad portrays screen-centric youth engaged in real-world activism. Launching on International Youth Day, the campaign urges showcasing online actions offline. Directed by Vincent Haycock, the ad emphasizes social impact. Accompanied by BTS interviews, it echoes Eilish's advocacy work. Similar to Three's approach, it celebrates smartphones in modern activism.",
       "popularity": 73.912,
-      "poster_path": "/wr5dvYB.png",
+      "poster_path": "/aZwnrSi.png",
       "release_date": "2009-09-18",
       "title": "Billie Eilish x T-Mobile",
       "video": false,
