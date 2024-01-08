@@ -9,17 +9,17 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { TransitionProps } from "@mui/material/transitions";
-import { forwardRef, useState } from "react";
-
+import { forwardRef, useEffect, useState } from "react";
 import { useTheme } from "@mui/material";
+
 import { useDetailModal } from "src/providers/DetailModalProvider";
-import { mockMovieDetails } from "src/types/mockMovieDetails";
 import MaxLineTypography from "./MaxLineTypography";
 import PlayButton from "./PlayButton";
 import QualityChip from "./QualityChip";
 import CheyniIconButton from "./CheyniIconButton";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { INITIAL_DETAIL_STATE } from "src/constant";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -30,21 +30,15 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 export default function DetailModal() {
   const theme = useTheme();
   const darkMode = theme.palette.mode === "dark";
   const { detail, setDetailType } = useDetailModal();
   const [maxLine, setMaxLine] = useState(3);
-
+  const [videoDetails, setVideoDetails] = useState<any>(null);
+  
   const handleMaxLine = () => {
     setMaxLine(maxLine === 3 ? 100 : 3);
-  }
-
-  const movieDetail = mockMovieDetails.find(movie => movie.id === detail.id);
-
-  if (!movieDetail) {
-    return null;
   }
 
   return (
@@ -52,7 +46,7 @@ export default function DetailModal() {
       fullWidth
       scroll="body"
       maxWidth="md"
-      open={movieDetail ? true : false}
+      open={!!detail.mediaDetail}
       id="detail_dialog"
       TransitionComponent={Transition}
     >
@@ -90,9 +84,7 @@ export default function DetailModal() {
                 }}
                 onReady={handleReady}
               /> */}
-            <img src={`https://imgur.com${movieDetail?.backdrop_path}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-
-
+            <img src={detail.mediaDetail?.thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <Box
               sx={{
                 background: `linear-gradient(77deg,rgba(252, 252, 252, 0.6),transparent 85%)`,
@@ -122,9 +114,9 @@ export default function DetailModal() {
               }}
             />
             <IconButton
-              onClick={() => {
-                setDetailType({ mediaType: undefined, id: undefined });
-              }}
+                onClick={() => {
+                  setDetailType({ mediaType: undefined, id: undefined });
+                }}
               sx={{
                 top: 15,
                 right: 15,
@@ -151,10 +143,10 @@ export default function DetailModal() {
               }}
             >
               <MaxLineTypography variant="h4" maxLine={1} sx={{ mb: 2 }}>
-                {movieDetail?.title}
+                {detail.mediaDetail?.title}
               </MaxLineTypography>
               <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-                <PlayButton sx={{ color: darkMode ? "#fff" : "#0c0b30" }} />
+                <PlayButton sx={{ color: darkMode ? "#fff" : "#0c0b30" }} id={detail.mediaDetail?.id} />
                 {/* <CheyniIconButton>
                     <AddIcon />
                   </CheyniIconButton>
@@ -200,7 +192,7 @@ export default function DetailModal() {
                       variant="body1"
                       sx={{ mt: 2 }}
                     >
-                      {movieDetail?.overview}
+                      {detail.mediaDetail?.description}
                     </MaxLineTypography>
                     <CheyniIconButton onClick={handleMaxLine}>
                         {maxLine === 3 ? <AddIcon /> : <RemoveIcon />}
@@ -209,7 +201,7 @@ export default function DetailModal() {
                   </Grid>
                   <Grid item xs={12} sm={6} md={4}>
                     <Typography variant="body2" sx={{ my: 1 }}>
-                      {`Genres : ${movieDetail?.genre}`}
+                      {`Genres : ${detail.mediaDetail?.genre}`}
                     </Typography>
                     <Typography variant="body2" sx={{ my: 1 }}>
                       {/* {`Available in : ${detail.mediaDetail?.spoken_languages

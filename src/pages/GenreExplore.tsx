@@ -23,7 +23,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
       .unwrap();
     genre = genres?.find((t) => t.id.toString() === (params.genreId as string));
   }
-
   return genre;
 }
 

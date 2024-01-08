@@ -21,8 +21,6 @@ export function Component() {
   const navigate = useNavigate();
   //Obter token de acesso do localStorage
   const tokens = localStorage.getItem('accessToken');
-  
-  console.log("Token no componente:", tokens);
 
   if (genres && tokens !== null) {
     return (

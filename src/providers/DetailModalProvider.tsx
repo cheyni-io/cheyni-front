@@ -3,10 +3,10 @@ import { useLocation } from "react-router-dom";
 
 import { INITIAL_DETAIL_STATE } from "src/constant";
 import createSafeContext from "src/lib/createSafeContext";
-import { useLazyGetAppendedVideosQuery } from "src/store/slices/discover";
+import api from "src/services/api";
+import { useLazyGetAppendedVideosQuery } from "src/store/slices/discover2";
 import { MEDIA_TYPE } from "src/types/Common";
 import { MovieDetails } from "src/types/Movie";
-import { mockMovieDetails } from "src/types/mockMovieDetails";
 
 interface DetailType {
   id?: number;
@@ -30,28 +30,38 @@ export default function DetailModalProvider({
     { mediaDetail?: MovieDetails } & DetailType
   >(INITIAL_DETAIL_STATE);
 
-  const [getAppendedVideos] = useLazyGetAppendedVideosQuery();
+  // const handleChangeDetail = useCallback(
+  //   async (newDetailType: { mediaType?: MEDIA_TYPE; id?: number }) => {
+  //     if (!!newDetailType.id && newDetailType.mediaType) {
+  //       const response = await getAppendedVideos({
+  //         mediaType: newDetailType.mediaType,
+  //         id: newDetailType.id as number,
+  //       }).unwrap();
+  //       setDetail({ ...newDetailType, mediaDetail: response });
+  //     } else {
+  //       setDetail(INITIAL_DETAIL_STATE);
+  //     }
+  //   },
+  //   []
+  // );
 
   const handleChangeDetail = useCallback(
     async (newDetailType: { mediaType?: MEDIA_TYPE; id?: number }) => {
-      if (!!newDetailType.id && newDetailType.mediaType) {
-        let response;
-  
-        if (newDetailType.mediaType === MEDIA_TYPE.Movie) {
-          response = mockMovieDetails;
-        } else {
-          response = mockMovieDetails;
-        }
-        //@ts-ignore
-        setDetail({ ...newDetailType, mediaDetail: response });
-      } else {
+      if (!newDetailType.id || !newDetailType.mediaType) {
         setDetail(INITIAL_DETAIL_STATE);
+        return;
       }
-    },
-    []
+      api.get(`/upload/${newDetailType.id}`)
+        .then(response => {
+          setDetail({ ...newDetailType, mediaDetail: response.data });
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  , []
   );
   
-
   useEffect(() => {
     setDetail(INITIAL_DETAIL_STATE);
   }, [location.pathname, setDetail]);

@@ -7,12 +7,10 @@ interface VideoItemWithHoverProps {
   video: Movie;
 }
 
-export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
+export default function VideoItemWithHover({ video, }: VideoItemWithHoverProps) {
   const setPortal = usePortal();
   const elementRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-
-  const { data: configuration } = useGetConfigurationQuery(undefined);
 
   useEffect(() => {
     if (isHovered) {
@@ -25,7 +23,8 @@ export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
       ref={elementRef}
       handleHover={setIsHovered}
       // src={`${configuration?.images.base_url}w300${video.backdrop_path}`}
-      src={`https://imgur.com${video.poster_path}`}
+      //@ts-ignore
+      src={video.thumbnail}
     />
   );
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MAIN_PATH } from "src/constant";
 import { useTheme } from "@mui/material";
 
-export default function PlayButton({ sx, ...others }: ButtonProps) {
+export default function PlayButton({ sx, id,  ...others }: ButtonProps) {
   const navigate = useNavigate();
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
@@ -40,7 +40,7 @@ export default function PlayButton({ sx, ...others }: ButtonProps) {
         },
         ...sx,
       }}
-      onClick={() => navigate(`/${MAIN_PATH.watch}`)}
+      onClick={() => navigate(`/${MAIN_PATH.watch}/${id}`)}
     >
       Play
     </Button>

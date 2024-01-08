@@ -1,5 +1,5 @@
-import { useState, useRef, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useRef, useMemo, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Player from "video.js/dist/types/player";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
@@ -20,6 +20,13 @@ import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
 import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
+import api from "src/services/api";
+
+interface videoData {
+  title: string;
+  name: string;
+  description: string;
+}
 
 export function Component() {
   const playerRef = useRef<Player | null>(null);
@@ -35,27 +42,57 @@ export function Component() {
   const navigate = useNavigate();
   const [playerInitialized, setPlayerInitialized] = useState(false);
 
+  const { watchId } = useParams();
+  console.log(watchId);
+
+  const [loading, setLoading] = useState(true);
+  const [videoData, setVideoData] = useState<videoData>();
+
+  useEffect(() => {
+    api.get(`/upload/${watchId}`).then((res) => {
+      setVideoData(res.data);
+      setLoading(false);
+    });
+  }, [watchId]);
+
   const windowSize = useWindowSize();
-  const videoJsOptions = useMemo(() => {
-    return {
-      preload: "metadata",
-      autoplay: true,
-      controls: false,
-      // responsive: true,
-      // fluid: true,
-      width: windowSize.width,
-      height: windowSize.height,
-      sources: [
-        {
-          // src: videoData?.video,
-          // src: "https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8",
-          src: "https://cheyni.s3.amazonaws.com/save.mp4",
-          type: "application/x-mpegurl",
-        },
-      ],
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [windowSize]);
+  const videoJsOptions = {
+    preload: "metadata",
+    autoplay: true,
+    controls: false,
+    // responsive: true,
+    // fluid: true,
+    width: windowSize.width,
+    height: windowSize.height,
+    sources: [{
+      src: `https://cheyni.s3.amazonaws.com/${videoData?.name}`,
+      type: 'video/mp4'
+    }]
+  };
+
+  // if (loading) {
+  //   const windowSize = useWindowSize();
+  //   const videoJsOptions = useMemo(() => {
+  //     return {
+  //       preload: "metadata",
+  //       autoplay: false,
+  //       controls: false,
+  //       // responsive: true,
+  //       // fluid: true,
+  //       width: windowSize.width,
+  //       height: windowSize.height,
+  //       sources: [
+  //         {
+  //           // src: videoData?.video,
+  //           // src: "https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8",
+  //           src: `https://cheyni.s3.amazonaws.com/${videoTitle}`,
+  //           type: "video/mp4",
+  //         },
+  //       ],
+  //     };
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, [windowSize]);
+  // }
 
   const handlePlayerReady = function (player: Player): void {
     player.on("pause", () => {
@@ -106,6 +143,9 @@ export function Component() {
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
 
+  if (loading) {
+    return <MainLoadingScreen />;
+  }
   if (!!videoJsOptions.width) {
     return (
       <Box
@@ -144,7 +184,7 @@ export function Component() {
                   color: "white",
                 }}
               >
-                Cheyni
+                {videoData?.name}
               </Typography>
             </Box>
             <Box
@@ -173,7 +213,7 @@ export function Component() {
             <Box
               px={{ xs: 1, sm: 2 }}
               sx={{ position: "absolute", bottom: 20, left: 0, right: 0, backgroundColor: dark ? "#0C0B30" : "#FFF" }}
-            
+
             >
               {/* Seekbar */}
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -240,7 +280,7 @@ export function Component() {
                     textAlign="center"
                     sx={{ maxWidth: 300, mx: "auto", color: "white" }}
                   >
-                    Description
+                    A
                   </MaxLineTypography>
                 </Box>
                 {/* end middle time */}

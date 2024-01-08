@@ -1,5 +1,5 @@
 import { TMDB_V3_API_KEY } from "src/constant";
-import { tmdbApi } from "./apiSlice";
+import { railwayApi, tmdbApi } from "./apiSlice";
 import { MEDIA_TYPE, PaginatedMovieResult } from "src/types/Common";
 import { MovieDetail } from "src/types/Movie";
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -57,7 +57,7 @@ const discoverSlice = createSlice({
 export const { setNextPage, initiateItem } = discoverSlice.actions;
 export default discoverSlice.reducer;
 
-const extendedApi = tmdbApi.injectEndpoints({
+const extendedApi = railwayApi.injectEndpoints({
   endpoints: (build) => ({
     getVideosByMediaTypeAndGenreId: build.query<
       PaginatedMovieResult & {
@@ -108,8 +108,7 @@ const extendedApi = tmdbApi.injectEndpoints({
       { mediaType: MEDIA_TYPE; id: number }
     >({
       query: ({ mediaType, id }) => ({
-        url: `/${mediaType}/${id}`,
-        params: { api_key: TMDB_V3_API_KEY, append_to_response: "videos" },
+        url: `/upload/${id}`,
       }),
     }),
     getSimilarVideos: build.query<
@@ -117,8 +116,7 @@ const extendedApi = tmdbApi.injectEndpoints({
       { mediaType: MEDIA_TYPE; id: number }
     >({
       query: ({ mediaType, id }) => ({
-        url: `/${mediaType}/${id}/similar`,
-        params: { api_key: TMDB_V3_API_KEY },
+        url: `/upload/${id}/similar`,
       }),
     }),
   }),

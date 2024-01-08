@@ -27,8 +27,17 @@ const router = createBrowserRouter([
       },
       {
         path: MAIN_PATH.watch,
-        lazy: () => import("src/pages/WatchPage"),
+        children: [
+          {
+            path: ":watchId",
+            lazy: () => import("src/pages/WatchPage"),
+          },
+        ],
       },
+      // {
+      //   path: MAIN_PATH.watch,
+      //   lazy: () => import("src/pages/WatchPage"),
+      // },
       {
         path: MAIN_PATH.signup,
         lazy: () => import("src/pages/SignUpPage")

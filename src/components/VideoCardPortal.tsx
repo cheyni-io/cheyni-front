@@ -14,7 +14,6 @@ import { useGetConfigurationQuery } from "src/store/slices/configuration";
 import { useGetGenresQuery } from "src/store/slices/genre";
 import { MEDIA_TYPE } from "src/types/Common";
 import { Movie } from "src/types/Movie";
-import { mockMovieDetails } from "src/types/mockMovieDetails";
 import { formatMinuteToReadable } from "src/utils/common";
 import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
@@ -32,8 +31,6 @@ export default function VideoCardModal({
 }: VideoCardModalProps) {
   const navigate = useNavigate();
 
-  const { data: configuration } = useGetConfigurationQuery(undefined);
-  const { data: genres } = useGetGenresQuery(MEDIA_TYPE.Movie);
   const setPortal = usePortal();
   const rect = anchorElement.getBoundingClientRect();
   const { setDetailType } = useDetailModal();
@@ -56,7 +53,7 @@ export default function VideoCardModal({
         }}
       >
         <img
-          src={`https://imgur.com${video.backdrop_path}`}
+          src={video.thumbnail}
           style={{
             top: 0,
             height: "100%",
@@ -98,7 +95,7 @@ export default function VideoCardModal({
           <Stack direction="row" spacing={1}>
             <CheyniIconButton
               sx={{ p: 0 }}
-              onClick={() => navigate(`/${MAIN_PATH.watch}`)}
+              onClick={() => navigate(`/${MAIN_PATH.watch}/${video.id}`)}
             >
               <PlayCircleIcon sx={{ width: 40, height: 40 }} />
             </CheyniIconButton>
@@ -112,8 +109,8 @@ export default function VideoCardModal({
             <CheyniIconButton
               onClick={() => {
                 // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
-                const movieMock = mockMovieDetails.find(movie => movie.id === video.id);
-                setDetailType({ mediaType: MEDIA_TYPE.Movie, id: movieMock?.id });
+                
+                setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
               }}
             >
               <ExpandMoreIcon />
@@ -148,13 +145,13 @@ export default function VideoCardModal({
             )}`}</Typography>
             <QualityChip label="HD" />
           </Stack>
-          {genres && (
+          {/* {genres && (
             <GenreBreadcrumbs
               genres={genres
                 .filter((genre) => video.genre_ids.includes(genre.id))
                 .map((genre) => genre.name)}
             />
-          )}
+          )} */}
         </Stack>
       </CardContent>
     </Card>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 
 import Box from "@mui/material/Box";
@@ -15,6 +15,7 @@ import { PaginatedMovieResult } from "src/types/Common";
 import { CustomGenre, Genre } from "src/types/Genre";
 import { Movie } from "src/types/Movie";
 import CustomNavigation from "./CustomNavigation";
+import api from "src/services/api";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -374,6 +375,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [showExplore, setShowExplore] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const theme = useTheme();
+  const [videos, setVideos] = useState([]);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+  useEffect(() => {
+    api.get('/upload').then(response => {
+      console.log(response.data);
+      setVideos(response.data);
+    })
+  }, []);
 
   const beforeChange = async (currentIndex: number, nextIndex: number) => {
     if (currentIndex < nextIndex) {
@@ -492,20 +502,31 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 padding={ARROW_MAX_WIDTH}
                 theme={theme}
               >
-                {data2.results
+                {/* {data2.results
                   .filter(item =>
                     // Verifica se genre.id está definido antes de usar em includes, incluir todos os filmes no top movies
                     !!genre.id ? item.genre_ids.includes(genre.id) : true
                   )
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />
-                  ))}
+                  ))} */}
 
                 {/* {data3.results
                   .filter((i) => !!i.backdrop_path)
                   .map((item) => (
                     <SlideItem key={item.id} item={item} />
                   ))} */}
+                {/* {videos.filter((i) => !!i.backdrop_path).map((item) => (
+                  <SlideItem key={item.id} item={item} />
+                ))} */}
+                {/* Os vídeos tem um campo chamado genre, que é um array de strings, então eu filtro os vídeos que tem o gênero que eu quero */}
+                {/* {videos.filter((i) => i.genre.includes(genre.name)).map((item) => (
+                  <SlideItem key={item.id} item={item} />
+                ))} */}
+                {videos.map((item) => (
+                  // @ts-ignore
+                  <SlideItem key={item?.id || ''} item={item || {}} />
+                ))}
               </StyledSlider>
             </CustomNavigation>
           </RootStyle>
