@@ -519,14 +519,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 {/* {videos.filter((i) => !!i.backdrop_path).map((item) => (
                   <SlideItem key={item.id} item={item} />
                 ))} */}
-                {/* Os vídeos tem um campo chamado genre, que é um array de strings, então eu filtro os vídeos que tem o gênero que eu quero */}
-                {/* {videos.filter((i) => i.genre.includes(genre.name)).map((item) => (
-                  <SlideItem key={item.id} item={item} />
-                ))} */}
-                {videos.map((item) => (
+                {/* {videos.map((item) => (
                   // @ts-ignore
                   <SlideItem key={item?.id || ''} item={item || {}} />
-                ))}
+                ))} */}
+                {videos
+                  .filter((item) => !!item.genre && item.genre.includes(genre.name))
+                  .map((item) => (
+                    <SlideItem key={item.id} item={item} />
+                  ))}
               </StyledSlider>
             </CustomNavigation>
           </RootStyle>
