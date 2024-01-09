@@ -183,7 +183,7 @@ export function Component() {
                   color: "white",
                 }}
               >
-                {videoData?.name}
+                {videoData?.title}
               </Typography>
             </Box>
             <Box
