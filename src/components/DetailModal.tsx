@@ -35,7 +35,6 @@ export default function DetailModal() {
   const darkMode = theme.palette.mode === "dark";
   const { detail, setDetailType } = useDetailModal();
   const [maxLine, setMaxLine] = useState(3);
-  const [videoDetails, setVideoDetails] = useState<any>(null);
   
   const handleMaxLine = () => {
     setMaxLine(maxLine === 3 ? 100 : 3);
@@ -67,24 +66,8 @@ export default function DetailModal() {
               height: "calc(9 / 16 * 100%)",
             }}
           >
-            {/* <VideoJSPlayer
-                options={{
-                  loop: true,
-                  autoplay: true,
-                  controls: false,
-                  responsive: true,
-                  fluid: true,
-                  techOrder: ["youtube"],
-                  sources: [
-                    {
-                      type: "image/jpeg",
-                      src: "https://1.bp.blogspot.com/-IwYDXbaVa1U/X1j_PP2RrzI/AAAAAAAACY8/CKTUUwl_19Ag-7LxKhwElsxYHn98MN3fACPcBGAYYCw/w919/colorful-background-abstract-digital-art-uhdpaper.com-4K-6.2640-wp.thumbnail.jpg",
-                    },
-                  ],
-                }}
-                onReady={handleReady}
-              /> */}
-            <img src={detail.mediaDetail?.thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            {/* <img src={detail.mediaDetail?.thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
+            <img src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <Box
               sx={{
                 background: `linear-gradient(77deg,rgba(252, 252, 252, 0.6),transparent 85%)`,

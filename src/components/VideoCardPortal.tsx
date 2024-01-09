@@ -53,7 +53,7 @@ export default function VideoCardModal({
         }}
       >
         <img
-          src={video.thumbnail}
+          src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
           style={{
             top: 0,
             height: "100%",
@@ -109,7 +109,7 @@ export default function VideoCardModal({
             <CheyniIconButton
               onClick={() => {
                 // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
-                
+                console.log(video)
                 setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
               }}
             >
