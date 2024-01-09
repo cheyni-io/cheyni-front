@@ -109,7 +109,6 @@ export default function VideoCardModal({
             <CheyniIconButton
               onClick={() => {
                 // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
-                console.log(video)
                 setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
               }}
             >

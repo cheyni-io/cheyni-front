@@ -32,7 +32,6 @@ export default function SignIn() {
           path: '/'
         });
         localStorage.setItem('accessToken', response.data.access_token);
-        console.log(response.data.access_token);
         navigate('/browse');
       }
     }).catch((error) => {

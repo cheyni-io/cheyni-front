@@ -42,8 +42,6 @@ export default function Profile() {
 
   const tokens = localStorage.getItem('accessToken');
 
-  console.log("Token no componente:", tokens);
-
   //Pegar o token e os dados do usuário
   useEffect(() => {
     api.get('/auth', {
@@ -51,7 +49,6 @@ export default function Profile() {
         Authorization: `Bearer ${tokens}`
       }
     }).then((response) => {
-      console.log(response.data);
       //@ts-ignore
       setUserData({
         name: response.data.name,

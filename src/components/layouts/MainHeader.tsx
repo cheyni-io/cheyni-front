@@ -64,11 +64,15 @@ const MainHeader = () => {
     navigation("/profile");
   }
 
+  const handleGoToWallet = () => {
+    handleCloseUserMenu();
+    navigation("/wallet");
+  }
+
   const theme = useSelector((state: any) => state.theme);
   const dispatch = useDispatch();
 
   const toggleTheme = () => {
-    console.log(theme);
     dispatch(changeTheme());
   };
 
@@ -197,7 +201,7 @@ const MainHeader = () => {
             onClose={handleCloseUserMenu}
           >
             <MenuItem onClick={handleGoToProfile}>Profile</MenuItem>
-            <MenuItem onClick={handleCloseUserMenu}>Wallet</MenuItem>
+            <MenuItem onClick={handleGoToWallet}>Wallet</MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Box>

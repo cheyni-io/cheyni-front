@@ -43,7 +43,6 @@ export function Component() {
   const [playerInitialized, setPlayerInitialized] = useState(false);
 
   const { watchId } = useParams();
-  console.log(watchId);
 
   const [loading, setLoading] = useState(true);
   const [videoData, setVideoData] = useState<videoData>();
