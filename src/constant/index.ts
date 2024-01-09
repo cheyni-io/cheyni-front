@@ -12,6 +12,7 @@ export const MAIN_PATH = {
   login: "login",
   signup: "signup",
   profile: "profile",
+  wallet: "wallet"
 };
 
 export const ARROW_MAX_WIDTH = 60;

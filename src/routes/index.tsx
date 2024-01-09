@@ -49,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: MAIN_PATH.profile,
         lazy: () => import("src/pages/ProfilePage"),
+      },
+      {
+        path: MAIN_PATH.wallet,
+        lazy: () => import("src/pages/WalletPage"),
       }
     ],
   },
