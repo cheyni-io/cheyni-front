@@ -99,12 +99,12 @@ export default function VideoCardModal({
             >
               <PlayCircleIcon sx={{ width: 40, height: 40 }} />
             </CheyniIconButton>
-            <CheyniIconButton>
+            {/* <CheyniIconButton>
               <AddIcon />
             </CheyniIconButton>
             <CheyniIconButton>
               <ThumbUpOffAltIcon />
-            </CheyniIconButton>
+            </CheyniIconButton> */}
             <div style={{ flexGrow: 1 }} />
             <CheyniIconButton
               onClick={() => {
