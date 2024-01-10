@@ -22,8 +22,6 @@ export default function VideoItemWithHover({ video, }: VideoItemWithHoverProps) 
     <VideoItemWithHoverPure
       ref={elementRef}
       handleHover={setIsHovered}
-      // src={`${configuration?.images.base_url}w300${video.backdrop_path}`}
-      //@ts-ignore
       src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
     />
   );

@@ -80,10 +80,14 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
   useEffect(() => {
     if (data2 && data2.results) {
       const videos = data2.results.filter((item) => !!item.backdrop_path);
-      setVideo(videos[getRandomNumber(videos.length)]);
+      const selectedVideo = videos[getRandomNumber(videos.length)];
+  
+      // Ajuste o tipo de 'id' conforme necessário (convertendo para string, se necessário)
+      const adjustedVideo: Movie = { ...selectedVideo, id: String(selectedVideo.id) };
+  
+      setVideo(adjustedVideo);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data2]);
 
   useEffect(() => {
     if (video) {

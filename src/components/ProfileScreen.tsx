@@ -49,11 +49,11 @@ export default function Profile() {
         Authorization: `Bearer ${tokens}`
       }
     }).then((response) => {
-      //@ts-ignore
       setUserData({
         name: response.data.name,
         birthDate: response.data.birthDate,
         email: response.data.email,
+        password: ''
       });
     }).catch((error) => {
       console.log(error);

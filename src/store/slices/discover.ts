@@ -105,7 +105,7 @@ const extendedApi = tmdbApi.injectEndpoints({
     }),
     getAppendedVideos: build.query<
       MovieDetail,
-      { mediaType: MEDIA_TYPE; id: number }
+      { mediaType: MEDIA_TYPE; id: string }
     >({
       query: ({ mediaType, id }) => ({
         url: `/${mediaType}/${id}`,

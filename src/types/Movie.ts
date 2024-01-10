@@ -21,7 +21,7 @@ export type MovieDetail = {
   budget?: number;
   genres?: Genre[];
   homepage?: string;
-  id?: number;
+  id?: string;
   imdb_id?: string;
   original_language?: string;
   original_title?: string;
@@ -63,7 +63,7 @@ export type Movie = {
   overview: string;
   release_date: string;
   genre_ids: number[];
-  id: number;
+  id: string;
   original_title: string;
   original_language: string;
   title: string;

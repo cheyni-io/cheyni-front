@@ -9,7 +9,7 @@ import { MEDIA_TYPE } from "src/types/Common";
 import { MovieDetails } from "src/types/Movie";
 
 interface DetailType {
-  id?: number;
+  id?: string;
   mediaType?: MEDIA_TYPE;
 }
 export interface DetailModalConsumerProps {
@@ -46,7 +46,7 @@ export default function DetailModalProvider({
   // );
 
   const handleChangeDetail = useCallback(
-    async (newDetailType: { mediaType?: MEDIA_TYPE; id?: number }) => {
+    async (newDetailType: { mediaType?: MEDIA_TYPE; id?: string }) => {
       if (!newDetailType.id || !newDetailType.mediaType) {
         setDetail(INITIAL_DETAIL_STATE);
         return;
