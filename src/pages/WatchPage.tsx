@@ -21,6 +21,8 @@ import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
 import api from "src/services/api";
+import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
+
 
 interface videoData {
   title: string;
@@ -46,6 +48,7 @@ export function Component() {
 
   const [loading, setLoading] = useState(true);
   const [videoData, setVideoData] = useState<videoData>();
+  const [hideTitle, setHideTitle] = useState(false);
 
   useEffect(() => {
     api.get(`/upload/${watchId}`).then((res) => {
@@ -69,52 +72,34 @@ export function Component() {
     }]
   };
 
-  // if (loading) {
-  //   const windowSize = useWindowSize();
-  //   const videoJsOptions = useMemo(() => {
-  //     return {
-  //       preload: "metadata",
-  //       autoplay: false,
-  //       controls: false,
-  //       // responsive: true,
-  //       // fluid: true,
-  //       width: windowSize.width,
-  //       height: windowSize.height,
-  //       sources: [
-  //         {
-  //           // src: videoData?.video,
-  //           // src: "https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8",
-  //           src: `https://cheyni.s3.amazonaws.com/${videoTitle}`,
-  //           type: "video/mp4",
-  //         },
-  //       ],
-  //     };
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [windowSize]);
-  // }
-
   const handlePlayerReady = function (player: Player): void {
     player.on("pause", () => {
       setPlayerState((draft) => {
         return { ...draft, paused: true };
       });
+      setHideTitle(false);
     });
 
     player.on("play", () => {
       setPlayerState((draft) => {
         return { ...draft, paused: false };
       });
+      setHideTitle(true);
     });
 
     player.on("timeupdate", () => {
       setPlayerState((draft) => {
-        return { ...draft, playedSeconds: player.currentTime() };
+        const playedSeconds = player.currentTime() as number; // Assegura que playedSeconds é do tipo number
+        return { ...draft, playedSeconds };
       });
     });
 
     player.one("durationchange", () => {
       setPlayerInitialized(true);
-      setPlayerState((draft) => ({ ...draft, duration: player.duration() }));
+      setPlayerState((draft) => {
+        const duration = player.duration() as number; // Assegura que duration é do tipo number
+        return { ...draft, duration };
+      });
     });
 
     playerRef.current = player;
@@ -139,6 +124,55 @@ export function Component() {
     navigate("/browse");
   };
 
+  const handleFullScreen = () => {
+    if (playerRef.current) {
+      playerRef.current.requestFullscreen();
+    }
+  };
+
+  const handleForward = () => {
+    if (playerRef.current && playerRef.current.currentTime) {
+      // Verifica se playerRef.current e playerRef.current.currentTime são ambos definidos
+      const currentVideoTime = playerRef.current.currentTime();
+      if (currentVideoTime !== undefined) {
+        playerRef.current.currentTime(currentVideoTime + 10);
+      }
+    }
+  };
+
+  const handleBackward = () => {
+    if (playerRef.current && playerRef.current.currentTime) {
+      const currentVideoTime = playerRef.current.currentTime();
+      if (currentVideoTime !== undefined) {
+        playerRef.current.currentTime(Math.max(0, currentVideoTime - 10));
+      }
+    }
+  };
+
+  const handlePictureInPicture = () => {
+    if (playerRef.current) {
+      if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+      } else {
+        playerRef.current.requestPictureInPicture();
+      }
+    }
+  };
+
+  //Salvar o progresso do video sem ser no banco de dados
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (playerRef.current) {
+        localStorage.setItem(
+          `progress-${watchId}`,
+          JSON.stringify(playerRef.current.currentTime())
+        );
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [watchId]);
+
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
 
@@ -150,6 +184,7 @@ export function Component() {
       <Box
         sx={{
           position: "relative",
+          backgroundColor: dark ? "#0C0B30" : "#FFF",
         }}
       >
         <VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />
@@ -182,8 +217,19 @@ export function Component() {
                   fontWeight: 700,
                   color: "white",
                 }}
+                display={hideTitle ? "none" : "block"}
               >
                 {videoData?.title}
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                }}
+                lineHeight={1.5}
+                display={hideTitle ? "none" : "block"}
+              >
+                {videoData?.description}
               </Typography>
             </Box>
             <Box
@@ -249,8 +295,11 @@ export function Component() {
                       <PlayArrowIcon />
                     </PlayerControlButton>
                   )}
-                  <PlayerControlButton>
-                    <SkipNextIcon />
+                  <PlayerControlButton onClick={handleBackward}>
+                    <TbRewindBackward10 />
+                  </PlayerControlButton>
+                  <PlayerControlButton onClick={handleForward}>
+                    <TbRewindForward10 />
                   </PlayerControlButton>
                   <VolumeControllers
                     muted={playerState.muted}
@@ -263,7 +312,7 @@ export function Component() {
                     value={playerState.volume}
                     handleVolume={handleVolumeChange}
                   />
-                  <Typography variant="caption" sx={{ color: "white" }}>
+                  <Typography variant="caption" sx={{ color: dark ? "#FFF" : "#0C0B30" }}>
                     {`${formatTime(playerState.playedSeconds)} / ${formatTime(
                       playerState.duration
                     )}`}
@@ -277,9 +326,9 @@ export function Component() {
                     maxLine={1}
                     variant="subtitle1"
                     textAlign="center"
-                    sx={{ maxWidth: 300, mx: "auto", color: "white" }}
+                    sx={{ maxWidth: 300, mx: "auto", color: "black" }}
                   >
-                    A
+                    {videoData?.title}
                   </MaxLineTypography>
                 </Box>
                 {/* end middle time */}
@@ -290,13 +339,15 @@ export function Component() {
                   alignItems="center"
                   spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
                 >
-                  <PlayerControlButton>
+                  {/* <PlayerControlButton>
                     <SettingsIcon />
-                  </PlayerControlButton>
-                  <PlayerControlButton>
+                  </PlayerControlButton> */}
+                  <PlayerControlButton onClick={handlePictureInPicture}>
                     <BrandingWatermarkOutlinedIcon />
                   </PlayerControlButton>
-                  <PlayerControlButton>
+                  <PlayerControlButton
+                    onClick={handleFullScreen}
+                  >
                     <FullscreenIcon />
                   </PlayerControlButton>
                 </Stack>

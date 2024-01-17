@@ -165,6 +165,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const handleNext = () => {
     sliderRef.current?.slickNext();
   };
+  
 
   return (
     <Box sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}>
