@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Player from "video.js/dist/types/player";
 import videojs from "video.js";
 import "videojs-youtube";
 import "video.js/dist/video-js.css";
+import { Box } from "@mui/material";
 
 export default function VideoJSPlayer({
   options,
@@ -64,6 +65,13 @@ export default function VideoJSPlayer({
         // on prop change, for example:
       } else {
         const player = playerRef.current;
+        // player.on('fullscreenchange', function() {
+        //   if (!player.isFullscreen()) {
+        //    console.log('exit fullscreen');
+        //   }else{
+        //     console.log('enter fullscreen');
+        //   }
+        // });        
         // player.autoplay(options.autoplay);
         player.width(options.width);
         player.height(options.height);

@@ -22,7 +22,7 @@ import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
 import api from "src/services/api";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
-
+import '.././utils/styles.css'
 
 interface videoData {
   title: string;
@@ -49,6 +49,10 @@ export function Component() {
   const [loading, setLoading] = useState(true);
   const [videoData, setVideoData] = useState<videoData>();
   const [hideTitle, setHideTitle] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  const theme = useTheme();
+  const dark = theme.palette.mode === "dark";
 
   useEffect(() => {
     api.get(`/upload/${watchId}`).then((res) => {
@@ -61,7 +65,7 @@ export function Component() {
   const videoJsOptions = {
     preload: "metadata",
     autoplay: true,
-    controls: false,
+    controls: true,
     // responsive: true,
     // fluid: true,
     width: windowSize.width,
@@ -124,11 +128,20 @@ export function Component() {
     navigate("/browse");
   };
 
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const handleFullScreen = () => {
     if (playerRef.current) {
-      playerRef.current.requestFullscreen();
+      if (isFullScreen) {
+        playerRef.current.exitFullscreen();
+      } else {
+        playerRef.current.requestFullscreen();
+      }
+      setIsFullScreen(!isFullScreen);
     }
-  };
+  }
+
+  console.log(isFullScreen);
 
   const handleForward = () => {
     if (playerRef.current && playerRef.current.currentTime) {
@@ -159,205 +172,179 @@ export function Component() {
     }
   };
 
-  //Salvar o progresso do video sem ser no banco de dados
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (playerRef.current) {
-        localStorage.setItem(
-          `progress-${watchId}`,
-          JSON.stringify(playerRef.current.currentTime())
-        );
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [watchId]);
-
-  const theme = useTheme();
-  const dark = theme.palette.mode === "dark";
-
   if (loading) {
     return <MainLoadingScreen />;
   }
   if (!!videoJsOptions.width) {
     return (
-      <Box
-        sx={{
-          position: "relative",
-          backgroundColor: dark ? "#0C0B30" : "#FFF",
-        }}
-      >
-        <VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />
-        {playerRef.current && playerInitialized && (
-          <Box
-            sx={{
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              position: "absolute",
-            }}
-          >
-            <Box px={2} sx={{ position: "absolute", top: 75 }}>
-              <PlayerControlButton onClick={handleGoBack}>
-                <KeyboardBackspaceIcon />
-              </PlayerControlButton>
-            </Box>
+      <>
+        <Box
+          sx={{
+            position: "relative",
+            backgroundColor: dark ? "#0C0B30" : "#FFF",
+          }}
+        >
+          <VideoJSPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+          {playerRef.current && playerInitialized && (
             <Box
-              px={2}
               sx={{
-                position: "absolute",
-                top: { xs: "40%", sm: "55%", md: "60%" },
+                top: 0,
                 left: 0,
+                right: 0,
+                bottom: 0,
+                position: "absolute",
               }}
             >
-              <Typography
-                variant="h3"
+              <Box px={2} sx={{ position: "absolute", top: 75 }}>
+                <PlayerControlButton onClick={handleGoBack}>
+                  <KeyboardBackspaceIcon />
+                </PlayerControlButton>
+              </Box>
+              <Box
+                px={2}
                 sx={{
-                  fontWeight: 700,
-                  color: "white",
+                  position: "absolute",
+                  top: { xs: "40%", sm: "55%", md: "60%" },
+                  left: 0,
                 }}
-                display={hideTitle ? "none" : "block"}
               >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 700,
+                    color: "white",
+                  }}
+                  display={hideTitle ? "none" : "block"}
+                >
+                  {videoData?.title}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                  }}
+                  lineHeight={1.5}
+                  display={hideTitle ? "none" : "block"}
+                >
+                  {videoData?.description}
+                </Typography>
+              </Box>
+              <Box
+                px={{ xs: 1, sm: 2 }}
+                sx={{ position: "absolute", bottom: 0, left: 0, right: 0, backgroundColor: dark ? "#0C0B30" : "#FFF" }}
+
+              >
+                {/* Seekbar */}
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <PlayerSeekbar
+                    playedSeconds={playerState.playedSeconds}
+                    duration={playerState.duration}
+                    seekTo={handleSeekTo}
+                  />
+                </Stack>
+                {/* end Seekbar */}
+
+                {/* Controller */}
+                <Stack direction="row" alignItems="center">
+                  {/* left controller */}
+                  <Stack
+                    direction="row"
+                    spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
+                    alignItems="center"
+                  >
+                    {!playerState.paused ? (
+                      <PlayerControlButton
+                        onClick={() => {
+                          playerRef.current?.pause();
+                        }}
+                      >
+                        <PauseIcon />
+                      </PlayerControlButton>
+                    ) : (
+                      <PlayerControlButton
+                        onClick={() => {
+                          playerRef.current?.play();
+                        }}
+                      >
+                        <PlayArrowIcon />
+                      </PlayerControlButton>
+                    )}
+                    <PlayerControlButton onClick={handleBackward}>
+                      <TbRewindBackward10 />
+                    </PlayerControlButton>
+                    <PlayerControlButton onClick={handleForward}>
+                      <TbRewindForward10 />
+                    </PlayerControlButton>
+                    <VolumeControllers
+                      muted={playerState.muted}
+                      handleVolumeToggle={() => {
+                        playerRef.current?.muted(!playerState.muted);
+                        setPlayerState((draft) => {
+                          return { ...draft, muted: !draft.muted };
+                        });
+                      }}
+                      value={playerState.volume}
+                      handleVolume={handleVolumeChange}
+                    />
+                    <Typography variant="caption" sx={{ color: dark ? "#FFF" : "#0C0B30" }}>
+                      {`${formatTime(playerState.playedSeconds)} / ${formatTime(
+                        playerState.duration
+                      )}`}
+                    </Typography>
+                  </Stack>
+                  {/* end left controller */}
+
+                  {/* middle time */}
+                  <Box flexGrow={1}>
+                    <MaxLineTypography
+                      maxLine={1}
+                      variant="subtitle1"
+                      textAlign="center"
+                      sx={{ maxWidth: 300, mx: "auto", color: "black" }}
+                    >
+                      {videoData?.title}
+                    </MaxLineTypography>
+                  </Box>
+                  {/* end middle time */}
+
+                  {/* right controller */}
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
+                  >
+                    {/* <PlayerControlButton>
+                    <SettingsIcon />
+                  </PlayerControlButton> */}
+                    <PlayerControlButton onClick={handlePictureInPicture}>
+                      <BrandingWatermarkOutlinedIcon />
+                    </PlayerControlButton>
+                    <PlayerControlButton
+                      onClick={handleFullScreen}
+                    >
+                      <FullscreenIcon />
+                    </PlayerControlButton>
+                  </Stack>
+                  {/* end right controller */}
+                </Stack>
+                {/* end Controller */}
+              </Box>
+            </Box>
+          )}
+          {/* {isFullScreen ?
+            <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: dark ? "#0C0B30" : "#FFF", zIndex: 2147483647 }}>
+              <Typography variant="h3" sx={{ fontWeight: 700, color: "white" }}>
                 {videoData?.title}
               </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: "white",
-                }}
-                lineHeight={1.5}
-                display={hideTitle ? "none" : "block"}
-              >
+              <Typography variant="h6" sx={{ color: "white" }} lineHeight={1.5}>
                 {videoData?.description}
               </Typography>
             </Box>
-            <Box
-              px={{ xs: 0, sm: 1, md: 2 }}
-              sx={{
-                position: "absolute",
-                top: { xs: "50%", sm: "60%", md: "70%" },
-                right: 0,
-              }}
-            >
-              {/* <Typography
-                variant="subtitle2"
-                sx={{
-                  px: 1,
-                  py: 0.5,
-                  fontWeight: 700,
-                  color: "white",
-                  bgcolor: "red",
-                  borderRadius: "12px 0px 0px 12px",
-                }}
-              >
-                12+
-              </Typography> */}
-            </Box>
-
-            <Box
-              px={{ xs: 1, sm: 2 }}
-              sx={{ position: "absolute", bottom: 20, left: 0, right: 0, backgroundColor: dark ? "#0C0B30" : "#FFF" }}
-
-            >
-              {/* Seekbar */}
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <PlayerSeekbar
-                  playedSeconds={playerState.playedSeconds}
-                  duration={playerState.duration}
-                  seekTo={handleSeekTo}
-                />
-              </Stack>
-              {/* end Seekbar */}
-
-              {/* Controller */}
-              <Stack direction="row" alignItems="center">
-                {/* left controller */}
-                <Stack
-                  direction="row"
-                  spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
-                  alignItems="center"
-                >
-                  {!playerState.paused ? (
-                    <PlayerControlButton
-                      onClick={() => {
-                        playerRef.current?.pause();
-                      }}
-                    >
-                      <PauseIcon />
-                    </PlayerControlButton>
-                  ) : (
-                    <PlayerControlButton
-                      onClick={() => {
-                        playerRef.current?.play();
-                      }}
-                    >
-                      <PlayArrowIcon />
-                    </PlayerControlButton>
-                  )}
-                  <PlayerControlButton onClick={handleBackward}>
-                    <TbRewindBackward10 />
-                  </PlayerControlButton>
-                  <PlayerControlButton onClick={handleForward}>
-                    <TbRewindForward10 />
-                  </PlayerControlButton>
-                  <VolumeControllers
-                    muted={playerState.muted}
-                    handleVolumeToggle={() => {
-                      playerRef.current?.muted(!playerState.muted);
-                      setPlayerState((draft) => {
-                        return { ...draft, muted: !draft.muted };
-                      });
-                    }}
-                    value={playerState.volume}
-                    handleVolume={handleVolumeChange}
-                  />
-                  <Typography variant="caption" sx={{ color: dark ? "#FFF" : "#0C0B30" }}>
-                    {`${formatTime(playerState.playedSeconds)} / ${formatTime(
-                      playerState.duration
-                    )}`}
-                  </Typography>
-                </Stack>
-                {/* end left controller */}
-
-                {/* middle time */}
-                <Box flexGrow={1}>
-                  <MaxLineTypography
-                    maxLine={1}
-                    variant="subtitle1"
-                    textAlign="center"
-                    sx={{ maxWidth: 300, mx: "auto", color: "black" }}
-                  >
-                    {videoData?.title}
-                  </MaxLineTypography>
-                </Box>
-                {/* end middle time */}
-
-                {/* right controller */}
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  spacing={{ xs: 0.5, sm: 1.5, md: 2 }}
-                >
-                  {/* <PlayerControlButton>
-                    <SettingsIcon />
-                  </PlayerControlButton> */}
-                  <PlayerControlButton onClick={handlePictureInPicture}>
-                    <BrandingWatermarkOutlinedIcon />
-                  </PlayerControlButton>
-                  <PlayerControlButton
-                    onClick={handleFullScreen}
-                  >
-                    <FullscreenIcon />
-                  </PlayerControlButton>
-                </Stack>
-                {/* end right controller */}
-              </Stack>
-              {/* end Controller */}
-            </Box>
-          </Box>
-        )}
-      </Box>
+            : null
+            } */}
+          
+        </Box>
+      </>
     );
   }
   return null;
