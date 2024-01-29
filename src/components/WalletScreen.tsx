@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-;import FormControlLabel from '@mui/material/FormControlLabel';
+; import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
@@ -15,30 +15,48 @@ import api from 'src/services/api';
 import { useNavigate } from 'react-router-dom';
 import { setCookie } from 'nookies';
 import CustomizedTables from './CustomTable';
+import { useEffect, useState } from 'react';
+
+
+interface UserData {
+  name: string;
+  birthDate: Date | null;
+  email: string;
+  password: string;
+  nfTokenAndUser?: any;
+}
 
 export default function Wallet() {
   const theme = useTheme();
   const dark = theme.palette.mode === 'dark';
   const navigate = useNavigate();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    api.post('/auth/signIn', {
-      email: data.get('email'),
-      password: data.get('password')
-    }).then((response) => {
-      if (response.data.access_token) {
-        setCookie(null, 'accessToken', response.data.access_token, { 
-          maxAge: 30 * 24 * 60 * 60,
-          path: '/'
-        });
-        localStorage.setItem('accessToken', response.data.access_token);
-        navigate('/browse');
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    birthDate: null,
+    email: '',
+    password: ''
+  });
+  const tokens = localStorage.getItem('accessToken');
+
+  useEffect(() => {
+    api.get('/auth', {
+      headers: {
+        Authorization: `Bearer ${tokens}`
       }
+    }).then((response) => {
+      setUserData({
+        name: response.data.name,
+        birthDate: response.data.birthDate,
+        email: response.data.email,
+        password: '',
+        nfTokenAndUser: response.data.nfTokenAndUser
+      });
     }).catch((error) => {
       console.log(error);
     });
-  };
+  }, []);
+
+  console.log(userData.nfTokenAndUser);
 
   return (
     <Container component="main">
@@ -60,11 +78,21 @@ export default function Wallet() {
         </Typography>
         <Box>
           <Typography component="h1" variant="h5">
-            0.38
+            {userData.nfTokenAndUser?.map((tokenAndUser, index) => (
+              <CustomizedTables
+                key={index}
+                data={[
+                  {
+                    name: tokenAndUser?.nftoken?.name || '',
+                    token: tokenAndUser?.nftoken?.token || ''
+                  }
+                ]}
+              />
+            ))}
           </Typography>
         </Box>
       </Box>
-      <CustomizedTables />
+
 
     </Container>
   );

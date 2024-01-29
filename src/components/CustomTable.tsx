@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,12 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -30,34 +30,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  // fat: number,
-  // carbs: number,
-  // protein: number,
-) {
-  return { name, calories };
+interface TableProps {
+  data: { name: string; token: string }[];
 }
 
-const rows = [
-  createData('Generation Z', 15),
-  createData('Travva', 23),
-  // createData('Eclair', 262, 16.0, 24, 6.0),
-  // createData('Cupcake', 305, 3.7, 67, 4.3),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function CustomizedTables() {
-
+const CustomizedTable: React.FC<TableProps> = ({ data }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-const open = Boolean(anchorEl);
-const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-  setAnchorEl(event.currentTarget);
-};
-const handleClose = () => {
-  setAnchorEl(null);
-};
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -65,27 +52,21 @@ const handleClose = () => {
         <TableHead>
           <TableRow>
             <StyledTableCell>Video</StyledTableCell>
-            {/* <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell> */}
-            <StyledTableCell align="right">Points</StyledTableCell>
-            <StyledTableCell align="right">Actions</StyledTableCell>
+            <StyledTableCell align="right">Token</StyledTableCell>
+            {/* <StyledTableCell align="right">Actions</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+          {data.map((row, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              {/* <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
-              <StyledTableCell align="right">
+              <StyledTableCell align="right">{row.token}</StyledTableCell>
+              {/* <StyledTableCell align="right">
                 <IconButton
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  id={`basic-button-${index}`}
+                  aria-controls={open ? `basic-menu-${index}` : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
@@ -94,23 +75,25 @@ const handleClose = () => {
                   <MoreVertIcon />
                 </IconButton>
                 <Menu
-                  id="basic-menu"
+                  id={`basic-menu-${index}`}
                   anchorEl={anchorEl}
                   open={open}
                   onClose={handleClose}
                   MenuListProps={{
-                    'aria-labelledby': 'basic-button',
+                    'aria-labelledby': `basic-button-${index}`,
                   }}
                 >
                   <MenuItem onClick={handleClose}>More</MenuItem>
                   <MenuItem onClick={handleClose}>History</MenuItem>
                   <MenuItem onClick={handleClose}>?</MenuItem>
                 </Menu>
-              </StyledTableCell>
+              </StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default CustomizedTable;

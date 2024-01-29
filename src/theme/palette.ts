@@ -6,6 +6,12 @@ const PRIMARY = {
   dark: "#0C0B30",
 };
 
+const primaryText = {
+  main: "#FFF",
+  light: "#FFF",
+  dark: "#0C0B30",
+}
+
 const SECONDARY = {
   main: "#FFF",
   light: "#FFF",

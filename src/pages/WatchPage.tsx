@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Player from "video.js/dist/types/player";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Button, DialogActions, DialogContent, DialogTitle, IconButton, Stack, Typography, useTheme } from "@mui/material";
 import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -21,13 +21,28 @@ import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
 import api from "src/services/api";
+import CloseIcon from '@mui/icons-material/Close';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
-import '.././utils/styles.css'
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
 
 interface videoData {
   title: string;
   name: string;
   description: string;
+  nftoken: {
+    id: string;
+    price: string;
+  }
 }
 
 export function Component() {
@@ -49,7 +64,8 @@ export function Component() {
   const [loading, setLoading] = useState(true);
   const [videoData, setVideoData] = useState<videoData>();
   const [hideTitle, setHideTitle] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
+  const [seekToCalled, setSeekToCalled] = useState(false); // Novo estado para rastrear a chamada de handleSeekTo
+  const [isPlaying, setIsPlaying] = useState(false); // Novo estado para rastrear se o vídeo está sendo reproduzido ou pausado
 
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
@@ -76,11 +92,14 @@ export function Component() {
     }]
   };
 
+  //Get user token from local storage
+  const token = localStorage.getItem("accessToken");
   const handlePlayerReady = function (player: Player): void {
     player.on("pause", () => {
       setPlayerState((draft) => {
         return { ...draft, paused: true };
       });
+      setIsPlaying(false);
       setHideTitle(false);
     });
 
@@ -88,6 +107,7 @@ export function Component() {
       setPlayerState((draft) => {
         return { ...draft, paused: false };
       });
+      setIsPlaying(true);
       setHideTitle(true);
     });
 
@@ -97,6 +117,11 @@ export function Component() {
         return { ...draft, playedSeconds };
       });
     });
+
+    player.on("seeking", () => {
+      setSeekToCalled(true);
+    }
+    );
 
     player.one("durationchange", () => {
       setPlayerInitialized(true);
@@ -141,8 +166,6 @@ export function Component() {
     }
   }
 
-  console.log(isFullScreen);
-
   const handleForward = () => {
     if (playerRef.current && playerRef.current.currentTime) {
       // Verifica se playerRef.current e playerRef.current.currentTime são ambos definidos
@@ -172,12 +195,76 @@ export function Component() {
     }
   };
 
+  const [open, setOpen] = useState(false);
+  //Verificar se o vídeo foi visto até o final 
+  useEffect(() => {
+    if (!seekToCalled && playerState.duration && playerState.playedSeconds) {
+      if (playerState.duration - playerState.playedSeconds < 1) {
+        setOpen(true);
+      } else {
+      }
+    }
+  }, [seekToCalled, playerState.duration, playerState.playedSeconds]);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleGetNFT = () => {
+    //Passar o bearer token para a rota de compra
+    api.post(`/nf-token-and-user`, {
+      nftoken: videoData?.nftoken.id,
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      alert("NFT has been received!")
+    });
+  }
+
+
   if (loading) {
     return <MainLoadingScreen />;
   }
   if (!!videoJsOptions.width) {
     return (
       <>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            Get your NF Token
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleClose}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              Now you can collect a portion of the NFT! 
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleGetNFT}>
+              Get NFT
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
         <Box
           sx={{
             position: "relative",
@@ -342,7 +429,7 @@ export function Component() {
             </Box>
             : null
             } */}
-          
+
         </Box>
       </>
     );
