@@ -78,7 +78,7 @@ export default function Wallet() {
         </Typography>
         <Box>
           <Typography component="h1" variant="h5">
-            {userData.nfTokenAndUser?.map((tokenAndUser, index) => (
+            {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
               <CustomizedTables
                 key={index}
                 data={[
