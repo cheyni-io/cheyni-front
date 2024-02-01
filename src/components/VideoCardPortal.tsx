@@ -141,6 +141,13 @@ export default function VideoCardModal({
               <ThumbUpOffAltIcon />
             </CheyniIconButton> */}
             <div style={{ flexGrow: 1 }} />
+            <MaxLineTypography 
+              variant="body2" 
+              sx={{ color: isDarkMode ? "#FFF" : "#0c0b30", width: "40%", textAlign: "left" }}
+              maxLine={1}
+            >
+              {video.description}
+            </MaxLineTypography>
             <Box 
               sx={{ 
                 display: "flex", 

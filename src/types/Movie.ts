@@ -76,4 +76,5 @@ export type Movie = {
   age?: string;
   runtime?: number;
   thumbnail?: string;
+  description?: string;
 };

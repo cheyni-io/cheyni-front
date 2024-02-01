@@ -11,11 +11,15 @@ export default function Logo({ sx }: BoxProps) {
       <Box
         component="img"
         alt="Cheyni Logo"
-        src={isDarkMode ? "https://i.imgur.com/i9s0iVT.png" : "https://i.imgur.com/nFNOkfS.png"}
-        width={100}
-        height={22}
+        src={isDarkMode ? "https://i.imgur.com/i9s0iVT.png" : "https://i.imgur.com/wAaXykH.png"}
+        // width={120}
+        // height={26}
+        //COmo não perder a qualidade da imagem, foi retirado o width e height
+        width="30%"
+        height="auto"
         sx={{
           ...sx,
+          mt: 1,
         }}
       />
     </RouterLink>
