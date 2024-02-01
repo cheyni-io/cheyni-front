@@ -181,7 +181,7 @@ const MainHeader = () => {
           <SearchBox />
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: display }}>
-              <Avatar alt="user_avatar" src="/avatar.png" variant="rounded" />
+              😍
             </IconButton>
           </Tooltip>
           <Menu

@@ -67,7 +67,7 @@ export default function DetailModal() {
             }}
           >
             {/* <img src={detail.mediaDetail?.thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
-            <img src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <video src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.name}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} autoPlay muted/>
             <Box
               sx={{
                 background: `linear-gradient(77deg,rgba(252, 252, 252, 0.6),transparent 85%)`,
@@ -148,11 +148,14 @@ export default function DetailModal() {
 
               <Container
                 sx={{
-                  p: "0px !important",
+                  p: "20px !important",
+                  backgroundColor: darkMode ? "#0C0B30" : "#fff",
+                  borderRadius: 2,
+                  boxShadow: 6,
                 }}
               >
                 <Grid container spacing={5} alignItems="center">
-                  <Grid item xs={12} sm={6} md={8}>
+                  <Grid item xs={12} sm={6} md={8} >
                     <Stack direction="row" spacing={1} alignItems="center">
                       <Typography variant="body2">
                         {/* {detail.mediaDetail?.release_date.substring(0, 4)} */}

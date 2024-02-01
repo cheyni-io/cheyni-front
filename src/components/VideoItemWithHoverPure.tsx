@@ -27,7 +27,7 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
             height: "100%",
             objectFit: "cover",
             position: "absolute",
-            borderRadius: "4px",
+            borderRadius: "10px",
           }}
           onPointerEnter={() => {
             this.props.handleHover(true);

@@ -37,7 +37,8 @@ export default function Wallet() {
     password: ''
   });
   const tokens = localStorage.getItem('accessToken');
-
+  const [hash, setHash] = useState('');
+  const [image, setImage] = useState('');
   useEffect(() => {
     api.get('/auth', {
       headers: {
@@ -56,7 +57,24 @@ export default function Wallet() {
     });
   }, []);
 
-  console.log(userData.nfTokenAndUser);
+  const [initials, setInitials] = useState('');
+  //Get initials from user name
+  const getInitials = (name: string) => {
+    return name.split(' ').map((n) => n[0]).join('');
+  }
+
+  useEffect(() => {
+    setInitials(getInitials(userData.name));
+  }, []);
+
+  //Generate random hash for each token
+  const generateHash = () => {
+    return Math.random().toString(36).substring(7);
+  } 
+
+  useEffect(() => {
+    setHash(generateHash() + '-' + getInitials(userData.name));
+  }, []);
 
   return (
     <Container component="main">
@@ -84,7 +102,8 @@ export default function Wallet() {
                 data={[
                   {
                     name: tokenAndUser?.nftoken?.name || '',
-                    token: tokenAndUser?.nftoken?.token || ''
+                    token: tokenAndUser?.nftoken?.token || '',
+                    hash: hash,
                   }
                 ]}
               />

@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 interface TableProps {
-  data: { name: string; token: string }[];
+  data: { name: string; token: string, hash: string }[];
 }
 
 const CustomizedTable: React.FC<TableProps> = ({ data }) => {
@@ -53,7 +53,7 @@ const CustomizedTable: React.FC<TableProps> = ({ data }) => {
           <TableRow>
             <StyledTableCell>Video</StyledTableCell>
             <StyledTableCell align="right">Token</StyledTableCell>
-            {/* <StyledTableCell align="right">Actions</StyledTableCell> */}
+            <StyledTableCell align="right">HashToken</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -63,6 +63,9 @@ const CustomizedTable: React.FC<TableProps> = ({ data }) => {
                 {row.name}
               </StyledTableCell>
               <StyledTableCell align="right">{row.token}</StyledTableCell>
+              <StyledTableCell align="right">
+                {row.hash} 
+              </StyledTableCell> 
               {/* <StyledTableCell align="right">
                 <IconButton
                   id={`basic-button-${index}`}

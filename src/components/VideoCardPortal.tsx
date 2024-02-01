@@ -19,6 +19,9 @@ import CheyniIconButton from "./CheyniIconButton";
 import GenreBreadcrumbs from "./GenreBreadcrumbs";
 import MaxLineTypography from "./MaxLineTypography";
 import QualityChip from "./QualityChip";
+import { Box } from "@mui/material";
+import { useTheme } from "@mui/material";
+import { useRef, useEffect } from "react";
 
 interface VideoCardModalProps {
   video: Movie;
@@ -31,9 +34,22 @@ export default function VideoCardModal({
 }: VideoCardModalProps) {
   const navigate = useNavigate();
 
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   const setPortal = usePortal();
   const rect = anchorElement.getBoundingClientRect();
   const { setDetailType } = useDetailModal();
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    // Verifica se o elemento de vídeo existe antes de acessar suas propriedades
+    if (videoRef.current) {
+      // Define o currentTime para 10 segundos
+      videoRef.current.currentTime = 10;
+    }
+  }, [video]);
+
 
   return (
     <Card
@@ -52,8 +68,9 @@ export default function VideoCardModal({
           paddingTop: "calc(9 / 16 * 100%)",
         }}
       >
-        <img
-          src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
+        <video
+          ref={videoRef}
+          src={`https://cheyni.s3.amazonaws.com/${video.name}`}
           style={{
             top: 0,
             height: "100%",
@@ -61,7 +78,25 @@ export default function VideoCardModal({
             position: "absolute",
             backgroundPosition: "50%",
           }}
+          autoPlay
+          muted
+          loop
+          //Executar apenas 10 segundos do vídeo
         />
+        {/* <video 
+          src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`} 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          style={{
+            top: 0,
+            height: "100%",
+            objectFit: "cover",
+            position: "absolute",
+            backgroundPosition: "50%",
+          }}
+        /> */}
         <div
           style={{
             display: "flex",
@@ -106,14 +141,33 @@ export default function VideoCardModal({
               <ThumbUpOffAltIcon />
             </CheyniIconButton> */}
             <div style={{ flexGrow: 1 }} />
-            <CheyniIconButton
+            <Box 
+              sx={{ 
+                display: "flex", 
+                alignItems: "center",
+                borderColor: "#cfd8dc",
+                borderWidth: 2,
+                borderStyle: "solid",
+                borderRadius: 2, 
+                padding: "4px 8px",
+                cursor: "pointer",
+                boxShadow: 1,
+                ":hover": {
+                  borderColor: "#fff",
+                  backgroundColor: isDarkMode ? "#FFF" : "#0c0b30",
+                  color: isDarkMode ? "#000" : "#FFF"
+                }
+              }}
               onClick={() => {
                 // setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
                 setDetailType({ mediaType: MEDIA_TYPE.Movie, id: video.id });
               }}
             >
-              <ExpandMoreIcon />
-            </CheyniIconButton>
+              
+              <Typography variant="subtitle2">
+                More Info
+              </Typography>
+            </Box>
           </Stack>
           <Stack direction="row" spacing={1} alignItems="center">
             {/* <AgeLimitChip label={`${video.title == "Black Swan" ? "16+" :

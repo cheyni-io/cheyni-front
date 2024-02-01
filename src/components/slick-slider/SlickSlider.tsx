@@ -77,7 +77,7 @@ interface SlideItemProps {
 
 function SlideItem({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 } }}>
+    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10 }}>
       <VideoItemWithHover video={item} />
     </Box>
   );
@@ -95,6 +95,8 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [isEnd, setIsEnd] = useState(false);
   const theme = useTheme();
   const [videos, setVideos] = useState([]);
+
+  const isDark = theme.palette.mode === "dark";
 
   useEffect(() => {
     api.get('/upload').then(response => {
@@ -116,7 +118,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     speed: 500,
     arrows: false,
     infinite: false,
-    lazyLoad: "ondemand",
+    lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
     // afterChange: (current) => {
@@ -196,7 +198,11 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
               <MotionContainer
                 open={showExplore}
                 initial="initial"
-                sx={{ display: "inline", color: "success.main" }}
+                sx={{ 
+                  display: "inline", 
+                  color: isDark ? "white" : "black",
+                  fontWeight: 200 
+              }}
               >
                 {"Explore All".split("").map((letter, index) => (
                   <motion.span key={index} variants={varFadeIn}>

@@ -43,11 +43,19 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   position: "absolute",
                 }}
               >
-                  <img
+                  {/* <img
                     src='./assets/slowfood.png'
                     alt={'Slow Food'}
                     width="100%"
                     height="100%"
+                  /> */}
+                  <video 
+                    src="./assets/CheyniLoopBackground.mp4" 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                    style={{width: "100%", height: "100%"}}
                   />
                 <Box
                   sx={{
