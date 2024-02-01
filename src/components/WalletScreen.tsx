@@ -87,7 +87,6 @@ export default function Wallet() {
           justifyContent: 'center',
         }}
       >
-        <Logo />
         {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar> */}
