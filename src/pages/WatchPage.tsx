@@ -1,7 +1,17 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Player from "video.js/dist/types/player";
-import { Box, Button, DialogActions, DialogContent, DialogTitle, IconButton, Stack, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -21,16 +31,16 @@ import PlayerSeekbar from "src/components/watch/PlayerSeekbar";
 import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
 import api from "src/services/api";
-import CloseIcon from '@mui/icons-material/Close';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
+import CloseIcon from "@mui/icons-material/Close";
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
+  "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-  '& .MuiDialogActions-root': {
+  "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
 }));
@@ -42,7 +52,7 @@ interface videoData {
   nftoken: {
     id: string;
     price: string;
-  }
+  };
 }
 
 export function Component() {
@@ -86,10 +96,12 @@ export function Component() {
     // fluid: true,
     width: windowSize.width,
     height: windowSize.height,
-    sources: [{
-      src: `https://cheyni.s3.amazonaws.com/${videoData?.name}`,
-      type: 'video/mp4'
-    }]
+    sources: [
+      {
+        src: `https://cheyni.s3.amazonaws.com/${videoData?.name}`,
+        type: "video/mp4",
+      },
+    ],
   };
 
   //Get user token from local storage
@@ -120,8 +132,7 @@ export function Component() {
 
     player.on("seeking", () => {
       setSeekToCalled(true);
-    }
-    );
+    });
 
     player.one("durationchange", () => {
       setPlayerInitialized(true);
@@ -164,7 +175,7 @@ export function Component() {
       }
       setIsFullScreen(!isFullScreen);
     }
-  }
+  };
 
   const handleForward = () => {
     if (playerRef.current && playerRef.current.currentTime) {
@@ -196,11 +207,15 @@ export function Component() {
   };
 
   const [open, setOpen] = useState(false);
-  //Verificar se o vídeo foi visto até o final 
+  //Verificar se o vídeo foi visto até o final
   useEffect(() => {
     if (!seekToCalled && playerState.duration && playerState.playedSeconds) {
       if (playerState.duration - playerState.playedSeconds < 1) {
-        setOpen(true);
+        if (videoData?.nftoken !== null) {
+          setOpen(true);
+        } else {
+          alert("This video does not have a NFT!");
+        }
       } else {
       }
     }
@@ -216,17 +231,22 @@ export function Component() {
 
   const handleGetNFT = () => {
     //Passar o bearer token para a rota de compra
-    api.post(`/nf-token-and-user`, {
-      nftoken: videoData?.nftoken.id,
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      alert("NFT has been received!")
-    });
-  }
-
+    api
+      .post(
+        `/nf-token-and-user`,
+        {
+          nftoken: videoData?.nftoken.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        alert("NFT has been received!");
+      });
+  };
 
   if (loading) {
     return <MainLoadingScreen />;
@@ -246,7 +266,7 @@ export function Component() {
             aria-label="close"
             onClick={handleClose}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               right: 8,
               top: 8,
               color: (theme) => theme.palette.grey[500],
@@ -256,7 +276,7 @@ export function Component() {
           </IconButton>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Now you can collect a portion of the NFT! 
+              Now you can collect a portion of the NFT!
             </Typography>
           </DialogContent>
           <DialogActions>
@@ -318,8 +338,13 @@ export function Component() {
               </Box>
               <Box
                 px={{ xs: 1, sm: 2 }}
-                sx={{ position: "absolute", bottom: 0, left: 0, right: 0, backgroundColor: dark ? "#0C0B30" : "#FFF" }}
-
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  backgroundColor: dark ? "#0C0B30" : "#FFF",
+                }}
               >
                 {/* Seekbar */}
                 <Stack direction="row" alignItems="center" spacing={1}>
@@ -373,7 +398,10 @@ export function Component() {
                       value={playerState.volume}
                       handleVolume={handleVolumeChange}
                     />
-                    <Typography variant="caption" sx={{ color: dark ? "#FFF" : "#0C0B30" }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: dark ? "#FFF" : "#0C0B30" }}
+                    >
                       {`${formatTime(playerState.playedSeconds)} / ${formatTime(
                         playerState.duration
                       )}`}
@@ -406,9 +434,7 @@ export function Component() {
                     <PlayerControlButton onClick={handlePictureInPicture}>
                       <BrandingWatermarkOutlinedIcon />
                     </PlayerControlButton>
-                    <PlayerControlButton
-                      onClick={handleFullScreen}
-                    >
+                    <PlayerControlButton onClick={handleFullScreen}>
                       <FullscreenIcon />
                     </PlayerControlButton>
                   </Stack>
@@ -429,7 +455,6 @@ export function Component() {
             </Box>
             : null
             } */}
-
         </Box>
       </>
     );
