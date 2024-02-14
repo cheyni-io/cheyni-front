@@ -42,23 +42,15 @@ export default function VideoCardModal({
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    // Verifica se o elemento de vídeo existe antes de acessar suas propriedades
-    if (videoRef.current) {
-      // Define o currentTime para 10 segundos
-      videoRef.current.currentTime = 10;
-    }
-  }, [video]);
-
-
   return (
     <Card
       onPointerLeave={() => {
         setPortal(null, null);
       }}
       sx={{
-        width: rect.width * 1.5,
+        width: rect.width * 1.4,
         height: "100%",
+        marginTop: "calc(9 / 16 * 100%)",
       }}
     >
       <div
@@ -69,7 +61,6 @@ export default function VideoCardModal({
         }}
       >
         <video
-          ref={videoRef}
           src={`https://cheyni.s3.amazonaws.com/${video.name}`}
           style={{
             top: 0,
@@ -81,6 +72,9 @@ export default function VideoCardModal({
           autoPlay
           muted
           loop
+          preload="auto"
+          poster={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
+          
           //Executar apenas 10 segundos do vídeo
         />
         {/* <video 

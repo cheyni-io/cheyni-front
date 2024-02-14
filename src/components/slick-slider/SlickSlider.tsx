@@ -100,7 +100,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
 
   useEffect(() => {
     api.get('/upload').then(response => {
-      console.log(response.data);
       setVideos(response.data);
     })
   }, []);
@@ -117,10 +116,12 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const settings: Settings = {
     speed: 500,
     arrows: false,
-    infinite: false,
+    infinite: true,
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
+    // autoplay: true,
+    // autoplaySpeed: 1000,
     // afterChange: (current) => {
     //   console.log("After Change", current);
     // },

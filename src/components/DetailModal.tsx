@@ -67,7 +67,7 @@ export default function DetailModal() {
             }}
           >
             {/* <img src={detail.mediaDetail?.thumbnail} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
-            <video src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.name}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} autoPlay muted/>
+            <video src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.name}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} autoPlay muted preload="auto" loop poster={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} />
             <Box
               sx={{
                 background: `linear-gradient(77deg,rgba(252, 252, 252, 0.6),transparent 85%)`,
@@ -99,6 +99,7 @@ export default function DetailModal() {
             <IconButton
                 onClick={() => {
                   setDetailType({ mediaType: undefined, id: undefined });
+                  console.log("detail.mediaDetail", detail.mediaDetail);
                 }}
               sx={{
                 top: 15,
