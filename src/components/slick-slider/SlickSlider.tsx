@@ -114,14 +114,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   };
 
   const settings: Settings = {
-    speed: 500,
+    speed: 6000,
     arrows: false,
     infinite: true,
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
-    // autoplay: true,
-    // autoplaySpeed: 1000,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
     // afterChange: (current) => {
     //   console.log("After Change", current);
     // },

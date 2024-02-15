@@ -48,7 +48,7 @@ export default function VideoCardModal({
         setPortal(null, null);
       }}
       sx={{
-        width: rect.width * 1.4,
+        width: rect.width * 1,
         height: "100%",
         marginTop: "calc(9 / 16 * 100%)",
       }}
