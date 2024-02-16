@@ -35,6 +35,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
+import PlayButton from "src/components/PlayButton";
+import { PlayCircle } from "@mui/icons-material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -90,8 +92,9 @@ export function Component() {
   const windowSize = useWindowSize();
   const videoJsOptions = {
     preload: "metadata",
-    autoplay: true,
+    autoplay: false,
     controls: true,
+    bigPlayButton: false,
     // responsive: true,
     // fluid: true,
     width: windowSize.width,
@@ -302,10 +305,41 @@ export function Component() {
                 position: "absolute",
               }}
             >
-              <Box px={2} sx={{ position: "absolute", top: 75 }}>
+              <Box
+                px={2}
+                sx={{
+                  position: "absolute",
+                  top: 75,
+                  backgroundColor: dark ? "#0C0B30" : "#FFF",
+                }}
+              >
                 <PlayerControlButton onClick={handleGoBack}>
                   <KeyboardBackspaceIcon />
                 </PlayerControlButton>
+              </Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 10,
+                  display: isPlaying ? "none" : "block",
+                  
+                }}
+              >
+                <PlayCircle sx={{ fontSize: 100, color: dark ? "#FFF" : "#0C0B30", cursor: "pointer" }}
+                onClick={
+                  () => {
+                    if (playerRef.current) {
+                      if (isPlaying) { 
+                        playerRef.current.pause();
+                      } else {
+                        playerRef.current.play();
+                      }
+                    }
+                  }
+                } />
               </Box>
               <Box
                 px={2}
