@@ -304,7 +304,7 @@ export function Component() {
           </IconButton>
           <DialogContent dividers>
             <Typography gutterBottom>
-              You already have the NFT for this video! You cannot get it again.
+              You already have the NFT for this video! You cannot get it again, but you can still watch the video.
             </Typography>
           </DialogContent>
           <DialogActions>
