@@ -120,7 +120,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
-    autoplay: true,
+    autoplay: genre.name === "Popular" ? true : false,
     autoplaySpeed: 0,
     cssEase: "linear",
     // afterChange: (current) => {
