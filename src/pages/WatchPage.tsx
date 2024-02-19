@@ -78,6 +78,8 @@ export function Component() {
   const [hideTitle, setHideTitle] = useState(false);
   const [seekToCalled, setSeekToCalled] = useState(false); // Novo estado para rastrear a chamada de handleSeekTo
   const [isPlaying, setIsPlaying] = useState(false); // Novo estado para rastrear se o vídeo está sendo reproduzido ou pausado
+  const [hasToken, setHasToken] = useState(false); // Novo estado para rastrear se o usuário tem o token
+  const [hasTokenModal, setHasTokenModal] = useState(false); // Novo estado para rastrear se o usuário tem o token
 
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
@@ -210,12 +212,16 @@ export function Component() {
   };
 
   const [open, setOpen] = useState(false);
-  //Verificar se o vídeo foi visto até o final
+
   useEffect(() => {
     if (!seekToCalled && playerState.duration && playerState.playedSeconds) {
       if (playerState.duration - playerState.playedSeconds < 1) {
         if (videoData?.nftoken !== null) {
-          setOpen(true);
+          if (hasToken === false) {
+            setOpen(true);
+          } else {
+            alert("You already have the NFT!");
+          }
         } else {
           alert("This video does not have a NFT!");
         }
@@ -228,12 +234,11 @@ export function Component() {
     setOpen(false);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleCloseHasToken = () => {
+    setHasTokenModal(false);
+  }
 
   const handleGetNFT = () => {
-    //Passar o bearer token para a rota de compra
     api
       .post(
         `/nf-token-and-user`,
@@ -251,12 +256,63 @@ export function Component() {
       });
   };
 
+  useEffect(() => {
+    if (videoData?.nftoken !== null && videoData?.nftoken !== undefined) {
+      api
+        .get(`/nf-token-and-user/has-token/${videoData?.nftoken.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setHasToken(response.data);
+        });
+    }
+  }, [videoData?.nftoken, token]);
+
+  useEffect(() => {
+    if (hasToken === true) {
+      setHasTokenModal(true);
+    }
+  }, [hasToken]);
+
   if (loading) {
     return <MainLoadingScreen />;
   }
   if (!!videoJsOptions.width) {
     return (
       <>
+        <BootstrapDialog
+          onClose={handleCloseHasToken}
+          aria-labelledby="customized-dialog-title"
+          open={hasTokenModal}
+        >
+          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            You have the NFT!
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleCloseHasToken}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              You already have the NFT for this video! You cannot get it again.
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleCloseHasToken}>
+              Close
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
@@ -325,21 +381,24 @@ export function Component() {
                   transform: "translate(-50%, -50%)",
                   zIndex: 10,
                   display: isPlaying ? "none" : "block",
-                  
                 }}
               >
-                <PlayCircle sx={{ fontSize: 100, color: dark ? "#FFF" : "#0C0B30", cursor: "pointer" }}
-                onClick={
-                  () => {
+                <PlayCircle
+                  sx={{
+                    fontSize: 100,
+                    color: dark ? "#FFF" : "#0C0B30",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
                     if (playerRef.current) {
-                      if (isPlaying) { 
+                      if (isPlaying) {
                         playerRef.current.pause();
                       } else {
                         playerRef.current.play();
                       }
                     }
-                  }
-                } />
+                  }}
+                />
               </Box>
               <Box
                 px={2}
