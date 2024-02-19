@@ -253,6 +253,10 @@ export function Component() {
       )
       .then((res) => {
         alert("NFT has been received!");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+        alert(err.response.data.message)
       });
   };
 
@@ -266,7 +270,7 @@ export function Component() {
         })
         .then((response) => {
           setHasToken(response.data);
-        });
+        })
     }
   }, [videoData?.nftoken, token]);
 
