@@ -116,7 +116,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const settings: Settings = {
     speed: 6000,
     arrows: false,
-    infinite: true,
+    infinite: genre.name === "Popular" ? true : false,
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
