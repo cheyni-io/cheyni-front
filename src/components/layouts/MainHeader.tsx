@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { APP_BAR_HEIGHT } from "src/constant";
 import useOffSetTop from "src/hooks/useOffSetTop";
@@ -21,6 +21,7 @@ import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
 import { useNavigate } from 'react-router-dom';
+import api from 'src/services/api';
 
 const pages = [""];
 
@@ -80,13 +81,35 @@ const MainHeader = () => {
 
   const [display, setDisplay] = React.useState<string>('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (token === null) {
       setDisplay('none');
     } else {
       setDisplay('flex');
     }
   }, [token]);
+
+  const tokens = localStorage.getItem('accessToken');
+  const [userData, setUserData] = useState({ name: '', avatar: '', birthDate: null, email: '', password: '' });
+
+  //Pegar o token e os dados do usuário
+  useEffect(() => {
+    api.get('/auth', {
+      headers: {
+        Authorization: `Bearer ${tokens}`
+      }
+    }).then((response) => {
+      setUserData({
+        name: response.data.name,
+        avatar: response.data.avatar,
+        birthDate: response.data.birthDate,
+        email: response.data.email,
+        password: ''
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   return (
     <AppBar
@@ -181,7 +204,7 @@ const MainHeader = () => {
           <SearchBox />
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: display }}>
-              😍
+              {userData.avatar}
             </IconButton>
           </Tooltip>
           <Menu
