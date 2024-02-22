@@ -39,6 +39,7 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
           }}
           onPointerLeave={() => {
             this.props.handleHover(false);
+            console.log('a')
           }}
         />
         <Stack
@@ -67,7 +68,7 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
               fontSize: 12,
               height: "100%",
               "& > span": { p: 0 },
-              color: "white"
+              color: "white",
             }}
             label="HD"
           />
@@ -79,7 +80,19 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
               fontSize: 12,
               height: "100%",
               "& > span": { p: 0 },
-              color: "white"
+              color: "white",
+            }}
+            label="Watch & Earn"
+          />
+          <Chip
+            variant="outlined"
+            sx={{
+              borderRadius: "4px",
+              p: 0.5,
+              fontSize: 12,
+              height: "100%",
+              "& > span": { p: 0 },
+              color: "white",
             }}
             label={this.props.name}
           />

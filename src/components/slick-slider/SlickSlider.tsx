@@ -123,7 +123,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   };
 
   const settings: Settings = {
-    speed: 6000,
+    speed: 9000,
     arrows: false,
     infinite: genre.name === "Featured" ? true : false,
     lazyLoad: "anticipated",

@@ -91,6 +91,7 @@ export default function Wallet() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          marginBottom: 16
         }}
       >
         {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -100,20 +101,19 @@ export default function Wallet() {
           Wallet
         </Typography>
         <Box>
-          <Stack
-            spacing={{ xs: 1, sm: 2 }}
-            direction="row"
-            flexWrap="wrap"
-          >
+          <Stack spacing={{ xs: 1, sm: 2 }} direction="row" flexWrap="wrap">
             {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
               <Card
                 sx={{
                   minWidth: 275,
                   minHeight: 300,
-                  backgroundColor: "#191761",
+                  backgroundImage: "url('./assets/nftMemes.png')",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                   borderRadius: 2,
                   display: "flex",
                   flexDirection: "column",
+                  backgroundColor: "#191761"
                 }}
               >
                 <CardContent
@@ -126,27 +126,30 @@ export default function Wallet() {
                 >
                   <div>
                     <Typography
-                      sx={{ fontSize: 14 }}
-                      color="white"
+                      sx={{
+                        fontSize: 14,
+                        color: "white",
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+                      }}
                       gutterBottom
                     >
-                      {tokenAndUser.nftoken.name}
+                      <b>{tokenAndUser.nftoken.name}</b>
                     </Typography>
-                    <img
-                      src="./assets/cLogo.png"
-                      alt="Imagem"
-                      style={{
-                        width: "30%",
-                        height: "auto",
-                        marginTop: "10px",
-                      }}
-                    />
                   </div>
-                  <div>
-                    <Typography sx={{ mb: 1.5 }} color="white">
+                  <div style={{ marginTop: 8 }}>
+                    <Typography
+                      sx={{
+                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+                      }}
+                      color="white"
+                    >
                       {tokenAndUser.nftoken.token}
                     </Typography>
-                    <Typography variant="body2" color="white">
+                    <Typography
+                      variant="body2"
+                      sx={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)" }}
+                      color="white"
+                    >
                       {hash}
                     </Typography>
                   </div>

@@ -62,6 +62,9 @@ export default function VideoCardModal({
         margin: "0 auto", // Centralizar o contêiner
         overflow: "hidden", // Adicione esta linha para ocultar conteúdo que ultrapassa
       }}
+      onPointerLeave={() => {
+        setPortal(null, null);
+      }}
     >
       <Box
         sx={{
@@ -87,9 +90,8 @@ export default function VideoCardModal({
           poster={`https://cheyni.s3.amazonaws.com/${video?.thumbnail}`}
         />
         {/* <IconButton
-          onClick={() => {
+          onPointerLeave={() => {
             setDetailType({ mediaType: undefined, id: undefined });
-            console.log("detail.mediaDetail", detail.mediaDetail);
           }}
           sx={{
             top: 15,
@@ -103,7 +105,7 @@ export default function VideoCardModal({
             },
           }}
         >
-          <CloseIcon sx={{ color: "white", fontSize: { xs: 14, sm: 22 } }} />
+          CLose
         </IconButton> */}
         <Box
           sx={{
