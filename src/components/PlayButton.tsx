@@ -3,6 +3,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useNavigate } from "react-router-dom";
 import { MAIN_PATH } from "src/constant";
 import { useTheme } from "@mui/material";
+import { PlayCircle } from "@mui/icons-material";
 
 export default function PlayButton({ sx, id,  ...others }: ButtonProps) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function PlayButton({ sx, id,  ...others }: ButtonProps) {
       color="inherit"
       variant="contained"
       startIcon={
-        <PlayArrowIcon
+        <PlayCircle
           sx={{
             fontSize: {
               xs: "24px !important",

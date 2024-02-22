@@ -113,14 +113,16 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     setActiveSlideIndex(nextIndex);
   };
 
+  console.log(genre.name)
+
   const settings: Settings = {
     speed: 6000,
     arrows: false,
-    infinite: genre.name === "Popular" ? true : false,
+    infinite: genre.name === "Featured" ? true : false,
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
-    autoplay: genre.name === "Popular" ? true : false,
+    autoplay: genre.name === "Featured" ? true : false,
     autoplaySpeed: 0,
     cssEase: "linear",
     // afterChange: (current) => {
@@ -229,27 +231,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 padding={ARROW_MAX_WIDTH}
                 theme={theme}
               >
-                {/* {data2.results
-                  .filter(item =>
-                    // Verifica se genre.id está definido antes de usar em includes, incluir todos os filmes no top movies
-                    !!genre.id ? item.genre_ids.includes(genre.id) : true
-                  )
-                  .map((item) => (
-                    <SlideItem key={item.id} item={item} />
-                  ))} */}
-
-                {/* {data3.results
-                  .filter((i) => !!i.backdrop_path)
-                  .map((item) => (
-                    <SlideItem key={item.id} item={item} />
-                  ))} */}
-                {/* {videos.filter((i) => !!i.backdrop_path).map((item) => (
-                  <SlideItem key={item.id} item={item} />
-                ))} */}
-                {/* {videos.map((item) => (
-                  // @ts-ignore
-                  <SlideItem key={item?.id || ''} item={item || {}} />
-                ))} */}
                 {videos
                   .filter((item: Video) => !!item.genre && item.genre.includes(genre.name))
                   .map((item: Video) => (

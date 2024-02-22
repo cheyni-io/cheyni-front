@@ -59,6 +59,7 @@ export type MovieDetailsArray = MovieDetails[];
 
 export type Movie = {
   name?: string;
+  genre?: string;
   poster_path: string | null;
   adult: boolean;
   overview: string;
