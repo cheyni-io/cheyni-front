@@ -97,7 +97,7 @@ interface SlickSliderProps {
   genre: Genre | CustomGenre;
   handleNext: (page: number) => void;
 }
-export default function SlickSlider({ data, genre }: SlickSliderProps) {
+export default function SlickSlider({ data, genre }: SlickSliderProps) {  
   const sliderRef = useRef<Slider>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showExplore, setShowExplore] = useState(false);
@@ -121,8 +121,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     }
     setActiveSlideIndex(nextIndex);
   };
-
-  console.log(genre.name);
 
   const settings: Settings = {
     speed: 6000,
@@ -187,7 +185,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
         overflow: "hidden",
         height: "100%",
         zIndex: 1,
-        backgroundColor: "#FFF",
+        backgroundColor: isDark ? "#0c0b30" : "#fff"
       }}
     >
       {videos.length > 0 && (
