@@ -56,7 +56,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                 playsInline
                 style={{ width: "100%", height: "100%" }}
               />
-              <Box
+              {/* <Box
                 sx={{
                   // background: `linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)`,
                   background: isDarkMode
@@ -68,7 +68,18 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   right: "26.09%",
                   opacity: 1,
                   position: "absolute",
-                  transition: "opacity .5s",
+                }}
+              /> */}
+              <Box
+                sx={{
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  position: "absolute",
+                  backgroundImage: `url('./assets/Backgroundline.png')`,
+                  backgroundSize: "20%", // Ou experimente outros valores como "50%" ou "auto"
+                  opacity: 1,
                 }}
               />
               <Box
@@ -79,7 +90,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   bottom: 0,
                   position: "absolute",
                   backgroundColor: "#000", // Black background color
-                  opacity: 0.8, // Adjust opacity as needed
+                  opacity: "45%", // Adjust opacity as needed
                 }}
               />
               <Stack
@@ -95,7 +106,14 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   zIndex: 2,
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                  }}
+                >
                   <img src="/assets/cLogo.png" alt="Cheyni" />
                 </Box>
               </Stack>
@@ -176,7 +194,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   </Typography>
                 </Box>
               </Stack>
-              <Stack
+              {/* <Stack
                 direction="row"
                 spacing={1}
                 sx={{
@@ -189,7 +207,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   zIndex: 2,
                 }}
               >
-                {/* <Button
+                <Button
                   variant="contained"
                   sx={{ 
                     borderRadius: "50px", 
@@ -201,14 +219,9 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                       color: isDarkMode ? "#FFF" : "#000",
                     },
                 }}
-                > */}
-                <Typography variant="h5" color="white">
-                  Watch & Earn
-                </Typography>
-                {/* </Button> */}
-              </Stack>
-             
-
+                > 
+                </Button>
+              </Stack> */}
             </Box>
           </>
         </Box>
