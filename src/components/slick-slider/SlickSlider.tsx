@@ -16,6 +16,7 @@ import { CustomGenre, Genre } from "src/types/Genre";
 import { Movie } from "src/types/Movie";
 import CustomNavigation from "./CustomNavigation";
 import api from "src/services/api";
+import VideoFeaturedItemWithHover from "../VideoFeaturedItemWithHover";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -38,9 +39,9 @@ const StyledSlider = styled(Slider)(
         margin: "0px !important",
       },
       "& .slick-list > .slick-track > .slick-current > div > .CheyniBox-root > .CheyniPaper-root:hover":
-      {
-        transformOrigin: "0% 50% !important",
-      },
+        {
+          transformOrigin: "0% 50% !important",
+        },
     },
     [theme.breakpoints.down("sm")]: {
       "& > .slick-list": {
@@ -83,6 +84,14 @@ function SlideItem({ item }: SlideItemProps) {
   );
 }
 
+function SlideItem2({ item }: SlideItemProps) {
+  return (
+    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10 }}>
+      <VideoFeaturedItemWithHover video={item} />
+    </Box>
+  )
+}
+
 interface SlickSliderProps {
   data: PaginatedMovieResult;
   genre: Genre | CustomGenre;
@@ -99,9 +108,9 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const isDark = theme.palette.mode === "dark";
 
   useEffect(() => {
-    api.get('/upload').then(response => {
+    api.get("/upload").then((response) => {
       setVideos(response.data);
-    })
+    });
   }, []);
 
   const beforeChange = async (currentIndex: number, nextIndex: number) => {
@@ -113,7 +122,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     setActiveSlideIndex(nextIndex);
   };
 
-  console.log(genre.name)
+  console.log(genre.name);
 
   const settings: Settings = {
     speed: 6000,
@@ -171,10 +180,16 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const handleNext = () => {
     sliderRef.current?.slickNext();
   };
-  
 
   return (
-    <Box sx={{ overflow: "hidden", height: "100%", zIndex: 1 }}>
+    <Box
+      sx={{
+        overflow: "hidden",
+        height: "100%",
+        zIndex: 1,
+        backgroundColor: "#FFF",
+      }}
+    >
       {videos.length > 0 && (
         <>
           <Stack
@@ -185,8 +200,9 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
           >
             <CheyniNavigationLink
               variant="h5"
-              to={`/genre/${genre.id || genre.name.toLowerCase().replace(" ", "_")
-                }`}
+              to={`/genre/${
+                genre.id || genre.name.toLowerCase().replace(" ", "_")
+              }`}
               sx={{
                 display: "inline-block",
                 fontWeight: 700,
@@ -202,11 +218,11 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
               <MotionContainer
                 open={showExplore}
                 initial="initial"
-                sx={{ 
-                  display: "inline", 
+                sx={{
+                  display: "inline",
                   color: isDark ? "white" : "black",
-                  fontWeight: 200 
-              }}
+                  fontWeight: 200,
+                }}
               >
                 {"Explore All".split("").map((letter, index) => (
                   <motion.span key={index} variants={varFadeIn}>
@@ -225,18 +241,34 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
               onPrevious={handlePrevious}
               activeSlideIndex={activeSlideIndex}
             >
-              <StyledSlider
-                ref={sliderRef}
-                {...settings}
-                padding={ARROW_MAX_WIDTH}
-                theme={theme}
-              >
-                {videos
-                  .filter((item: Video) => !!item.genre && item.genre.includes(genre.name))
-                  .map((item: Video) => (
-                    <SlideItem key={item.id} item={item} />
+              {genre.name === "Featured" ? (
+                <StyledSlider
+                  ref={sliderRef}
+                  {...settings}
+                  padding={ARROW_MAX_WIDTH}
+                  theme={theme}
+                >
+                  {videos.map((item: Video) => (
+                    <SlideItem2 key={item.id} item={item} />
                   ))}
-              </StyledSlider>
+                </StyledSlider>
+              ) : (
+                <StyledSlider
+                  ref={sliderRef}
+                  {...settings}
+                  padding={ARROW_MAX_WIDTH}
+                  theme={theme}
+                >
+                  {videos
+                    .filter(
+                      (item: Video) =>
+                        !!item.genre && item.genre.includes(genre.name)
+                    )
+                    .map((item: Video) => (
+                      <SlideItem key={item.id} item={item} />
+                    ))}
+                </StyledSlider>
+              )}
             </CustomNavigation>
           </RootStyle>
         </>
