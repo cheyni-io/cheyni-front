@@ -203,7 +203,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                 }}
                 > */}
                 <Typography variant="h5" color="white">
-                  Watch Now for Free
+                  Watch & Earn
                 </Typography>
                 {/* </Button> */}
               </Stack>
