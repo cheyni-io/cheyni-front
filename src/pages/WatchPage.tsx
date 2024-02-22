@@ -80,6 +80,7 @@ export function Component() {
   const [isPlaying, setIsPlaying] = useState(false); // Novo estado para rastrear se o vídeo está sendo reproduzido ou pausado
   const [hasToken, setHasToken] = useState(false); // Novo estado para rastrear se o usuário tem o token
   const [hasTokenModal, setHasTokenModal] = useState(false); // Novo estado para rastrear se o usuário tem o token
+  const [isTokenAvailable, setIsTokenAvailable] = useState(true);
 
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
@@ -220,10 +221,10 @@ export function Component() {
           if (hasToken === false) {
             setOpen(true);
           } else {
-            alert("You already have the NFT!");
+            alert("You already have the Token!");
           }
         } else {
-          alert("This video does not have a NFT!");
+          alert("This video does not have a Token!");
         }
       } else {
       }
@@ -236,7 +237,7 @@ export function Component() {
 
   const handleCloseHasToken = () => {
     setHasTokenModal(false);
-  }
+  };
 
   const handleGetNFT = () => {
     api
@@ -252,11 +253,13 @@ export function Component() {
         }
       )
       .then((res) => {
-        alert("NFT has been received!");
+        alert("Token has been received!");
+        setOpen(false)
       })
       .catch((err) => {
         console.log(err.response.data.message);
-        alert(err.response.data.message)
+        alert(err.response.data.message);
+        setOpen(false)
       });
   };
 
@@ -270,7 +273,7 @@ export function Component() {
         })
         .then((response) => {
           setHasToken(response.data);
-        })
+        });
     }
   }, [videoData?.nftoken, token]);
 
@@ -279,6 +282,11 @@ export function Component() {
       setHasTokenModal(true);
     }
   }, [hasToken]);
+
+  const handleCloseIsTokenAvailable = () => {
+    setIsTokenAvailable(false);
+    playerRef.current?.play();
+  };
 
   if (loading) {
     return <MainLoadingScreen />;
@@ -292,7 +300,7 @@ export function Component() {
           open={hasTokenModal}
         >
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            You have the NFT!
+            You have the Token!
           </DialogTitle>
           <IconButton
             aria-label="close"
@@ -308,7 +316,8 @@ export function Component() {
           </IconButton>
           <DialogContent dividers>
             <Typography gutterBottom>
-              You already have the NFT for this video! You cannot get it again, but you can still watch the video.
+              You already have the Token for this video! You cannot get it
+              again, but you can still watch the video.
             </Typography>
           </DialogContent>
           <DialogActions>
@@ -318,12 +327,44 @@ export function Component() {
           </DialogActions>
         </BootstrapDialog>
         <BootstrapDialog
+          onClose={handleCloseIsTokenAvailable}
+          aria-labelledby="customized-dialog-title"
+          open={isTokenAvailable}
+        >
+          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+            Token Available
+          </DialogTitle>
+          <IconButton
+            aria-label="close"
+            onClick={handleCloseIsTokenAvailable}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              This video has a token available, don't skip or speed up to
+              acquire it
+            </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleCloseIsTokenAvailable}>
+              Watch the video.
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
+        <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
         >
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            Get your NF Token
+            Get your Token
           </DialogTitle>
           <IconButton
             aria-label="close"
@@ -339,12 +380,12 @@ export function Component() {
           </IconButton>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Now you can collect a portion of the NFT!
+              Now you can collect a portion of the Token!
             </Typography>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleGetNFT}>
-              Get NFT
+              Get Token
             </Button>
           </DialogActions>
         </BootstrapDialog>
