@@ -99,7 +99,6 @@ export default function DetailModal() {
             <IconButton
                 onClick={() => {
                   setDetailType({ mediaType: undefined, id: undefined });
-                  console.log("detail.mediaDetail", detail.mediaDetail);
                 }}
               sx={{
                 top: 15,
