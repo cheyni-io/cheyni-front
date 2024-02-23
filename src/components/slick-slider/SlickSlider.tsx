@@ -123,14 +123,13 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   };
 
   const settings: Settings = {
-    speed: 11000,
+    speed: genre.name === "Featured" ? 12000 : 500,
     arrows: false,
     infinite: genre.name === "Featured" ? true : false,
     lazyLoad: "anticipated",
     slidesToShow: 6,
     slidesToScroll: 6,
     autoplay: genre.name === "Featured" ? true : false,
-    autoplaySpeed: 0,
     cssEase: "linear",
     // afterChange: (current) => {
     //   console.log("After Change", current);
