@@ -7,6 +7,7 @@ type VideoItemWithHoverPureType = {
   innerRef: ForwardedRef<HTMLDivElement>;
   handleHover: (value: boolean) => void;
   genre: string;
+  onClick: () => void;
 };
 
 class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
@@ -26,6 +27,7 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
           paddingBottom: "140%", // Ajuste para tornar o cartaz mais vertical e um pouco menor
           overflow: "hidden",
         }}
+        onClick={this.props.onClick}
       >
         <img
           src={this.props.src}

@@ -58,7 +58,7 @@ export default function VideoCardModal({
         position: "relative",
         mb: 3,
         borderRadius: "20px",
-        width: "900px", // Largura fixa desejada
+        width: "750px", // Largura fixa desejada
         margin: "0 auto", // Centralizar o contêiner
         overflow: "hidden", // Adicione esta linha para ocultar conteúdo que ultrapassa
       }}
@@ -79,7 +79,7 @@ export default function VideoCardModal({
           src={`https://cheyni.s3.amazonaws.com/${video?.name}`}
           style={{
             width: "100%",
-            height: "500px",
+            height: "460px",
             objectFit: "cover",
             borderRadius: "20px",
           }}
