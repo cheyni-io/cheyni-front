@@ -23,7 +23,7 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
           borderRadius: "10px",
           width: "100%",
           position: "relative",
-          paddingBottom: "120%", // Ajuste para tornar o cartaz mais vertical e um pouco menor
+          paddingBottom: "140%", // Ajuste para tornar o cartaz mais vertical e um pouco menor
           overflow: "hidden",
         }}
       >
