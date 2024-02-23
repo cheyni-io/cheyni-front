@@ -5,7 +5,7 @@ import QualityChip from "./QualityChip";
 type VideoItemWithHoverPureType = {
   src: string;
   innerRef: ForwardedRef<HTMLDivElement>;
-  handleHover: (value: boolean) => void;
+  handleHover?: (value: boolean) => void;
   genre: string;
   onClick: () => void;
 };
@@ -39,12 +39,8 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
             position: "absolute",
             borderRadius: "10px",
           }}
-          onPointerEnter={() => {
-            this.props.handleHover(true);
-          }}
-          onPointerLeave={() => {
-            this.props.handleHover(false);
-          }}
+          onPointerEnter={() => this.props.handleHover && this.props.handleHover(true)}
+          onPointerLeave={() => this.props.handleHover && this.props.handleHover(false)}
         />
         <Stack
           direction="row"
