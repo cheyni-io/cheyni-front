@@ -6,11 +6,14 @@ type VideoItemWithHoverPureType = {
   src: string;
   innerRef: ForwardedRef<HTMLDivElement>;
   handleHover: (value: boolean) => void;
-  name: string;
+  genre: string;
 };
 
 class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
   render() {
+
+    const genres = this.props.genre.split(',');
+
     return (
       <div
         ref={this.props.innerRef}
@@ -93,7 +96,7 @@ class VideoFeaturedItemWithHoverPure extends PureComponent<VideoItemWithHoverPur
               "& > span": { p: 0 },
               color: "white",
             }}
-            label={this.props.name}
+            label={genres[0]}
           />
         </Stack>
       </div>

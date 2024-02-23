@@ -23,7 +23,7 @@ export default function VideoFeaturedItemWithHover({ video, }: VideoItemWithHove
       ref={elementRef}
       handleHover={setIsHovered}
       src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
-      name={video.title}
+      genre={video?.genre}
     />
   );
 }
