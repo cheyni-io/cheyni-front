@@ -85,43 +85,64 @@ export default function Footer() {
                   opacity: "65%", // Adjust opacity as needed
                 }}
               />
-              <Stack
-                direction="row"
-                spacing={1}
+              <Box
                 sx={{
-                  alignItems: "center",
-                  justifyContent: "center",
                   position: "absolute",
                   left: "50%",
                   top: "20%",
                   transform: "translate(-50%, -50%)",
                   zIndex: 2,
+                  textAlign: "center",
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "row",
-                  }}
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: "center" }}
                 >
-                  <img
-                    src="/assets/logo-light.png"
-                    alt="Cheyni"
-                    style={{ width: "40%" }}
-                  />
-                  <Divider
-                    orientation="vertical"
-                    variant="middle"
-                    flexItem
-                    sx={{ borderWidth: 1, borderColor: "white", mr: 2, ml: 2 }}
-                  />
-                  <Typography color="#FFF">
-                    UNLOCK LOYALTY WITH <b>STREAMMING COLLECTIBLES</b>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <img
+                      src="/assets/logo-light.png"
+                      alt="Cheyni"
+                      style={{ width: "40%", marginRight: 2 }}
+                    />
+                    <Divider
+                      orientation="vertical"
+                      variant="middle"
+                      flexItem
+                      sx={{
+                        borderWidth: 1,
+                        borderColor: "white",
+                        mr: 2,
+                        ml: 2,
+                      }}
+                    />
+                    <Typography color="#FFF">
+                      UNLOCK LOYALTY WITH <b>STREAMING COLLECTIBLES</b>
+                    </Typography>
+                  </Box>
+                </Stack>
+
+                {/* <Box sx={{ textAlign: "left", marginTop: 1, marginLeft: "1%" }}>
+                  <Typography variant="body1" color="text.primary">
+                    Get the latest milestone updates by joining the newsletter
                   </Typography>
-                </Box>
-              </Stack>
+
+                  <ButtonGroup variant="text" aria-label="Basic button group">
+                    <Button>Main Page</Button>
+                    <Button>Screening Room</Button>
+                    <Button>Team & RoadMap</Button>
+                    <Button>Get Involved</Button>
+                    <Button>Blog</Button>
+                  </ButtonGroup>
+                </Box> */}
+              </Box>
             </Box>
           </>
         </Box>
