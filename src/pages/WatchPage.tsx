@@ -6,6 +6,7 @@ import {
   Button,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   IconButton,
   Stack,
@@ -15,9 +16,7 @@ import {
 import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import SettingsIcon from "@mui/icons-material/Settings";
 import BrandingWatermarkOutlinedIcon from "@mui/icons-material/BrandingWatermarkOutlined";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
@@ -32,20 +31,14 @@ import PlayerControlButton from "src/components/watch/PlayerControlButton";
 import MainLoadingScreen from "src/components/MainLoadingScreen";
 import api from "src/services/api";
 import CloseIcon from "@mui/icons-material/Close";
-import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import { TbRewindBackward10, TbRewindForward10 } from "react-icons/tb";
-import PlayButton from "src/components/PlayButton";
-import { PlayCircle } from "@mui/icons-material";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
+import { PiHandCoinsThin } from "react-icons/pi";
+
+import {
+  PlayCircle,
+} from "@mui/icons-material";
 
 interface videoData {
   title: string;
@@ -86,6 +79,7 @@ export function Component() {
   const dark = theme.palette.mode === "dark";
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     api.get(`/upload/${watchId}`).then((res) => {
       setVideoData(res.data);
       setLoading(false);
@@ -254,12 +248,12 @@ export function Component() {
       )
       .then((res) => {
         alert("Token has been received!");
-        setOpen(false)
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err.response.data.message);
         alert(err.response.data.message);
-        setOpen(false)
+        setOpen(false);
       });
   };
 
@@ -288,13 +282,33 @@ export function Component() {
     playerRef.current?.play();
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsTokenAvailable(false);
+    }, 8000);
+  }, []);
+
+  const [secondsRemaining, setSecondsRemaining] = useState(8);
+
+  useEffect(() => {
+    let timer: any;
+
+    if (isTokenAvailable && secondsRemaining > 0) {
+      timer = setInterval(() => {
+        setSecondsRemaining((prevSeconds) => prevSeconds - 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(timer);
+  }, [isTokenAvailable, secondsRemaining]);
+
   if (loading) {
     return <MainLoadingScreen />;
   }
   if (!!videoJsOptions.width) {
     return (
       <>
-        <BootstrapDialog
+        <Dialog
           onClose={handleCloseHasToken}
           aria-labelledby="customized-dialog-title"
           open={hasTokenModal}
@@ -325,47 +339,47 @@ export function Component() {
               Close
             </Button>
           </DialogActions>
-        </BootstrapDialog>
-        <BootstrapDialog
+        </Dialog>
+
+        {/* Modal Token Available */}
+        <Dialog
           onClose={handleCloseIsTokenAvailable}
           aria-labelledby="customized-dialog-title"
           open={isTokenAvailable}
+          PaperProps={{
+            style: {
+              borderRadius: 10,
+            },
+          }}
         >
-          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            Token Available
-          </DialogTitle>
-          <IconButton
-            aria-label="close"
-            onClick={handleCloseIsTokenAvailable}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <DialogContent dividers>
-            <Typography gutterBottom>
+          <DialogTitle>Closing in {secondsRemaining}</DialogTitle>
+          <DialogContent>
+            <Box display="flex" justifyContent="center">
+              <img src="../assets/nftArt.png" style={{ width: "50%" }} />
+            </Box>
+            <DialogContentText id="alert-dialog-description">
               This video has a token available, don't skip or speed up to
               acquire it
-            </Typography>
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleCloseIsTokenAvailable}>
-              Watch the video.
+              Watch the video Now
             </Button>
           </DialogActions>
-        </BootstrapDialog>
-        <BootstrapDialog
+        </Dialog>
+
+        {/* Modal Get Token */}
+        <Dialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          PaperProps={{
+            style: {
+              borderRadius: 10,
+            },
+          }}
         >
-          <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-            Get your Token
-          </DialogTitle>
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -378,17 +392,33 @@ export function Component() {
           >
             <CloseIcon />
           </IconButton>
-          <DialogContent dividers>
-            <Typography gutterBottom>
+          <DialogContent>
+            <Box display="flex" justifyContent="center">
+              <PiHandCoinsThin size={80} color="#3CF04E" />
+            </Box>
+            <Typography variant="h6" textAlign={"center"}>
+              Token Available
+            </Typography>
+            <Typography sx={{ color: "#a3a2a2" }}>
               Now you can collect a portion of the Token!
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleGetNFT}>
+            <Button
+              autoFocus
+              onClick={handleGetNFT}
+              sx={{
+                width: "100%",
+                backgroundColor: "#3CF04E",
+                padding: 1,
+                color: "#FFF",
+                borderRadius: 5,
+              }}
+            >
               Get Token
             </Button>
           </DialogActions>
-        </BootstrapDialog>
+        </Dialog>
         <Box
           sx={{
             position: "relative",
