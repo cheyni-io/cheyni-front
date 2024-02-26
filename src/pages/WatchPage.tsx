@@ -272,7 +272,16 @@ export function Component() {
   }, [videoData?.nftoken, token]);
 
   useEffect(() => {
+    if (videoData?.nftoken == null || videoData.nftoken == undefined) {
+      setIsTokenAvailable(false)
+    } else {
+      setIsTokenAvailable(true)
+    }
+  }, [videoData?.nftoken])
+
+  useEffect(() => {
     if (hasToken === true) {
+      console.log('a')
       setHasTokenModal(true);
     }
   }, [hasToken]);
