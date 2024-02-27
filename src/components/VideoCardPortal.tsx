@@ -79,7 +79,7 @@ export default function VideoCardModal({
           src={`https://cheyni.s3.amazonaws.com/${video?.name}`}
           style={{
             width: "100%",
-            height: "460px",
+            height: "480px",
             objectFit: "cover",
             borderRadius: "20px",
           }}
@@ -119,7 +119,7 @@ export default function VideoCardModal({
           <MaxLineTypography
             variant="h4"
             maxLine={1}
-            sx={{ mb: 2, color: "#FFF", fontFamily: "Play" }}
+            sx={{ mb: 2, color: "#FFF", fontFamily: "Play", mt: "8px" }}
             
           >
             {video.title}
@@ -185,7 +185,7 @@ export default function VideoCardModal({
               sx={{
                 fontFamily: "Helvetica Neue",
                 fontWeight: 50,
-                fontSize: 12,
+                fontSize: 10,
               }}
             >
               {video?.description}

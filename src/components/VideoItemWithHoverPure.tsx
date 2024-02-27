@@ -12,7 +12,7 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
       <div
         ref={this.props.innerRef}
         style={{
-          zIndex: 9,
+          zIndex: 1000,
           cursor: "pointer",
           borderRadius: 0.5,
           width: "100%",

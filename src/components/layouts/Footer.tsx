@@ -6,7 +6,7 @@ import { Stack, IconButton, Button, ButtonGroup, Grid } from "@mui/material";
 
 export default function Footer() {
   return (
-    <Box sx={{ position: "relative", zIndex: 1 }}>
+    <Box sx={{ position: "relative", zIndex: 0 }}>
       <Box
         sx={{
           mb: 3,
