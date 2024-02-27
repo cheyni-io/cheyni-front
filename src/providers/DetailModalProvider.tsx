@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import { INITIAL_DETAIL_STATE } from "src/constant";
 import createSafeContext from "src/lib/createSafeContext";
 import api from "src/services/api";
-import { useLazyGetAppendedVideosQuery } from "src/store/slices/discover2";
 import { MEDIA_TYPE } from "src/types/Common";
 import { MovieDetails } from "src/types/Movie";
 

@@ -281,7 +281,6 @@ export function Component() {
 
   useEffect(() => {
     if (hasToken === true) {
-      console.log('a')
       setHasTokenModal(true);
     }
   }, [hasToken]);

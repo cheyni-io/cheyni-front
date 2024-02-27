@@ -186,8 +186,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
         zIndex: 1,
         backgroundColor: isDark ? "#0c0b30" : "#fff"
       }}
-      onMouseEnter={() => console.log('entrou')}
-      onMouseLeave={() => console.log('saiu')}
     >
       {videos.length > 0 && (
         <>
