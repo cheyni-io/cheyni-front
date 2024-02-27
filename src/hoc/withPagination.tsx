@@ -43,12 +43,6 @@ export default function withPagination(
           genreId: genre.id,
           page,
         });
-      } else {
-        getVideosByMediaTypeAndCustomGenre({
-          mediaType,
-          apiString: (genre as CustomGenre).apiString,
-          page,
-        });
       }
       // dispatch(setNextPage({ mediaType, itemKey }));
     }, []);
