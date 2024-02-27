@@ -119,7 +119,8 @@ export default function VideoCardModal({
           <MaxLineTypography
             variant="h4"
             maxLine={1}
-            sx={{ mb: 2, color: "#FFF" }}
+            sx={{ mb: 2, color: "#FFF", fontFamily: "Play" }}
+            
           >
             {video.title}
           </MaxLineTypography>
@@ -154,7 +155,7 @@ export default function VideoCardModal({
               marginBottom: 5,
             }}
           >
-            <Grid container spacing={5} alignItems="center">
+            <Grid container spacing={5} alignItems="center" marginBottom={2}>
               <Grid item xs={12} sm={6} md={8}>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2">
@@ -170,18 +171,34 @@ export default function VideoCardModal({
                   {/* <Typography variant="subtitle2">{`${formatMinuteToReadable(
                           movieDetail?.runtime || 0
                         )}`}</Typography> */}
-                  <QualityChip label="HD" sx={{ padding: 2 }} />
-                  <QualityChip label="Watch & Earn" sx={{ padding: 2 }} />
-                  <QualityChip label={video.genre} sx={{ padding: 2 }} />
+                  <QualityChip label="HD" sx={{ padding: 2, fontFamily: "Futura Regular" }} />
+                  <QualityChip label="Watch & Earn" sx={{ padding: 2, fontFamily: "Futura Regular"  }} />
+                  <QualityChip label={video.genre} sx={{ padding: 2, fontFamily: "Futura Regular"  }} />
                 </Stack>
               </Grid>
             </Grid>
-            <Typography variant="body2" sx={{ mt: 2 }}>
-              <b>Log line: </b>
+            <b style={{ fontFamily: "Play" }}>
+              Log Line:
+            </b>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "Helvetica Neue",
+                fontWeight: 50,
+                fontSize: 12,
+              }}
+            >
               {video?.description}
             </Typography>
-            <Typography variant="body2" sx={{ mt: 2 }}>
-              <b>Genre: </b>
+            <b style={{ fontFamily: "Play", marginTop:"4px" }}>Genre:</b>
+            <Typography
+              variant="body2"
+              sx={{
+                fontFamily: "Helvetica Neue",
+                fontWeight: 50,
+                fontSize: 12,
+              }}
+            >
               {video?.genre}
             </Typography>
           </Container>

@@ -17,7 +17,27 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
+
 store.dispatch(extendedApi.endpoints.getConfiguration.initiate(undefined));
+
+const globalStyles = `
+  @font-face {
+    font-family: 'Futura Regular';
+    src: url('./assets/fonts/FuturaRegular.ttf') format('truetype'),
+  }
+  @font-face {
+    font-family: 'Play';
+    src: url('./assets/fonts/Play-Regular.ttf') format('truetype'); // Correção no parêntese e 'format'
+  }
+  @font-face {
+    font-family: 'Helvetica Neue';
+    src: url('./assets/fonts/HelveticaNeue.ttf') format('truetype'); // Correção no parêntese e 'format'
+  }
+  @font-face {
+    font-family: 'Helvetica Light';
+    src: url('./assets/fonts/HelveticaUltraLight.ttf') format('truetype'); // Correção no parêntese e 'format'
+  }
+`;
 
 const App = () => {
   const themeMode: 'light' | 'dark' = useSelector((state: any) => state.theme.mode);
@@ -26,6 +46,9 @@ const App = () => {
     () =>
       createTheme({
         palette: palette[themeMode],
+        typography: {
+          fontFamily: "Play",
+        },
         components: {
           MuiCssBaseline: {
             styleOverrides: `
@@ -41,8 +64,8 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <style>{globalStyles}</style> {/* Adicione o estilo global aqui */}
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-
       <CssBaseline />
       <RouterProvider router={router} fallbackElement={<MainLoadingScreen />} />
       </LocalizationProvider>
