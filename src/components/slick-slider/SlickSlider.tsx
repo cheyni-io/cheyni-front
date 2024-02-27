@@ -17,6 +17,7 @@ import { Movie } from "src/types/Movie";
 import CustomNavigation from "./CustomNavigation";
 import api from "src/services/api";
 import VideoFeaturedItemWithHover from "../VideoFeaturedItemWithHover";
+import { CircularProgress } from "@mui/material";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -104,12 +105,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [isEnd, setIsEnd] = useState(false);
   const theme = useTheme();
   const [videos, setVideos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   const isDark = theme.palette.mode === "dark";
 
   useEffect(() => {
+    setIsLoading(true)
     api.get("/upload").then((response) => {
       setVideos(response.data);
+      setIsLoading(false)
     });
   }, []);
 
@@ -177,6 +181,10 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const handleNext = () => {
     sliderRef.current?.slickNext();
   };
+
+  if (isLoading) (
+    <CircularProgress />
+  )
 
   return (
     <Box

@@ -54,6 +54,7 @@ export default function Wallet() {
           password: "",
           nfTokenAndUser: response.data.nfTokenAndUser,
         });
+        console.log(userData.nfTokenAndUser.length)
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +62,6 @@ export default function Wallet() {
   }, []);
 
   const [initials, setInitials] = useState("");
-  //Get initials from user name
   const getInitials = (name: string) => {
     return name
       .split(" ")
@@ -102,6 +102,7 @@ export default function Wallet() {
         </Typography>
         <Box>
           <Stack spacing={{ xs: 1, sm: 2 }} direction="row" flexWrap="wrap">
+            {/* {userData.nfTokenAndUser.length > 0 ? <h1> a </h1> : <h1> b </h1>} */}
             {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
               <Card
                 sx={{
