@@ -86,7 +86,6 @@ export default function Wallet() {
     <Container component="main">
       <Box
         sx={{
-          marginTop: 16,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

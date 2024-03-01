@@ -137,7 +137,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     // cssEase: "linear",
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: genre.name === "Featured" ? true : false,
     speed: genre.name === "Featured" ? 12000 : 500,
