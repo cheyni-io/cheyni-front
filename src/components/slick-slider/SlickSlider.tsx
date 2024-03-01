@@ -127,18 +127,26 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   };
 
   const settings: Settings = {
-    speed: genre.name === "Featured" ? 12000 : 500,
-    arrows: false,
-    infinite: genre.name === "Featured" ? true : false,
-    lazyLoad: "anticipated",
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    // speed: genre.name === "Featured" ? 12000 : 500,
+    // arrows: false,
+    // infinite: genre.name === "Featured" ? true : false,
+    // lazyLoad: "progressive",
+    // slidesToShow: 6,
+    // slidesToScroll: 6,
+    // autoplay: genre.name === "Featured" ? true : false,
+    // cssEase: "linear",
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     autoplay: genre.name === "Featured" ? true : false,
+    speed: genre.name === "Featured" ? 12000 : 500,
+    autoplaySpeed: 2000,
     cssEase: "linear",
     // afterChange: (current) => {
     //   console.log("After Change", current);
     // },
-    beforeChange,
+    // beforeChange,
     // onEdge: (direction) => {
     //   console.log("Edge: ", direction);
     // },
@@ -195,7 +203,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
         backgroundColor: isDark ? "#0c0b30" : "#fff"
       }}
     >
-      {videos.length > 0 && (
+      {videos.length > 6 && (
         <>
           <Stack
             spacing={2}

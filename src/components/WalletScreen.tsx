@@ -91,7 +91,8 @@ export default function Wallet() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginBottom: 16
+          marginBottom: 16,
+          height: "100vh"
         }}
       >
         {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
