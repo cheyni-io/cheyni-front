@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import SignIn from "src/components/LoginScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { setResults } from "src/store/slices/searchSlice";
-import { Box, Grid, Theme, Typography, styled } from "@mui/material";
+import { Box, Grid, Theme, Typography, styled, useTheme } from "@mui/material";
 import Slider, { Settings } from "react-slick";
 import VideoItemWithHoverPure from "src/components/VideoItemWithHoverPure";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
@@ -68,7 +68,9 @@ export function Component() {
   const navigate = useNavigate();
   //Obter token de acesso do localStorage
   const tokens = localStorage.getItem("accessToken");
+  const theme = useTheme();
 
+  const isDark = theme.palette.mode === "dark";
   const videos = useSelector((state: any) => state.search.results);
 
   console.log(videos.length);
@@ -84,7 +86,7 @@ export function Component() {
                 overflow: "hidden",
                 height: "100%",
                 zIndex: 1,
-                backgroundColor: "#fff",
+                backgroundColor: isDark ? "#0c0b30" : "#fff",
               }}
             >
               <Typography variant="h5" sx={{ mt: 2, ml: 3, mb: 5 }}>
@@ -104,7 +106,7 @@ export function Component() {
                 overflow: "hidden",
                 height: "100%",
                 zIndex: 1,
-                backgroundColor: "#fff",
+                backgroundColor: isDark ? "#0c0b30" : "#fff",
               }}
             >
               {[...COMMON_TITLES, ...genres].map(
