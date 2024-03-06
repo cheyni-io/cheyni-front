@@ -91,21 +91,21 @@ export function Component() {
               <h2>Search Results</h2>
               {videos.map((item: Video) => (
                 // <RootStyle>
-<Box
-  sx={{
-    overflow: "hidden",
-    height: "100%",
-    zIndex: 1,
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap", // Adicionado para que os itens quebrem para a linha seguinte, se necessário
-  }}
->
-                    <Box sx={{ width: 300, height: 300 }}>
-                      <SlideItem key={item.id} item={item} />
-                    </Box>
-                    </Box>
+                <Box
+                  sx={{
+                    overflow: "hidden",
+                    height: "100%",
+                    zIndex: 1,
+                    backgroundColor: "#fff",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap", // Adicionado para que os itens quebrem para a linha seguinte, se necessário
+                  }}
+                >
+                  <Box sx={{ width: 300, height: 300 }}>
+                    <SlideItem key={item.id} item={item} />
+                  </Box>
+                </Box>
               ))}
             </Box>
           </>
@@ -122,7 +122,6 @@ export function Component() {
       </Stack>
     );
   } else {
-    navigate("/login");
     return (
       <Stack spacing={2}>
         <SignIn />

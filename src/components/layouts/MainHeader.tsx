@@ -55,8 +55,8 @@ const MainHeader = () => {
   const navigation = useNavigate();
 
   const handleLogout = () => {
-    handleCloseUserMenu();    
-    localStorage.removeItem('accessToken'); // Remove o token do Local Storage
+    handleCloseUserMenu();
+    localStorage.removeItem('accessToken');
     navigation("/login");
   }
 
@@ -79,15 +79,20 @@ const MainHeader = () => {
 
   const token = localStorage.getItem('accessToken');
 
-  const [display, setDisplay] = React.useState<string>('');
+  const [display, setDisplay] = React.useState<string>(() => {
+    const token = localStorage.getItem('accessToken');
+    return token === null ? 'none' : 'flex';
+  });
 
   useEffect(() => {
+    const token = localStorage.getItem('accessToken');
     if (token === null) {
+      navigation("/login");
       setDisplay('none');
     } else {
       setDisplay('flex');
     }
-  }, [token]);
+  }, [setDisplay, navigation]);
 
   const tokens = localStorage.getItem('accessToken');
   const [userData, setUserData] = useState({ name: '', avatar: '', birthDate: null, email: '', password: '' });
@@ -111,9 +116,7 @@ const MainHeader = () => {
   }, []);
 
   const handleSearchResults = (results: any[]) => {
-    // Faça o que for necessário com os resultados da busca (searchResults)
     console.log("Search results:", results);
-    // Você pode definir os resultados no estado da homepage ou em qualquer lugar desejado.
   };
 
   return (
