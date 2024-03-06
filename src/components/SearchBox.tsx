@@ -1,7 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, useTheme } from "@mui/material/styles";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { setResults } from "src/store/slices/searchSlice";
+import { useDispatch } from "react-redux";
+import api from "src/services/api";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -33,16 +36,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchBox() {
+export default function SearchBox({ onSearchResults }: { onSearchResults?: (results: any[]) => void }) {
   const theme = useTheme();
   const darkMode = theme.palette.mode === "dark";
   const [isFocused, setIsFocused] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const searchInputRef = useRef<HTMLInputElement>();
 
   const handleClickSearchIcon = () => {
     if (!isFocused) {
       searchInputRef.current?.focus();
     }
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      api.get(`/upload/title/${searchTerm}`).then((response) => {
+        dispatch(setResults(response.data));
+      });
+    }
+  }, [searchTerm, dispatch]);
+    
+  const handleInputChange = (event: any) => {
+    setSearchTerm(event.target.value);
+    onSearchResults && onSearchResults(event.target.value);
   };
 
   return (
@@ -68,6 +88,7 @@ export default function SearchBox() {
           onBlur: () => {
             setIsFocused(false);
           },
+          onChange: handleInputChange,
         }}
       />
     </Search>

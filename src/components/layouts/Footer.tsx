@@ -70,7 +70,8 @@ export default function Footer() {
                 sx={{
                   position: "absolute",
                   left: "50%",
-                  top: "40%",
+                  marginTop: 5,
+                  top:"30%",
                   transform: "translate(-50%, -50%)",
                   zIndex: 2,
                   textAlign: "center",

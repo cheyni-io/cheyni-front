@@ -92,7 +92,6 @@ const MainHeader = () => {
   const tokens = localStorage.getItem('accessToken');
   const [userData, setUserData] = useState({ name: '', avatar: '', birthDate: null, email: '', password: '' });
 
-  //Pegar o token e os dados do usuário
   useEffect(() => {
     api.get('/auth', {
       headers: {
@@ -110,6 +109,12 @@ const MainHeader = () => {
       console.log(error);
     });
   }, []);
+
+  const handleSearchResults = (results: any[]) => {
+    // Faça o que for necessário com os resultados da busca (searchResults)
+    console.log("Search results:", results);
+    // Você pode definir os resultados no estado da homepage ou em qualquer lugar desejado.
+  };
 
   return (
     <AppBar
@@ -201,7 +206,7 @@ const MainHeader = () => {
         <IconButton onClick={toggleTheme} color="inherit">
           {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton> 
-          <SearchBox />
+          <SearchBox onSearchResults={handleSearchResults} />
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, display: display }}>
               {userData.avatar}

@@ -126,6 +126,8 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     setActiveSlideIndex(nextIndex);
   };
 
+  console.log(videos)
+
   const settings: Settings = {
     // speed: genre.name === "Featured" ? 12000 : 500,
     // arrows: false,
@@ -138,9 +140,9 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     dots: false,
     infinite: true,
     slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToScroll: 6,
     autoplay: genre.name === "Featured" ? true : false,
-    speed: genre.name === "Featured" ? 12000 : 500,
+    speed: genre.name === "Featured" ? 10000 : 500,
     autoplaySpeed: 2000,
     cssEase: "linear",
     // afterChange: (current) => {
@@ -203,7 +205,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
         backgroundColor: isDark ? "#0c0b30" : "#fff"
       }}
     >
-      {videos.length > 6 && (
+      {videos.length > 0 && (
         <>
           <Stack
             spacing={2}
