@@ -11,11 +11,12 @@ import { useNavigate } from "react-router-dom";
 import SignIn from "src/components/LoginScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { setResults } from "src/store/slices/searchSlice";
-import { Box, Theme, styled } from "@mui/material";
+import { Box, Grid, Theme, Typography, styled } from "@mui/material";
 import Slider, { Settings } from "react-slick";
 import VideoItemWithHoverPure from "src/components/VideoItemWithHoverPure";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
 import { Movie } from "src/types/Movie";
+import CheyniNavigationLink from "src/components/CheyniNavigationLink";
 
 interface Video {
   id: string;
@@ -50,7 +51,7 @@ interface SlideItemProps {
 function SlideItem({ item }: SlideItemProps) {
   console.log(item);
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10 }}>
+    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, ml: 5, width: "290px" }}>
       <VideoItemWithHover video={item} />
     </Box>
   );
@@ -68,16 +69,14 @@ export function Component() {
   //Obter token de acesso do localStorage
   const tokens = localStorage.getItem("accessToken");
 
-  const dispatch = useDispatch();
-  const videos = useSelector((state) => state.search.results);
+  const videos = useSelector((state: any) => state.search.results);
 
-  console.log(videos);
+  console.log(videos.length);
 
   if (genres && tokens !== null) {
     return (
       <Stack spacing={2}>
         <HeroSection mediaType={MEDIA_TYPE.Movie} />
-
         {videos.length > 0 ? (
           <>
             <Box
@@ -88,36 +87,37 @@ export function Component() {
                 backgroundColor: "#fff",
               }}
             >
-              <h2>Search Results</h2>
-              {videos.map((item: Video) => (
-                // <RootStyle>
-                <Box
-                  sx={{
-                    overflow: "hidden",
-                    height: "100%",
-                    zIndex: 1,
-                    backgroundColor: "#fff",
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap", // Adicionado para que os itens quebrem para a linha seguinte, se necessário
-                  }}
-                >
-                  <Box sx={{ width: 300, height: 300 }}>
-                    <SlideItem key={item.id} item={item} />
-                  </Box>
-                </Box>
-              ))}
+              <Typography variant="h5" sx={{ mt: 2, ml: 3, mb: 5 }}>
+                {`Search Results: ${videos.length} videos`}
+              </Typography>
+              <Grid container spacing={2}>
+                {videos.map((video: Video) => (
+                  <SlideItem key={video.id} item={video} />
+                ))}
+              </Grid>
             </Box>
           </>
         ) : (
-          // Se os resultados da busca forem vazios, mostrar o SliderRowForGenre
-          [...COMMON_TITLES, ...genres].map((genre: Genre | CustomGenre) => (
-            <SliderRowForGenre
-              key={genre.id || genre.name}
-              genre={genre}
-              mediaType={MEDIA_TYPE.Movie}
-            />
-          ))
+          <>
+            <Box
+              sx={{
+                overflow: "hidden",
+                height: "100%",
+                zIndex: 1,
+                backgroundColor: "#fff",
+              }}
+            >
+              {[...COMMON_TITLES, ...genres].map(
+                (genre: Genre | CustomGenre) => (
+                  <SliderRowForGenre
+                    key={genre.id || genre.name}
+                    genre={genre}
+                    mediaType={MEDIA_TYPE.Movie}
+                  />
+                )
+              )}
+            </Box>
+          </>
         )}
       </Stack>
     );

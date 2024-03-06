@@ -19,8 +19,10 @@
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "framer-motion": "^7.1.0",
+    "keen-slider": "^6.8.6",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
+    "react-alice-carousel": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-player": "^2.14.1",
@@ -28,6 +30,7 @@
     "react-router-dom": "^6.9.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.7",
     "video.js": "^8.3.0",
     "videojs-youtube": "^3.0.1",
     "vite-tsconfig-paths": "^3.5.2"

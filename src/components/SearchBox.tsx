@@ -42,6 +42,7 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
   const [isFocused, setIsFocused] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>();
 
   const handleClickSearchIcon = () => {
@@ -55,7 +56,10 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
   useEffect(() => {
     if (searchTerm !== "") {
       api.get(`/upload/title/${searchTerm}`).then((response) => {
-        dispatch(setResults(response.data));
+        const results = response.data;
+        setSearchResults(results);
+        setShowResults(!!results.length); // Atualize o estado para mostrar ou ocultar os resultados
+        dispatch(setResults(results));
       });
     }
   }, [searchTerm, dispatch]);

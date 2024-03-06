@@ -19,6 +19,19 @@ import api from "src/services/api";
 import VideoFeaturedItemWithHover from "../VideoFeaturedItemWithHover";
 import { CircularProgress } from "@mui/material";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import "swiper/css/effect-fade";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
+
 const RootStyle = styled("div")(() => ({
   position: "relative",
   overflow: "inherit",
@@ -87,33 +100,56 @@ function SlideItem({ item }: SlideItemProps) {
 
 function SlideItem2({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10 }}>
+    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, width: "290px" }}>
       <VideoFeaturedItemWithHover video={item} />
     </Box>
-  )
+  );
 }
+
+const animation = { duration: 5000, easing: (t: number) => t }
 
 interface SlickSliderProps {
   data: PaginatedMovieResult;
   genre: Genre | CustomGenre;
   handleNext: (page: number) => void;
 }
-export default function SlickSlider({ data, genre }: SlickSliderProps) {  
+export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const sliderRef = useRef<Slider>(null);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showExplore, setShowExplore] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const theme = useTheme();
   const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const isDark = theme.palette.mode === "dark";
 
+  const [sliderRef2] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    mode: "free",
+    slides: {
+      perView: 6,
+      spacing: 0,
+    },
+    renderMode: "performance",
+
+    drag: false,
+    created(s) {
+      s.moveToIdx(2, true, animation)
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 2, true, animation)
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 2, true, animation)
+    },
+  })
+
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     api.get("/upload").then((response) => {
       setVideos(response.data);
-      setIsLoading(false)
+      setIsLoading(false);
     });
   }, []);
 
@@ -126,8 +162,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     setActiveSlideIndex(nextIndex);
   };
 
-  console.log(videos)
-
   const settings: Settings = {
     speed: genre.name === "Featured" ? 10000 : 500,
     arrows: false,
@@ -135,7 +169,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     lazyLoad: "progressive",
     slidesToShow: 6,
     slidesToScroll: 6,
-    autoplay: genre.name === "Featured" ? true : false,
+    autoplay: genre.name === "Featured" ? false : false,
     cssEase: "linear",
     // dots: false,
     // infinite: true,
@@ -149,9 +183,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     //   console.log("After Change", current);
     // },
     // beforeChange,
-    // onEdge: (direction) => {
-    //   console.log("Edge: ", direction);
-    // },
+
     responsive: [
       {
         breakpoint: 1536,
@@ -192,9 +224,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     sliderRef.current?.slickNext();
   };
 
-  if (isLoading) (
-    <CircularProgress />
-  )
+  if (isLoading) <CircularProgress />;
 
   return (
     <Box
@@ -202,7 +232,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
         overflow: "hidden",
         height: "100%",
         zIndex: 1,
-        backgroundColor: isDark ? "#0c0b30" : "#fff"
+        backgroundColor: isDark ? "#0c0b30" : "#fff",
       }}
     >
       {videos.length > 0 && (
@@ -249,26 +279,27 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
           </Stack>
 
           <RootStyle>
-            
-              {genre.name === "Featured" ? (
-                <StyledSlider
-                  ref={sliderRef}
-                  {...settings}
-                  padding={ARROW_MAX_WIDTH}
-                  theme={theme}
-                >
-                  {videos.map((item: Video) => (
-                    <SlideItem2 key={item.id} item={item} />
-                  ))}
-                </StyledSlider>
-              ) : (
-                <CustomNavigation
-              isEnd={isEnd}
-              arrowWidth={ARROW_MAX_WIDTH}
-              onNext={handleNext}
-              onPrevious={handlePrevious}
-              activeSlideIndex={activeSlideIndex}
-            >
+            {genre.name === "Featured" ? (
+              <Box 
+                //Using keen-slider
+                ref={sliderRef2}
+                className="keen-slider"
+
+              >
+                {videos.map((item: Video) => (
+                  <div key={item.id} className="keen-slider__slide">
+                    <SlideItem2 item={item} />
+                  </div>
+                ))}
+              </Box>
+            ) : (
+              <CustomNavigation
+                isEnd={isEnd}
+                arrowWidth={ARROW_MAX_WIDTH}
+                onNext={handleNext}
+                onPrevious={handlePrevious}
+                activeSlideIndex={activeSlideIndex}
+              >
                 <StyledSlider
                   ref={sliderRef}
                   {...settings}
@@ -284,9 +315,8 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                       <SlideItem key={item.id} item={item} />
                     ))}
                 </StyledSlider>
-                </CustomNavigation>
-
-              )}
+              </CustomNavigation>
+            )}
           </RootStyle>
         </>
       )}

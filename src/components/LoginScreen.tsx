@@ -51,7 +51,7 @@ export default function SignIn() {
           justifyContent: 'center',
         }}
       >
-        <Logo />
+        {/* <Logo /> */}
         {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar> */}
