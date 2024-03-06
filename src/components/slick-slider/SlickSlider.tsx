@@ -129,22 +129,22 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   console.log(videos)
 
   const settings: Settings = {
-    // speed: genre.name === "Featured" ? 12000 : 500,
-    // arrows: false,
-    // infinite: genre.name === "Featured" ? true : false,
-    // lazyLoad: "progressive",
-    // slidesToShow: 6,
-    // slidesToScroll: 6,
-    // autoplay: genre.name === "Featured" ? true : false,
-    // cssEase: "linear",
-    dots: false,
-    infinite: true,
+    speed: genre.name === "Featured" ? 10000 : 500,
+    arrows: false,
+    infinite: genre.name === "Featured" ? true : false,
+    lazyLoad: "progressive",
     slidesToShow: 6,
     slidesToScroll: 6,
     autoplay: genre.name === "Featured" ? true : false,
-    speed: genre.name === "Featured" ? 10000 : 500,
-    autoplaySpeed: 2000,
     cssEase: "linear",
+    // dots: false,
+    // infinite: true,
+    // slidesToShow: 6,
+    // slidesToScroll: 6,
+    // autoplay: genre.name === "Featured" ? true : false,
+    // speed: genre.name === "Featured" ? 10000 : 500,
+    // autoplaySpeed: 2000,
+    // cssEase: "linear",
     // afterChange: (current) => {
     //   console.log("After Change", current);
     // },
@@ -230,7 +230,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
               }}
             >
               {`${genre.name} Movies `}
-              <MotionContainer
+              {/* <MotionContainer
                 open={showExplore}
                 initial="initial"
                 sx={{
@@ -244,18 +244,12 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                     {letter}
                   </motion.span>
                 ))}
-              </MotionContainer>
+              </MotionContainer> */}
             </CheyniNavigationLink>
           </Stack>
 
           <RootStyle>
-            <CustomNavigation
-              isEnd={isEnd}
-              arrowWidth={ARROW_MAX_WIDTH}
-              onNext={handleNext}
-              onPrevious={handlePrevious}
-              activeSlideIndex={activeSlideIndex}
-            >
+            
               {genre.name === "Featured" ? (
                 <StyledSlider
                   ref={sliderRef}
@@ -268,6 +262,13 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   ))}
                 </StyledSlider>
               ) : (
+                <CustomNavigation
+              isEnd={isEnd}
+              arrowWidth={ARROW_MAX_WIDTH}
+              onNext={handleNext}
+              onPrevious={handlePrevious}
+              activeSlideIndex={activeSlideIndex}
+            >
                 <StyledSlider
                   ref={sliderRef}
                   {...settings}
@@ -283,8 +284,9 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                       <SlideItem key={item.id} item={item} />
                     ))}
                 </StyledSlider>
+                </CustomNavigation>
+
               )}
-            </CustomNavigation>
           </RootStyle>
         </>
       )}
