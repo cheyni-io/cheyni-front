@@ -123,7 +123,7 @@ const MainHeader = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [tokens]);
 
   const handleSearchResults = (results: any[]) => {
     console.log("Search results:", results);

@@ -58,9 +58,13 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
       api.get(`/upload/title/${searchTerm}`).then((response) => {
         const results = response.data;
         setSearchResults(results);
-        setShowResults(!!results.length); // Atualize o estado para mostrar ou ocultar os resultados
+        setShowResults(!!results.length);
         dispatch(setResults(results));
       });
+    } else {
+      dispatch(setResults([]));
+      setSearchResults([]);
+      setShowResults(false);
     }
   }, [searchTerm, dispatch]);
     
@@ -68,6 +72,7 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
     setSearchTerm(event.target.value);
     onSearchResults && onSearchResults(event.target.value);
   };
+
 
   return (
     <Search

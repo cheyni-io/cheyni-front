@@ -73,6 +73,18 @@ export function Component() {
   const isDark = theme.palette.mode === "dark";
   const videos = useSelector((state: any) => state.search.results);
 
+  console.log(videos);
+
+  const dispatch = useDispatch();
+
+  const handleSearchResults = (results: any[]) => {
+    dispatch(setResults(results));
+  }; 
+
+  
+
+
+
   if (genres && tokens !== null) {
     return (
       <Stack spacing={2}>
