@@ -86,7 +86,7 @@ const MainHeader = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token === null) {
-      navigation("/login");
+      // navigation("/login");
       setDisplay("none");
     } else {
       setDisplay("flex");
