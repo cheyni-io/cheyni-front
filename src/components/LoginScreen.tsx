@@ -93,17 +93,18 @@ export default function SignIn() {
             Sign In
           </Button>
           <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
-                Forgot password?
+            <Grid item xs>
+              <Link href="/forget-password" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
+                Forget password?
               </Link>
-            </Grid> */}
+            </Grid>
             <Grid item>
               <Link href="/signUp" variant="body2" color={dark ? "#FFF" : "#0C0B30"}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
+
         </Box>
       </Box>
     </Container>
