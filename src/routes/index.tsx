@@ -53,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: MAIN_PATH.wallet,
         lazy: () => import("src/pages/WalletPage"),
+      },
+      {
+        path: MAIN_PATH.forgotPassword,
+        lazy: () => import("src/pages/ForgetPassword"),
       }
     ],
   },

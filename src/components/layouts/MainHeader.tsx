@@ -3,7 +3,6 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -14,14 +13,14 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { APP_BAR_HEIGHT } from "src/constant";
 import useOffSetTop from "src/hooks/useOffSetTop";
+import api from 'src/services/api';
 import { changeTheme } from "src/store/slices/themeSlice";
 import CheyniNavigationLink from "../CheyniNavigationLink";
 import Logo from "../Logo";
 import SearchBox from "../SearchBox";
-import { useNavigate } from 'react-router-dom';
-import api from 'src/services/api';
 
 const pages = [""];
 
@@ -95,6 +94,7 @@ const MainHeader = () => {
   }, [setDisplay, navigation]);
 
   const tokens = localStorage.getItem('accessToken');
+  console.log(tokens);
   const [userData, setUserData] = useState({ name: '', avatar: '', birthDate: null, email: '', password: '' });
 
   useEffect(() => {
@@ -103,6 +103,7 @@ const MainHeader = () => {
         Authorization: `Bearer ${tokens}`
       }
     }).then((response) => {
+      console.log(response.data);
       setUserData({
         name: response.data.name,
         avatar: response.data.avatar,

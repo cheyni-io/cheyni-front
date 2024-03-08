@@ -1,20 +1,18 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-;import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
-import Logo from './Logo';
-import { makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
-import api from 'src/services/api';
-import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import { useTheme } from "@mui/material/styles";
 import { setCookie } from 'nookies';
-
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from 'src/services/api';
+;
 export default function SignIn() {
   const theme = useTheme();
   const dark = theme.palette.mode === 'dark';
@@ -27,6 +25,7 @@ export default function SignIn() {
       password: data.get('password')
     }).then((response) => {
       if (response.data.access_token) {
+        console.log(response.data.access_token);
         setCookie(null, 'accessToken', response.data.access_token, { 
           maxAge: 30 * 24 * 60 * 60,
           path: '/'

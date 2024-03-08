@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
-import Button from '@mui/material/Button';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { useTheme } from '@mui/material/styles';
-import Logo from './Logo';
-import api from 'src/services/api';
 import { Alert, Snackbar, SnackbarOrigin } from '@mui/material';
-import dayjs from 'dayjs';
-import router from 'src/routes';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DateField } from '@mui/x-date-pickers';
+import api from 'src/services/api';
+import Logo from './Logo';
 
 interface State extends SnackbarOrigin {
   open: boolean;
