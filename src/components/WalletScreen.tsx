@@ -105,10 +105,12 @@ export default function Wallet() {
             {/* {userData.nfTokenAndUser.length > 0 ? <h1> a </h1> : <h1> b </h1>} */}
             {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
               <Card
+                key={index}
                 sx={{
                   minWidth: 275,
                   minHeight: 300,
-                  backgroundImage: "url('./assets/nftMemes.png')",
+                  // backgroundImage: "url('./assets/nftMemes.png')",
+                  backgroundImage: tokenAndUser.nftoken.tokenImage == null ? "url('./assets/nftMemes.png')" : `url(https://cheyni.s3.amazonaws.com/${tokenAndUser.nftoken.tokenImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderRadius: 2,
