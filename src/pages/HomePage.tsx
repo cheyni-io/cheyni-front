@@ -49,7 +49,6 @@ interface SlideItemProps {
 // }));
 
 function SlideItem({ item }: SlideItemProps) {
-  console.log(item);
   return (
     <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, ml: 5, width: "290px" }}>
       <VideoItemWithHover video={item} />
@@ -72,18 +71,6 @@ export function Component() {
 
   const isDark = theme.palette.mode === "dark";
   const videos = useSelector((state: any) => state.search.results);
-
-  console.log(videos);
-
-  const dispatch = useDispatch();
-
-  const handleSearchResults = (results: any[]) => {
-    dispatch(setResults(results));
-  }; 
-
-  
-
-
 
   if (genres && tokens !== null) {
     return (

@@ -54,7 +54,6 @@ export default function Wallet() {
           password: "",
           nfTokenAndUser: response.data.nfTokenAndUser,
         });
-        console.log(userData.nfTokenAndUser.length)
       })
       .catch((error) => {
         console.log(error);

@@ -145,9 +145,12 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     },
   })
 
+  const tokens = localStorage.getItem('accessToken');
+
   useEffect(() => {
     setIsLoading(true);
-    api.get("/upload").then((response) => {
+    api.get("/upload", { headers: { Authorization: `Bearer ${tokens}` } })
+    .then((response) => {
       setVideos(response.data);
       setIsLoading(false);
     });

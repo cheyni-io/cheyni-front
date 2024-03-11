@@ -94,7 +94,6 @@ const MainHeader = () => {
   }, [setDisplay, navigation]);
 
   const tokens = localStorage.getItem("accessToken");
-  console.log(tokens);
   const [userData, setUserData] = useState({
     name: "",
     avatar: "",
@@ -111,7 +110,6 @@ const MainHeader = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setUserData({
           name: response.data.name,
           avatar: response.data.avatar,

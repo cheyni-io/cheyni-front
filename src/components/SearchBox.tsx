@@ -52,10 +52,12 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
   };
 
   const dispatch = useDispatch();
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (searchTerm !== "") {
-      api.get(`/upload/title/${searchTerm}`).then((response) => {
+      api.get(`/upload/title/${searchTerm}`, { headers: { Authorization: `Bearer ${token}` } })
+      .then((response) => {
         const results = response.data;
         setSearchResults(results);
         setShowResults(!!results.length);

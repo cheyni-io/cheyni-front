@@ -78,31 +78,54 @@ export function Component() {
   const theme = useTheme();
   const dark = theme.palette.mode === "dark";
 
+  const tokens = localStorage.getItem('accessToken');
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    api.get(`/upload/${watchId}`).then((res) => {
+    api.get(`/upload/${watchId}`, { headers: { Authorization: `Bearer ${tokens}` } })
+    .then((res) => {
       setVideoData(res.data);
       setLoading(false);
     });
   }, [watchId]);
 
   const windowSize = useWindowSize();
-  const videoJsOptions = {
-    preload: "metadata",
-    autoplay: false,
-    controls: true,
-    bigPlayButton: false,
-    // responsive: true,
-    // fluid: true,
-    width: windowSize.width,
-    height: windowSize.height,
-    sources: [
+  // const videoJsOptions = useMemo(() => {
+  //   preload: "metadata",
+  //   autoplay: false,
+  //   controls: true,
+  //   bigPlayButton: false,
+  //   // responsive: true,
+  //   // fluid: true,
+  //   width: windowSize.width,
+  //   height: windowSize.height,
+  //   sources: [
+  //     {
+  //       src: 'https://cheyni.s3.amazonaws.com/Sound.mp4',
+  //       type: "video/mp4",
+  //     },
+  //   ],
+  // }, [windowSize]);
+
+  //Video js is not loading big video files
+  const videoJsOptions = useMemo(() => {
+    return {
+      preload: "auto",
+      autoplay: false,
+      controls: true,
+      bigPlayButton: false,
+      responsive: true,
+      fluid: true,
+      width: windowSize.width,
+      height: windowSize.height,
+      sources: [
       {
         src: `https://cheyni.s3.amazonaws.com/${videoData?.name}`,
         type: "video/mp4",
       },
     ],
-  };
+    };
+  }, [videoData, windowSize]);
 
   //Get user token from local storage
   const token = localStorage.getItem("accessToken");
