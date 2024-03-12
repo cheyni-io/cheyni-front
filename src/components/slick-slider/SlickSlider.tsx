@@ -284,12 +284,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
           <RootStyle>
             {genre.name === "Featured" ? (
               <Box 
-                //Using keen-slider
                 ref={sliderRef2}
                 className="keen-slider"
-
               >
-                {videos.map((item: Video) => (
+                {videos
+                    .filter(
+                      (item: Video) =>
+                        !!item.genre && item.genre.includes(genre.name)
+                    )
+                    .map((item: Video) => (
                   <div key={item.id} className="keen-slider__slide">
                     <SlideItem2 item={item} />
                   </div>
