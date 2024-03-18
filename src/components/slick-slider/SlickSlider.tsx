@@ -167,20 +167,20 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   };
 
   const settings: Settings = {
-    speed: genre.name === "Featured" ? 10000 : 500,
+    speed: genre.name === "Community Picked" ? 10000 : 500,
     arrows: false,
-    infinite: genre.name === "Featured" ? true : false,
+    infinite: genre.name === "Community Picked" ? true : false,
     lazyLoad: "progressive",
     slidesToShow: 6,
     slidesToScroll: 6,
-    autoplay: genre.name === "Featured" ? false : false,
+    autoplay: genre.name === "Community Picked" ? false : false,
     cssEase: "linear",
     // dots: false,
     // infinite: true,
     // slidesToShow: 6,
     // slidesToScroll: 6,
-    // autoplay: genre.name === "Featured" ? true : false,
-    // speed: genre.name === "Featured" ? 10000 : 500,
+    // autoplay: genre.name === "Community Picked" ? true : false,
+    // speed: genre.name === "Community Picked" ? 10000 : 500,
     // autoplaySpeed: 2000,
     // cssEase: "linear",
     // afterChange: (current) => {
@@ -283,7 +283,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
           </Stack>
 
           <RootStyle>
-            {genre.name === "Featured" ? (
+            {genre.name === "Community Picked" ? (
               <Box ref={sliderRef2} className="keen-slider">
                 {videos
                   .filter(
