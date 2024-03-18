@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://cheyni-backend-production.up.railway.app/api',
+  baseURL: 'http://52.47.144.217:3000/api',
   // baseURL: 'http://localhost:3000/api'
 });
 

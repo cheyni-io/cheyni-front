@@ -109,7 +109,7 @@ export default function Wallet() {
                   minWidth: 275,
                   minHeight: 300,
                   // backgroundImage: "url('./assets/nftMemes.png')",
-                  backgroundImage: tokenAndUser.nftoken.tokenImage == null ? "url('./assets/nftMemes.png')" : `url(https://cheyni.s3.amazonaws.com/${tokenAndUser.nftoken.tokenImage})`,
+                  backgroundImage: tokenAndUser.nftoken.tokenImage == null ? "url('./assets/nftMemes.png')" : `url(https://cheyni-prod.s3.eu-west-3.amazonaws.com/${tokenAndUser.nftoken.tokenImage})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderRadius: 2,

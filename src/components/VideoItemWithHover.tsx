@@ -21,7 +21,7 @@ export default function VideoItemWithHover({ video, }: VideoItemWithHoverProps) 
     <VideoItemWithHoverPure
       ref={elementRef}
       handleHover={setIsHovered}
-      src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
+      src={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video.thumbnail}`}
     />
   );
 }

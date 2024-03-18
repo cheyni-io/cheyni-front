@@ -76,7 +76,7 @@ export default function VideoCardModal({
       >
         {/* <img src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
         <video
-          src={`https://cheyni.s3.amazonaws.com/${video?.name}`}
+          src={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video?.name}`}
           style={{
             width: "100%",
             height: "480px",
@@ -87,7 +87,7 @@ export default function VideoCardModal({
           muted
           preload="auto"
           loop
-          poster={`https://cheyni.s3.amazonaws.com/${video?.thumbnail}`}
+          poster={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video?.thumbnail}`}
         />
         {/* <IconButton
           onPointerLeave={() => {

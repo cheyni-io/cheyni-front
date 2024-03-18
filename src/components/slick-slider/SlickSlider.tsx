@@ -29,8 +29,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -106,7 +106,7 @@ function SlideItem2({ item }: SlideItemProps) {
   );
 }
 
-const animation = { duration: 5000, easing: (t: number) => t }
+const animation = { duration: 5000, easing: (t: number) => t };
 
 interface SlickSliderProps {
   data: PaginatedMovieResult;
@@ -135,25 +135,26 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
 
     drag: false,
     created(s) {
-      s.moveToIdx(2, true, animation)
+      s.moveToIdx(2, true, animation);
     },
     updated(s) {
-      s.moveToIdx(s.track.details.abs + 2, true, animation)
+      s.moveToIdx(s.track.details.abs + 2, true, animation);
     },
     animationEnded(s) {
-      s.moveToIdx(s.track.details.abs + 2, true, animation)
+      s.moveToIdx(s.track.details.abs + 2, true, animation);
     },
-  })
+  });
 
-  const tokens = localStorage.getItem('accessToken');
+  const tokens = localStorage.getItem("accessToken");
 
   useEffect(() => {
     setIsLoading(true);
-    api.get("/upload", { headers: { Authorization: `Bearer ${tokens}` } })
-    .then((response) => {
-      setVideos(response.data);
-      setIsLoading(false);
-    });
+    api
+      .get("/upload", { headers: { Authorization: `Bearer ${tokens}` } })
+      .then((response) => {
+        setVideos(response.data);
+        setIsLoading(false);
+      });
   }, []);
 
   const beforeChange = async (currentIndex: number, nextIndex: number) => {
@@ -283,20 +284,17 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
 
           <RootStyle>
             {genre.name === "Featured" ? (
-              <Box 
-                ref={sliderRef2}
-                className="keen-slider"
-              >
+              <Box ref={sliderRef2} className="keen-slider">
                 {videos
-                    .filter(
-                      (item: Video) =>
-                        !!item.genre && item.genre.includes(genre.name)
-                    )
-                    .map((item: Video) => (
-                  <div key={item.id} className="keen-slider__slide">
-                    <SlideItem2 item={item} />
-                  </div>
-                ))}
+                  .filter(
+                    (item: Video) =>
+                      !!item.genre && item.genre.includes(genre.name)
+                  )
+                  .map((item: Video) => (
+                    <div key={item.id} className="keen-slider__slide">
+                      <SlideItem2 item={item} />
+                    </div>
+                  ))}
               </Box>
             ) : (
               <CustomNavigation

@@ -2,6 +2,17 @@ import { TMDB_V3_API_KEY } from "src/constant";
 import { Genre } from "src/types/Genre";
 import { tmdbApi } from "./apiSlice";
 
+//Genres
+// Short Film - Ok
+// Experimental Video
+// Video Art
+// Branded Content - Ok
+// Documentary - Ok
+// CHEYNI Originals
+// Animation - ok
+// Choreography - ok
+// Fashion - ok
+
 const genres2 = {
   response: [
     {
@@ -11,8 +22,8 @@ const genres2 = {
     },
     {
       "id":12,
-      "name": "Dance",
-      "apiString": "dance",
+      "name": "Animation",
+      "apiString": "animation",
     },
     {
       "id":16,
@@ -21,13 +32,30 @@ const genres2 = {
     },
     {
       "id": 18,
-      "name": "Short Series", 
-      "apiString": "short-series",
+      "name": "Choreography", 
+      "apiString": "choreography",
     },
     {
       "id": 35,
-      "name": "Artist Documentary",
-      "apiString": "artist-documentary",
+      "name": "Documentary",
+      "apiString": "documentary",
+    },
+    {
+      "id": 37,
+      "name": "Fashion",
+      "apiString": "fashion",
+    },
+    {
+      "id": 43,
+      "name": "Experimental"
+    },
+    {
+      "id": 44,
+      "name": "Video Art"
+    },
+    {
+      "id": 45,
+      "name": "CHEYNI Originals"
     }
   ],
 };

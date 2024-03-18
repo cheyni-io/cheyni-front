@@ -66,8 +66,7 @@ export default function DetailModal() {
               height: "calc(9 / 16 * 100%)",
             }}
           >
-            {/* <img src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> */}
-            <video src={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.name}`} style={{ width: "100%", height: "500px", objectFit: "cover" }} autoPlay muted preload="auto" loop poster={`https://cheyni.s3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} />
+            <video src={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${detail.mediaDetail?.name}`} style={{ width: "100%", height: "500px", objectFit: "cover" }} autoPlay muted preload="auto" loop poster={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${detail.mediaDetail?.thumbnail}`} />
             <Box
               sx={{
                 background: `linear-gradient(77deg,rgba(252, 252, 252, 0.6),transparent 85%)`,

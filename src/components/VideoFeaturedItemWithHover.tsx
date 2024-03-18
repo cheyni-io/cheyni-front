@@ -26,7 +26,7 @@ export default function VideoFeaturedItemWithHover({ video, }: VideoItemWithHove
       ref={elementRef}
       // handleHover={setIsHovered}
       onClick={() => navigate(`/${MAIN_PATH.watch}/${video.id}`)}
-      src={`https://cheyni.s3.amazonaws.com/${video.thumbnail}`}
+      src={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video.thumbnail}`}
       /* @ts-ignore */
       genre={video?.genre}
     />

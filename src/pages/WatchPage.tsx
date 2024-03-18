@@ -120,7 +120,7 @@ export function Component() {
       height: windowSize.height,
       sources: [
       {
-        src: `https://cheyni.s3.amazonaws.com/${videoData?.name}`,
+        src: `https://cheyni-prod.s3.eu-west-3.amazonaws.com/${videoData?.name}`,
         type: "video/mp4",
       },
     ],
