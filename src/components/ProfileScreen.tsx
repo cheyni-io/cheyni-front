@@ -114,7 +114,7 @@ export default function Profile() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Box sx={{ justifyContent: "center", alignItems: "center" }} height={'100vh'}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={message.includes('successfully') ? 'success' : 'error'} sx={{ width: '100%' }}>
           {message}
@@ -129,7 +129,7 @@ export default function Profile() {
           height: "100vh"
         }}
       >
-        <Logo />
+        {/* <Logo /> */}
         <Typography component="h1" variant="h5">
           Edit Profile
         </Typography>
@@ -213,6 +213,6 @@ export default function Profile() {
           </Grid> */}
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 }

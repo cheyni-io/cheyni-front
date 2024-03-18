@@ -1,4 +1,3 @@
-import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import { Stack } from "@mui/material";
@@ -41,7 +40,7 @@ export default function VolumeControllers({
   muted,
 }: {
   value: number;
-  handleVolume: SliderUnstyledOwnProps["onChange"];
+  handleVolume: (event: Event, newValue: number | number[]) => void;
   handleVolumeToggle: React.MouseEventHandler<HTMLButtonElement>;
   muted: boolean;
 }) {

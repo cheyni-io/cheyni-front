@@ -13,7 +13,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { SliderUnstyledOwnProps } from "@mui/base/SliderUnstyled";
+// import SliderUnstyled from "@mui/base/SliderUnstyled";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
@@ -172,7 +172,7 @@ export function Component() {
     });
   };
 
-  const handleVolumeChange: SliderUnstyledOwnProps["onChange"] = (_, value) => {
+  const handleVolumeChange: any = (event: any, value: any) => {
     playerRef.current?.volume((value as number) / 100);
     setPlayerState((draft) => {
       return { ...draft, volume: (value as number) / 100 };
