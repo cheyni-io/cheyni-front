@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 
@@ -6,8 +5,6 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import { styled, Theme, useTheme } from "@mui/material/styles";
 
-import MotionContainer from "src/components/animate/MotionContainer";
-import { varFadeIn } from "src/components/animate/variants/fade/FadeIn";
 import CheyniNavigationLink from "src/components/CheyniNavigationLink";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
 import { ARROW_MAX_WIDTH } from "src/constant";
@@ -17,20 +14,12 @@ import { Movie } from "src/types/Movie";
 import CustomNavigation from "./CustomNavigation";
 import api from "src/services/api";
 import VideoFeaturedItemWithHover from "../VideoFeaturedItemWithHover";
-import { CircularProgress } from "@mui/material";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-import "swiper/css/effect-fade";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -51,8 +40,9 @@ const StyledSlider = styled(Slider)(
       },
       "& .slick-list > .slick-track": {
         margin: "0px !important",
+        marginLeft: "0px !important",
       },
-      "& .slick-list > .slick-track > .slick-current > div > .CheyniBox-root > .CheyniPaper-root:hover":
+      "& .slick-list > .slick-track > .slick-current > div > .NetflixBox-root > .NetflixPaper-root:hover":
         {
           transformOrigin: "0% 50% !important",
         },
@@ -60,6 +50,9 @@ const StyledSlider = styled(Slider)(
     [theme.breakpoints.down("sm")]: {
       "& > .slick-list": {
         width: `calc(100% - ${padding}px)`,
+      },
+      "& .slick-list > .slick-track": {
+        marginLeft: "0px !important", // Define a margem esquerda como 0
       },
     },
   })
@@ -118,20 +111,30 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showExplore, setShowExplore] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const theme = useTheme();
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const isDark = theme.palette.mode === "dark";
-
-  const [ref] = useKeenSlider<HTMLDivElement>({
+  const [sliderRef3, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
     loop: true,
     mode: "free",
     slides: {
       perView: 6,
       spacing: 15,
     },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel);
+    },
+    // created() {
+    //   console
+    //   setLoaded(true);
+    // },
   });
+
+  const isDark = theme.palette.mode === "dark";
 
   const [sliderRef2] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -166,27 +169,25 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
       });
   }, []);
 
+  const beforeChange = async (currentIndex: number, nextIndex: number) => {
+    if (currentIndex < nextIndex) {
+      setActiveSlideIndex(nextIndex);
+    } else if (currentIndex > nextIndex) {
+      setIsEnd(false);
+    }
+    setActiveSlideIndex(nextIndex);
+  };
+
   const settings: Settings = {
     speed: genre.name === "Community Picked" ? 10000 : 500,
     arrows: false,
-    infinite: true,
+    infinite: false,
     lazyLoad: "progressive",
-    slidesToShow: videos.length > 6 ? 6 : videos.length,
-    slidesToScroll: videos.length > 6 ? 6 : videos.length,
+    slidesToShow: 6,
+    slidesToScroll: 6,
     autoplay: false,
-    // dots: false,
-    // infinite: true,
-    // slidesToShow: 6,
-    // slidesToScroll: 6,
-    // autoplay: genre.name === "Community Picked" ? true : false,
-    // speed: genre.name === "Community Picked" ? 10000 : 500,
-    // autoplaySpeed: 2000,
-    // cssEase: "linear",
-    // afterChange: (current) => {
-    //   console.log("After Change", current);
-    // },
-    // beforeChange,
-
+    cssEase: "linear",
+    beforeChange,
     responsive: [
       {
         breakpoint: 1536,
@@ -218,16 +219,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
       },
     ],
   };
-
-  const handlePrevious = () => {
-    sliderRef.current?.slickPrev();
-  };
-
-  const handleNext = () => {
-    sliderRef.current?.slickNext();
-  };
-
-  if (isLoading) <CircularProgress />;
 
   return (
     <Box
@@ -309,24 +300,71 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
               //     padding={ARROW_MAX_WIDTH}
               //     theme={theme}
               //   >
-                  <Box ref={ref} className="keen-slider" sx={{ pl: 5 }}>
+              //     {videos
+              //       .filter(
+              //         (item: Video) =>
+              //           !!item.genre && item.genre.includes(genre.name)
+              //       )
+              //       .map((item: Video) => (
+              //         <SlideItem key={item.id} item={item} />
+              //       ))}
+              //   </StyledSlider>
+              // </CustomNavigation>
+              <div className="navigation-wrapper">
+                <CustomNavigation
+                  isEnd={isEnd}
+                  arrowWidth={ARROW_MAX_WIDTH}
+                  onNext={(e: any) =>
+                    e.stopPropagation() || instanceRef.current?.next()
+                  }
+                  onPrevious={(e: any) =>
+                    e.stopPropagation() || instanceRef.current?.prev()
+                  }
+                  activeSlideIndex={currentSlide}
+                >
+                  <Box ref={sliderRef3} className="keen-slider" sx={{ ml: 5 }}>
                     {videos
                       .filter(
                         (item: Video) =>
                           !!item.genre && item.genre.includes(genre.name)
                       )
                       .map((item: Video) => (
-                        <div key={item.id} className="keen-slider__slide number-slide">
-                          <SlideItem key={item.id} item={item} />
+                        <div className="keen-slider__slide number-slide1">
+                          <SlideItem item={item} key={item.id} />
                         </div>
                       ))}
                   </Box>
-              //   </StyledSlider>
-              // </CustomNavigation>
+                </CustomNavigation>
+              </div>
             )}
           </RootStyle>
         </>
       )}
     </Box>
+  );
+}
+
+function Arrow(props: {
+  disabled: boolean;
+  left?: boolean;
+  onClick: (e: any) => void;
+}) {
+  const disabled = props.disabled ? " arrow--disabled" : "";
+  return (
+    <svg
+      onClick={props.onClick}
+      className={`arrow ${
+        props.left ? "arrow--left" : "arrow--right"
+      } ${disabled}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      {props.left && (
+        <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+      )}
+      {!props.left && (
+        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+      )}
+    </svg>
   );
 }
