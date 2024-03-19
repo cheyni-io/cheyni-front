@@ -43,12 +43,6 @@ export default function VideoCardModal({
   const { setDetailType } = useDetailModal();
   const [maxLine, setMaxLine] = useState(3);
 
-  const handleMaxLine = () => {
-    setMaxLine(maxLine === 3 ? 100 : 3);
-  };
-
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
   return (
     <Box
       sx={{
@@ -57,9 +51,10 @@ export default function VideoCardModal({
         right: 0,
         position: "relative",
         mb: 3,
+        zIndex: 100,
         borderRadius: "20px",
         width: "750px", // Largura fixa desejada
-        margin: "0 auto", // Centralizar o contêiner
+        // margin: "0 auto", // Centralizar o contêiner
         overflow: "hidden", // Adicione esta linha para ocultar conteúdo que ultrapassa
       }}
       onPointerLeave={() => {
@@ -79,7 +74,7 @@ export default function VideoCardModal({
           src={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video?.name}`}
           style={{
             width: "100%",
-            height: "480px",
+            height: "450px",
             objectFit: "cover",
             borderRadius: "20px",
           }}

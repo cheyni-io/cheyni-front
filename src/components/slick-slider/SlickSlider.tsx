@@ -100,13 +100,13 @@ function SlideItem({ item }: SlideItemProps) {
 
 function SlideItem2({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, width: "290px" }}>
+    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, ml: 5, width: "280px" }}>
       <VideoFeaturedItemWithHover video={item} />
     </Box>
   );
 }
 
-const animation = { duration: 5000, easing: (t: number) => t };
+const animation = { duration: 10000, easing: (t: number) => t };
 
 interface SlickSliderProps {
   data: PaginatedMovieResult;
@@ -123,6 +123,15 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   const isDark = theme.palette.mode === "dark";
+
+  const [ref] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    mode: "free",
+    slides: {
+      perView: 6,
+      spacing: 15,
+    },
+  });
 
   const [sliderRef2] = useKeenSlider<HTMLDivElement>({
     loop: true,
@@ -157,24 +166,14 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
       });
   }, []);
 
-  const beforeChange = async (currentIndex: number, nextIndex: number) => {
-    if (currentIndex < nextIndex) {
-      setActiveSlideIndex(nextIndex);
-    } else if (currentIndex > nextIndex) {
-      setIsEnd(false);
-    }
-    setActiveSlideIndex(nextIndex);
-  };
-
   const settings: Settings = {
     speed: genre.name === "Community Picked" ? 10000 : 500,
     arrows: false,
-    infinite: genre.name === "Community Picked" ? true : false,
+    infinite: true,
     lazyLoad: "progressive",
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    autoplay: genre.name === "Community Picked" ? false : false,
-    cssEase: "linear",
+    slidesToShow: videos.length > 6 ? 6 : videos.length,
+    slidesToScroll: videos.length > 6 ? 6 : videos.length,
+    autoplay: false,
     // dots: false,
     // infinite: true,
     // slidesToShow: 6,
@@ -297,29 +296,33 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   ))}
               </Box>
             ) : (
-              <CustomNavigation
-                isEnd={isEnd}
-                arrowWidth={ARROW_MAX_WIDTH}
-                onNext={handleNext}
-                onPrevious={handlePrevious}
-                activeSlideIndex={activeSlideIndex}
-              >
-                <StyledSlider
-                  ref={sliderRef}
-                  {...settings}
-                  padding={ARROW_MAX_WIDTH}
-                  theme={theme}
-                >
-                  {videos
-                    .filter(
-                      (item: Video) =>
-                        !!item.genre && item.genre.includes(genre.name)
-                    )
-                    .map((item: Video) => (
-                      <SlideItem key={item.id} item={item} />
-                    ))}
-                </StyledSlider>
-              </CustomNavigation>
+              // <CustomNavigation
+              //   isEnd={isEnd}
+              //   arrowWidth={ARROW_MAX_WIDTH}
+              //   onNext={handleNext}
+              //   onPrevious={handlePrevious}
+              //   activeSlideIndex={activeSlideIndex}
+              // >
+              //   <StyledSlider
+              //     ref={sliderRef}
+              //     {...settings}
+              //     padding={ARROW_MAX_WIDTH}
+              //     theme={theme}
+              //   >
+                  <Box ref={ref} className="keen-slider" sx={{ pl: 5 }}>
+                    {videos
+                      .filter(
+                        (item: Video) =>
+                          !!item.genre && item.genre.includes(genre.name)
+                      )
+                      .map((item: Video) => (
+                        <div key={item.id} className="keen-slider__slide number-slide">
+                          <SlideItem key={item.id} item={item} />
+                        </div>
+                      ))}
+                  </Box>
+              //   </StyledSlider>
+              // </CustomNavigation>
             )}
           </RootStyle>
         </>
