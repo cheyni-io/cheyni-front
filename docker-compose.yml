@@ -1,14 +1,29 @@
-version: '3'
+# version: '3'
+
+# services:
+#   client:
+#     build: .
+#     environment:
+#       - API_ENDPOINT_URL=https://api.themoviedb.org/3
+#       - TMDB_V3_API_KEY=26b0b401ae60f9d25575ef36184860ba
+#     ports:
+#       - "4173:4173"
+#     volumes:
+#       - .:/usr/src/app
+#       - /usr/src/app/node_modules
+# docker-compose.yml
+version: "3.8"
 
 services:
-  client:
-    build: .
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
     environment:
+      - NODE_ENV=production
       - API_ENDPOINT_URL=https://api.themoviedb.org/3
       - TMDB_V3_API_KEY=26b0b401ae60f9d25575ef36184860ba
-    ports:
-      - "4173:4173"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-

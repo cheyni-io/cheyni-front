@@ -56,6 +56,10 @@ const genres2 = {
     {
       "id": 45,
       "name": "CHEYNI Originals"
+    },
+    {
+      "id": 46,
+      "name": "Music"
     }
   ],
 };
