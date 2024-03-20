@@ -20,7 +20,5 @@ ENV VITE_APP_API_ENDPOINT_URL="https://api.themoviedb.org/3"
 
 EXPOSE 8080
 
-USER node
-
 # Comando para iniciar o servidor Vite
 CMD ["npm", "run", "preview"]
