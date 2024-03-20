@@ -1,6 +1,8 @@
 # Crie o Dockerfile para uma aplicação VITE + REACT
 FROM node:18-alpine
 
+
+# Instalação do Vite
 RUN npm install -g vite
 
 WORKDIR /app
@@ -18,4 +20,4 @@ RUN npm run build
 
 EXPOSE 8080
 
-CMD [ "npm", "run", "preview" ]
+CMD [ "npm", "run", "preview"]
