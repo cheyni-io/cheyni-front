@@ -1,6 +1,8 @@
 # Crie o Dockerfile para uma aplicação VITE + REACT
 FROM node:18-alpine
 
+RUN npm install -g vite
+
 WORKDIR /app
 
 COPY package.json .
