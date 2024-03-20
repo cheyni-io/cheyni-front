@@ -9,7 +9,6 @@ services:
       - "8080:8080"
     volumes:
       - .:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=production
       - API_ENDPOINT_URL=https://api.themoviedb.org/3
