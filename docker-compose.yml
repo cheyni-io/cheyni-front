@@ -23,7 +23,9 @@ services:
       - "8080:8080"
     volumes:
       - .:/app
+      - ./node_modules:/app/node_modules
     environment:
       - NODE_ENV=production
       - API_ENDPOINT_URL=https://api.themoviedb.org/3
       - TMDB_V3_API_KEY=26b0b401ae60f9d25575ef36184860ba
+      
