@@ -110,7 +110,7 @@ export function Component() {
   //Video js is not loading big video files
   const videoJsOptions = useMemo(() => {
     return {
-      preload: "auto",
+      preload: "metadata",
       autoplay: false,
       controls: true,
       bigPlayButton: false,
