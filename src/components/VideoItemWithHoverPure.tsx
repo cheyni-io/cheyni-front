@@ -17,7 +17,7 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
           borderRadius: 0.5,
           width: "100%",
           position: "relative",
-          paddingTop: "calc(9 / 16 * 100%)",
+          paddingTop: "56.25%", // Aspect ratio 16:9
         }}
       >
         <img

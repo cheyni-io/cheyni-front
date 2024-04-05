@@ -1,4 +1,4 @@
-import { ReactNode, useState, useCallback } from "react";
+import { ReactNode, useState, useCallback, useEffect } from "react";
 import { Movie } from "src/types/Movie";
 import createSafeContext from "src/lib/createSafeContext";
 
@@ -30,10 +30,26 @@ export default function PortalProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (anchorElement && !anchorElement.contains(event.target as Node)) {
+        handleChangePortal(null, null);
+      }
+    };
+
+    if (anchorElement) {
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      if (anchorElement) {
+        document.removeEventListener("click", handleClickOutside);
+      }
+    };
+  }, [anchorElement, handleChangePortal]);
+
   return (
-    <Provider
-      value={handleChangePortal}
-    >
+    <Provider value={handleChangePortal}>
       <PortalDataProvider
         value={{
           anchorElement,

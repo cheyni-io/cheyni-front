@@ -122,6 +122,7 @@ export default function Profile() {
       </Snackbar>
       <Box
         sx={{
+          margin: { xs: 5, sm: 0, md: 0 },
           marginTop: 16,
           display: 'flex',
           flexDirection: 'column',

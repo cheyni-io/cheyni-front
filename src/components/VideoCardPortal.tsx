@@ -106,20 +106,7 @@ export default function VideoCardModal({
               sx={{ color: isDarkMode ? "#fff" : "#0c0b30", borderRadius: 4 }}
               id={video?.id}
             />
-            {/* <CheyniIconButton>
-                    <AddIcon />
-                  </CheyniIconButton>
-                  <CheyniIconButton>
-                    <ThumbUpOffAltIcon />
-                  </CheyniIconButton> */}
             <Box flexGrow={1} />
-            {/* <CheyniIconButton
-                    size="large"
-                    onClick={() => handleMute(muted)}
-                    sx={{ zIndex: 2 }}
-                  >
-                    {!muted ? <VolumeUpIcon /> : <VolumeOffIcon />}
-                  </CheyniIconButton> */}
           </Stack>
 
           <Container
@@ -135,22 +122,9 @@ export default function VideoCardModal({
             <Grid container spacing={5} alignItems="center" marginBottom={2}>
               <Grid item xs={12} sm={6} md={8}>
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="body2">
-                    {/* {detail.mediaDetail?.release_date.substring(0, 4)} */}
-                  </Typography>
-                  {/* <AgeLimitChip 
-                          label={`${detail.mediaDetail?.title == "Black Swan" ? "16+" : 
-                          detail.mediaDetail?.title == "The Girl with the Dragon Tattoo" ? "16+" : 
-                          detail.mediaDetail?.title == "Jennifer's Body" ? "16+" : 
-                          detail.mediaDetail?.title == "Donnie Darko" ? "14+" :
-                          detail.mediaDetail?.title == "Sound of Freedom" ? "14+" : "18+"}`}
-                        /> */}
-                  {/* <Typography variant="subtitle2">{`${formatMinuteToReadable(
-                          movieDetail?.runtime || 0
-                        )}`}</Typography> */}
-                  <QualityChip label="HD" sx={{ padding: 2, fontFamily: "Futura Regular" }} />
-                  <QualityChip label="Watch & Earn" sx={{ padding: 2, fontFamily: "Futura Regular"  }} />
-                  <QualityChip label={video.genre} sx={{ padding: 2, fontFamily: "Futura Regular"  }} />
+                  <QualityChip label="HD" sx={{ padding: { xs: 1, sm: 2 }, fontFamily: "Futura Regular" }} />
+                  <QualityChip label="Watch & Earn" sx={{ padding: { xs: 1, sm: 2 }, fontFamily: "Futura Regular" }} />
+                  <QualityChip label={video.genre} sx={{ padding: { xs: 1, sm: 2 }, fontFamily: "Futura Regular" }} />
                 </Stack>
               </Grid>
             </Grid>
@@ -163,7 +137,13 @@ export default function VideoCardModal({
                 fontFamily: "Helvetica Neue",
                 fontWeight: 50,
                 fontSize: 10,
+                display: '-webkit-box',
+                overflow: 'hidden',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: { xs: 2, sm: 10 },
+
               }}
+              //
             >
               {video?.description}
             </Typography>
@@ -181,25 +161,6 @@ export default function VideoCardModal({
           </Container>
         </Box>
       </Box>
-      {/* {similarVideos && similarVideos.results.length > 0 && (
-              <Container
-                sx={{
-                  py: 2,
-                  px: { xs: 2, sm: 3, md: 5 },
-                }}
-              >
-                // <Typography variant="h6" sx={{ mb: 2 }}>
-                //   More Like This
-                // </Typography>
-                // <Grid container spacing={2}>
-                //   {similarVideos.results.map((sm) => (
-                //     <Grid item xs={6} sm={4} key={sm.id}>
-                //       <SimilarVideoCard video={sm} />
-                //     </Grid>
-                //   ))}
-                // </Grid>
-              </Container>
-            )} */}
     </Box>
   );
 }
