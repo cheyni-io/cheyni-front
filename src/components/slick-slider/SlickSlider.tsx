@@ -276,7 +276,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   )
                   .map((item: Video) => (
                     <div key={item.id} className="keen-slider__slide">
-                      <SlideItem2 item={item} />
+                      <SlideItem2 item={item} key={item.id} />
                     </div>
                   ))}
               </Box>
