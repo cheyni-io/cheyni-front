@@ -187,22 +187,6 @@ const MainHeader = () => {
             ))}
           </Menu>
         </Box>
-        <Typography
-          variant="h5"
-          noWrap
-          component="a"
-          href=""
-          sx={{
-            mr: 2,
-            display: { xs: "flex", md: "none" },
-            flexGrow: 1,
-            fontWeight: 700,
-            color: "inherit",
-            textDecoration: "none",
-          }}
-        >
-          Cheyni
-        </Typography>
         <Stack
           direction="row"
           spacing={3}
@@ -220,7 +204,7 @@ const MainHeader = () => {
           ))}
         </Stack>
 
-        <Box sx={{ flexGrow: 0, display: "flex", gap: 2 }}>
+        <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
           <IconButton onClick={toggleTheme} color="inherit">
             {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>

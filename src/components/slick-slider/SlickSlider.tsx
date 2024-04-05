@@ -1,62 +1,30 @@
 import { useEffect, useRef, useState } from "react";
-import Slider, { Settings } from "react-slick";
+import Slider from "react-slick";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { styled, Theme, useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 
 import CheyniNavigationLink from "src/components/CheyniNavigationLink";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
 import { ARROW_MAX_WIDTH } from "src/constant";
+import api from "src/services/api";
 import { PaginatedMovieResult } from "src/types/Common";
 import { CustomGenre, Genre } from "src/types/Genre";
 import { Movie } from "src/types/Movie";
-import CustomNavigation from "./CustomNavigation";
-import api from "src/services/api";
 import VideoFeaturedItemWithHover from "../VideoFeaturedItemWithHover";
+import CustomNavigation from "./CustomNavigation";
 
-import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
   overflow: "inherit",
 }));
-
-const StyledSlider = styled(Slider)(
-  ({ theme, padding }: { theme: Theme; padding: number }) => ({
-    display: "flex !important",
-    justifyContent: "center",
-    overflow: "initial !important",
-    "& > .slick-list": {
-      overflow: "visible",
-    },
-    [theme.breakpoints.up("sm")]: {
-      "& > .slick-list": {
-        width: `calc(100% - ${2 * padding}px)`,
-      },
-      "& .slick-list > .slick-track": {
-        margin: "0px !important",
-        marginLeft: "0px !important",
-      },
-      "& .slick-list > .slick-track > .slick-current > div > .NetflixBox-root > .NetflixPaper-root:hover":
-        {
-          transformOrigin: "0% 50% !important",
-        },
-    },
-    [theme.breakpoints.down("sm")]: {
-      "& > .slick-list": {
-        width: `calc(100% - ${padding}px)`,
-      },
-      "& .slick-list > .slick-track": {
-        marginLeft: "0px !important", // Define a margem esquerda como 0
-      },
-    },
-  })
-);
 
 interface Video {
   id: string;
@@ -85,7 +53,13 @@ interface SlideItemProps {
 
 function SlideItem({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10 }}>
+    <Box
+      sx={{
+        pr: { xs: 0.5, sm: 1 },
+        mb: { xs: 2, sm: 10, md: 10 },
+        width: { xs: "140px", sm: "200px", md: "360px" },
+      }}
+    >
       <VideoItemWithHover video={item} />
     </Box>
   );
@@ -93,7 +67,14 @@ function SlideItem({ item }: SlideItemProps) {
 
 function SlideItem2({ item }: SlideItemProps) {
   return (
-    <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, ml: 5, width: "280px" }}>
+    <Box
+      sx={{
+        pr: { xs: 0.5, sm: 1 },
+        mb: 10,
+        ml: { xs: 2, sm: 2, md: 2},
+        width: { xs: "180px", sm: "200px", md: "280px" },
+      }}
+    >
       <VideoFeaturedItemWithHover video={item} />
     </Box>
   );
@@ -121,17 +102,43 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     initial: 0,
     loop: true,
     mode: "free",
-    slides: {
-      perView: 6,
-      spacing: 15,
-    },
+    // slides: {
+    //   perView: 6,
+    //   spacing: 15,
+    // },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel);
     },
-    // created() {
-    //   console
-    //   setLoaded(true);
-    // },
+    breakpoints: {
+      "(max-width: 720px)": {
+        loop: true,
+        slides: {
+          perView: 2,
+          spacing: 5,
+        },
+      },
+      "(min-width: 720px) and (max-width: 1000px)": {
+        loop: true,
+        slides: {
+          perView: 3,
+          spacing: 10,
+        },
+      },
+      "(min-width: 1000px)": {
+        loop: true,
+        slides: {
+          perView: 4,
+          spacing: 10,
+        },
+      },
+      "(min-width: 1200px)": {
+        loop: true,
+        slides: {
+          perView: 5,
+          spacing: 10,
+        },
+      },
+    },
   });
 
   const isDark = theme.palette.mode === "dark";
@@ -139,12 +146,11 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [sliderRef2] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free",
-    slides: {
-      perView: 6,
-      spacing: 0,
-    },
+    // slides: {
+    //   perView: 6,
+    //   spacing: 0,
+    // },
     renderMode: "performance",
-
     drag: false,
     created(s) {
       s.moveToIdx(2, true, animation);
@@ -154,6 +160,36 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     },
     animationEnded(s) {
       s.moveToIdx(s.track.details.abs + 2, true, animation);
+    },
+    breakpoints: {
+      '(max-width: 720px)': {
+        loop: true,
+        slides: {
+          perView: 2,
+          spacing: 5,
+        }
+      },
+      '(min-width: 720px) and (max-width: 1000px)': {
+        loop: true,
+        slides: {
+          perView: 3,
+          spacing: 10,
+        }
+      },
+      '(min-width: 1000px)': {
+        loop: true,
+        slides: {
+          perView: 4,
+          spacing: 10,
+        }
+      },
+      '(min-width: 1200px)': {
+        loop: true,
+        slides: {
+          perView: 5,
+          spacing: 10,
+        }
+      },
     },
   });
 
@@ -178,48 +214,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
     setActiveSlideIndex(nextIndex);
   };
 
-  const settings: Settings = {
-    speed: genre.name === "Community Picked" ? 10000 : 500,
-    arrows: false,
-    infinite: false,
-    lazyLoad: "progressive",
-    slidesToShow: 6,
-    slidesToScroll: 6,
-    autoplay: false,
-    cssEase: "linear",
-    beforeChange,
-    responsive: [
-      {
-        breakpoint: 1536,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-    ],
-  };
-
   return (
     <Box
       sx={{
@@ -235,7 +229,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
             spacing={2}
             direction="row"
             alignItems="center"
-            sx={{ mb: 2, mt: 5, pl: { xs: "30px", sm: "60px" } }}
+            sx={{ mb: { xs: 2, sm: 4 }, mt: 5, pl: { xs: "30px", sm: "60px" } }}
           >
             <CheyniNavigationLink
               variant="h5"
@@ -287,29 +281,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                   ))}
               </Box>
             ) : (
-              // <CustomNavigation
-              //   isEnd={isEnd}
-              //   arrowWidth={ARROW_MAX_WIDTH}
-              //   onNext={handleNext}
-              //   onPrevious={handlePrevious}
-              //   activeSlideIndex={activeSlideIndex}
-              // >
-              //   <StyledSlider
-              //     ref={sliderRef}
-              //     {...settings}
-              //     padding={ARROW_MAX_WIDTH}
-              //     theme={theme}
-              //   >
-              //     {videos
-              //       .filter(
-              //         (item: Video) =>
-              //           !!item.genre && item.genre.includes(genre.name)
-              //       )
-              //       .map((item: Video) => (
-              //         <SlideItem key={item.id} item={item} />
-              //       ))}
-              //   </StyledSlider>
-              // </CustomNavigation>
               <div className="navigation-wrapper">
                 <CustomNavigation
                   isEnd={isEnd}

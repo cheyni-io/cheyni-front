@@ -53,7 +53,7 @@ export default function VideoCardModal({
         mb: 3,
         zIndex: 100,
         borderRadius: "20px",
-        width: "750px", // Largura fixa desejada
+        width: { xs: "100%", sm: "100%", md: "100%" },
         // margin: "0 auto", // Centralizar o contêiner
         overflow: "hidden", // Adicione esta linha para ocultar conteúdo que ultrapassa
       }}
@@ -63,7 +63,7 @@ export default function VideoCardModal({
     >
       <Box
         sx={{
-          width: "100%",
+          width: { xs: "100%", sm: "100%", md: "100%" },
           position: "relative",
           // height: "calc(9 / 16 * 100%)",
           borderRadius: "20px",
@@ -84,24 +84,6 @@ export default function VideoCardModal({
           loop
           poster={`https://cheyni-prod.s3.eu-west-3.amazonaws.com/${video?.thumbnail}`}
         />
-        {/* <IconButton
-          onPointerLeave={() => {
-            setDetailType({ mediaType: undefined, id: undefined });
-          }}
-          sx={{
-            top: 15,
-            right: 15,
-            position: "absolute",
-            bgcolor: "#181818",
-            width: { xs: 22, sm: 40 },
-            height: { xs: 22, sm: 40 },
-            "&:hover": {
-              bgcolor: isDarkMode ? "#0C0B30" : "#0C0B30",
-            },
-          }}
-        >
-          CLose
-        </IconButton> */}
         <Box
           sx={{
             position: "absolute",

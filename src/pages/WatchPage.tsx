@@ -90,32 +90,15 @@ export function Component() {
   }, [watchId]);
 
   const windowSize = useWindowSize();
-  // const videoJsOptions = useMemo(() => {
-  //   preload: "metadata",
-  //   autoplay: false,
-  //   controls: true,
-  //   bigPlayButton: false,
-  //   // responsive: true,
-  //   // fluid: true,
-  //   width: windowSize.width,
-  //   height: windowSize.height,
-  //   sources: [
-  //     {
-  //       src: 'https://cheyni.s3.amazonaws.com/Sound.mp4',
-  //       type: "video/mp4",
-  //     },
-  //   ],
-  // }, [windowSize]);
 
-  //Video js is not loading big video files
   const videoJsOptions = useMemo(() => {
     return {
       preload: "metadata",
       autoplay: false,
       controls: true,
       bigPlayButton: false,
-      responsive: true,
-      fluid: true,
+      // responsive: true,
+      // fluid: true,
       width: windowSize.width,
       height: windowSize.height,
       sources: [
@@ -450,6 +433,7 @@ export function Component() {
             </Button>
           </DialogActions>
         </Dialog>
+
         <Box
           sx={{
             position: "relative",
@@ -643,17 +627,6 @@ export function Component() {
               </Box>
             </Box>
           )}
-          {/* {isFullScreen ?
-            <Box sx={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: dark ? "#0C0B30" : "#FFF", zIndex: 2147483647 }}>
-              <Typography variant="h3" sx={{ fontWeight: 700, color: "white" }}>
-                {videoData?.title}
-              </Typography>
-              <Typography variant="h6" sx={{ color: "white" }} lineHeight={1.5}>
-                {videoData?.description}
-              </Typography>
-            </Box>
-            : null
-            } */}
         </Box>
       </>
     );

@@ -37,7 +37,10 @@ export default function ForgotPassword() {
 
   if (emailSent) {
     return (
-      <Container component="main" maxWidth="xs" sx={{ height: "100vh" }}>
+      <Box
+        sx={{ justifyContent: "center", alignItems: "center" }}
+        height={"100vh"}
+      >
         <Box
           sx={{
             marginTop: 16,
@@ -68,14 +71,18 @@ export default function ForgotPassword() {
             Login
           </Button>
         </Box>
-      </Container>
+      </Box>
     );
   }
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ height: "100vh" }}>
+    <Box
+      sx={{ justifyContent: "center", alignItems: "center" }}
+      height={"100vh"}
+    >
       <Box
         sx={{
+          margin: { xs: 2, sm: 4 },
           marginTop: 16,
           marginBottom: 20,
           display: "flex",
@@ -137,6 +144,6 @@ export default function ForgotPassword() {
           </Link>
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 }

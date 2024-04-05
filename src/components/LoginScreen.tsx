@@ -43,7 +43,7 @@ export default function SignIn() {
     <Box sx={{ justifyContent: "center", alignItems: "center" }} height={'100vh'}>
       <Box
         sx={{
-          // marginTop: 16,
+          margin: { xs: 2, sm: 4 },
           marginBottom: 20,
           display: "flex",
           flexDirection: "column",

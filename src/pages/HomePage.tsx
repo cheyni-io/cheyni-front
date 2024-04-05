@@ -6,17 +6,11 @@ import { MEDIA_TYPE } from "src/types/Common";
 import { CustomGenre, Genre } from "src/types/Genre";
 import SliderRowForGenre from "src/components/VideoSlider";
 import store from "src/store";
-import { parseCookies } from "nookies";
-import { useNavigate } from "react-router-dom";
 import SignIn from "src/components/LoginScreen";
 import { useDispatch, useSelector } from "react-redux";
-import { setResults } from "src/store/slices/searchSlice";
 import { Box, Grid, Theme, Typography, styled, useTheme } from "@mui/material";
-import Slider, { Settings } from "react-slick";
-import VideoItemWithHoverPure from "src/components/VideoItemWithHoverPure";
 import VideoItemWithHover from "src/components/VideoItemWithHover";
 import { Movie } from "src/types/Movie";
-import CheyniNavigationLink from "src/components/CheyniNavigationLink";
 
 interface Video {
   id: string;
@@ -42,12 +36,6 @@ interface Video {
 interface SlideItemProps {
   item: Movie;
 }
-
-// const RootStyle = styled("div")(() => ({
-//   position: "relative",
-//   overflow: "inherit",
-// }));
-
 function SlideItem({ item }: SlideItemProps) {
   return (
     <Box sx={{ pr: { xs: 0.5, sm: 1 }, mb: 10, ml: 5, width: "290px" }}>
@@ -64,8 +52,6 @@ export async function loader() {
 }
 export function Component() {
   const { data: genres, isSuccess } = useGetGenresQuery(MEDIA_TYPE.Movie);
-  const navigate = useNavigate();
-  //Obter token de acesso do localStorage
   const tokens = localStorage.getItem("accessToken");
   const theme = useTheme();
 

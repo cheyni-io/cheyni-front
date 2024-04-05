@@ -10,12 +10,12 @@ export default function Footer() {
       <Box
         sx={{
           mb: 3,
-          pb: "30%", // Adjust this value to control the overall height of the footer
+          pb: { xs: '120%', md: '30%' }, // Set the padding bottom to 10 on medium and larger screens
           top: 0,
           left: 0,
           right: 0,
           position: "relative",
-          height: "50%",
+          height: "990%",
         }}
       >
         <Box
@@ -84,7 +84,7 @@ export default function Footer() {
                   sx={{
                     fontFamily: "Futura",
                   }}
-                  marginTop={10}
+                  marginTop={{ xs: 20, md: 4 }}
                 >
                   <img
                     src="/assets/logo-light.png"
@@ -203,7 +203,7 @@ export default function Footer() {
                     Blog
                   </Link>
                 </Box>
-                <Box display="flex" mt={6}>
+                <Box display={{ xs: "none", md: "flex" }} justifyContent="left" mt={4}>
                   <Stack direction={"column"}>
                     <Typography align="left" mb={2} color={"#FFF"}>
                       main project advisors
