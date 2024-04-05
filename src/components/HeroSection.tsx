@@ -17,8 +17,8 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
     <Box sx={{ position: "relative", zIndex: 1 }}>
       <Box
         sx={{
-          mb: 3,
-          pb: "40%",
+          mb: 1,
+          pb: { xs: "130%", sm: 0, md: "40%" },
           top: 0,
           left: 0,
           right: 0,
@@ -28,7 +28,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
         <Box
           sx={{
             width: "100%",
-            height: "56.25vw",
+            height: "100%",
             position: "absolute",
           }}
         >
@@ -42,44 +42,16 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                 position: "absolute",
               }}
             >
-              {/* <img
-                    src='./assets/slowfood.png'
-                    alt={'Slow Food'}
-                    width="100%"
-                    height="100%"
-                  /> */}
               <video
                 src="./assets/CheyniBg.mp4"
                 autoPlay
                 muted
                 loop
                 playsInline
-                style={{ width: "100%", height: "100%" }}
-              />
-              {/* <Box
-                sx={{
-                  // background: `linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)`,
-                  background: isDarkMode
-                    ? "linear-gradient(77deg,rgba(0,0,0,.6),transparent 85%)"
-                    : "linear-gradient(77deg,rgba(255,255,255,.6),transparent 100%)",
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: "26.09%",
-                  opacity: 1,
-                  position: "absolute",
-                }}
-              /> */}
-              <Box
-                sx={{
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  position: "absolute",
-                  backgroundImage: `url('./assets/Backgroundline.png')`,
-                  backgroundSize: "20%", // Ou experimente outros valores como "50%" ou "auto"
-                  opacity: 1,
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
                 }}
               />
               <Box
