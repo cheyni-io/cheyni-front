@@ -10,7 +10,7 @@ export default function Footer() {
       <Box
         sx={{
           mb: 3,
-          pb: { xs: '120%', md: '30%' }, // Set the padding bottom to 10 on medium and larger screens
+          pb: { xs: '140%', md: '30%' }, // Set the padding bottom to 10 on medium and larger screens
           top: 0,
           left: 0,
           right: 0,
