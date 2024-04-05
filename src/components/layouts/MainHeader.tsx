@@ -150,43 +150,7 @@ const MainHeader = () => {
       }}
     >
       <Toolbar disableGutters>
-        <Logo sx={{ mr: { xs: 2, sm: 4 } }} />
-        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleOpenNavMenu}
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: "block", md: "none" },
-            }}
-          >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">{page}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
+        <Logo sx={{ mr: { xs: 15, sm: 4 } }} />
         <Stack
           direction="row"
           spacing={3}
@@ -204,7 +168,7 @@ const MainHeader = () => {
           ))}
         </Stack>
 
-        <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+        <Box sx={{ flexGrow: 0, display: "flex" }}>
           <IconButton onClick={toggleTheme} color="inherit">
             {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
           </IconButton>
@@ -221,6 +185,40 @@ const MainHeader = () => {
               )}
             </IconButton>
           </Tooltip>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              <MenuItem onClick={handleGoToProfile}>Profile</MenuItem>
+              <MenuItem onClick={handleGoToWallet}>Wallet</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            </Menu>
+          </Box> */}
           <Menu
             sx={{ mt: "45px" }}
             id="avatar-menu"

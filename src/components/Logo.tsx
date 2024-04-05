@@ -15,11 +15,11 @@ export default function Logo({ sx }: BoxProps) {
         // width={120}
         // height={26}
         //COmo não perder a qualidade da imagem, foi retirado o width e height
-        width="30%"
         height="auto"
         sx={{
           ...sx,
           mt: 1,
+          width: { xs: 120, sm: 150 },
         }}
       />
     </RouterLink>

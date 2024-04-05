@@ -80,9 +80,12 @@ export default function SearchBox({ onSearchResults }: { onSearchResults?: (resu
     <Search
       sx={
         isFocused ? { 
+          width: { xs: "50%", sm: "100%", md: "100%", lg: "100%"},
           border: darkMode ? "1px solid #fff" : "1px solid #000",
           borderRadius: "4px",
-          backgroundColor: darkMode ? theme.palette.primary.dark : theme.palette.primary.light } : {}
+          backgroundColor: darkMode ? theme.palette.primary.dark : theme.palette.primary.light } : {
+            display: { xs: "none", md: "flex" },
+          }
       }
     >
       <SearchIconWrapper onClick={handleClickSearchIcon}>

@@ -598,7 +598,12 @@ export function Component() {
                       maxLine={1}
                       variant="subtitle1"
                       textAlign="center"
-                      sx={{ maxWidth: 300, mx: "auto", color: "black" }}
+                      sx={{ 
+                        maxWidth: 300, 
+                        mx: "auto", 
+                        color: "black", 
+                        display: { xs: "none", sm: "block" }
+                      }}
                     >
                       {videoData?.title}
                     </MaxLineTypography>
@@ -614,7 +619,7 @@ export function Component() {
                     {/* <PlayerControlButton>
                     <SettingsIcon />
                   </PlayerControlButton> */}
-                    <PlayerControlButton onClick={handlePictureInPicture}>
+                    <PlayerControlButton onClick={handlePictureInPicture} sx={{ display: { xs: "none", sm: "block" } }}>
                       <BrandingWatermarkOutlinedIcon />
                     </PlayerControlButton>
                     <PlayerControlButton onClick={handleFullScreen}>
