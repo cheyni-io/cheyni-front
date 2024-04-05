@@ -103,7 +103,7 @@ export default function VideoCardModal({
           </MaxLineTypography>
           <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
             <PlayButton
-              sx={{ color: isDarkMode ? "#fff" : "#0c0b30", borderRadius: 4 }}
+              sx={{ color: isDarkMode ? "#fff" : "#0c0b30", borderRadius: 4, p: { xs: 2, sm: 2 } }}
               id={video?.id}
             />
             <Box flexGrow={1} />
