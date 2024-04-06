@@ -56,7 +56,7 @@ function SlideItem({ item }: SlideItemProps) {
     <Box
       sx={{
         pr: { xs: 0.5, sm: 1 },
-        mb: { xs: 2, sm: 10, md: 10 },
+        mb: { xs: 2, sm: 4, md: 4 },
         width: { xs: "140px", sm: "180px", md: "160px", lg: "250px", xl: "320px" },
       }}
     >

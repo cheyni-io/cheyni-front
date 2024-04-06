@@ -31,7 +31,7 @@ export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
       style={{
         position: "relative",
         width: "100%",
-        paddingTop: "56.25%", // Aspect ratio 16:9
+        // paddingTop: "56.25%", // Aspect ratio 16:9
       }}
     >
       {isHovered && (
@@ -39,7 +39,7 @@ export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
           <Box
             sx={{
               position: "absolute",
-              top: "72%",
+              top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
               backgroundColor: "rgba(0, 0, 0, 0.5)",
