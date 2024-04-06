@@ -57,7 +57,7 @@ function SlideItem({ item }: SlideItemProps) {
       sx={{
         pr: { xs: 0.5, sm: 1 },
         mb: { xs: 2, sm: 10, md: 10 },
-        width: { xs: "140px", sm: "200px", md: "360px" },
+        width: { xs: "140px", sm: "180px", md: "160px", lg: "250px", xl: "320px" },
       }}
     >
       <VideoItemWithHover video={item} />
@@ -72,7 +72,7 @@ function SlideItem2({ item }: SlideItemProps) {
         pr: { xs: 0.5, sm: 1 },
         mb: 10,
         ml: { xs: 2, sm: 2, md: 2},
-        width: { xs: "180px", sm: "200px", md: "280px" },
+        width: { xs: "180px", sm: "180px", md: "200px", lg: "280px" }
       }}
     >
       <VideoFeaturedItemWithHover video={item} />
@@ -127,11 +127,18 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
       "(min-width: 1000px)": {
         loop: true,
         slides: {
-          perView: 4,
+          perView: 3,
           spacing: 10,
         },
       },
       "(min-width: 1200px)": {
+        loop: true,
+        slides: {
+          perView: 4,
+          spacing: 10,
+        },
+      },
+      "(min-width: 1800px)": {
         loop: true,
         slides: {
           perView: 5,

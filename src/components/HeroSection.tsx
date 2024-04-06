@@ -54,17 +54,6 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
                   objectFit: "cover",
                 }}
               />
-              <Box
-                sx={{
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  position: "absolute",
-                  backgroundColor: "#000", // Black background color
-                  opacity: "45%", // Adjust opacity as needed
-                }}
-              />
             </Box>
           </>
         </Box>
