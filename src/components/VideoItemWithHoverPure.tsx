@@ -33,7 +33,6 @@ class VideoItemWithHoverPure extends PureComponent<VideoItemWithHoverPureType> {
             this.props.handleHover(true);
           }}
           onPointerLeave={() => {
-            // console.log("onPointerLeave");
             this.props.handleHover(false);
           }}
         />

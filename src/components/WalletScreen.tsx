@@ -1,22 +1,14 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Logo from "./Logo";
 import { makeStyles, styled, useTheme, withStyles } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
 import api from "src/services/api";
 import { useNavigate } from "react-router-dom";
-import { setCookie } from "nookies";
-import CustomizedTables from "./CustomTable";
 import { useEffect, useState } from "react";
-import { Card, CardContent, CardActions, Stack } from "@mui/material";
+import { Card, CardContent, CardActions, Stack, Alert } from "@mui/material";
 
 interface UserData {
   name: string;
@@ -82,85 +74,88 @@ export default function Wallet() {
   }, []);
 
   return (
-    <Container component="main">
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 16,
-          height: "100vh"
-        }}
-      >
-        {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar> */}
-        <Typography component="h1" variant="h5" marginBottom={4}>
-          Wallet
-        </Typography>
-        <Box>
-          <Stack spacing={{ xs: 1, sm: 2 }} direction="row" flexWrap="wrap">
-            {/* {userData.nfTokenAndUser.length > 0 ? <h1> a </h1> : <h1> b </h1>} */}
-            {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
-              <Card
-                key={index}
-                sx={{
-                  minWidth: 275,
-                  minHeight: 300,
-                  // backgroundImage: "url('./assets/nftMemes.png')",
-                  backgroundImage: tokenAndUser.nftoken.tokenImage == null ? "url('./assets/nftMemes.png')" : `url(https://cheyni-prod.s3.eu-west-3.amazonaws.com/${tokenAndUser.nftoken.tokenImage})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  borderRadius: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  backgroundColor: "#191761"
-                }}
-              >
-                <CardContent
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "100%",
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 16,
+        height: { xs: "100%", md: "100vh" },
+      }}
+    >
+      <Typography component="h1" variant="h1" marginBottom={4} marginTop={10}>
+        Wallet
+      </Typography>
+      <Alert severity="info" sx={{ margin: 10 }}>
+        Welcome to your watching treasure! Every token collected brings you
+        closer to exciting rewards! Watch your balance grow as you explore
+        abundance. Soon, you'll have the thrilling opportunity to exchange your
+        tokens for the coveted $CHEYNI and unlock a world of exclusive
+        privileges and perks! Stay tuned for email notifications about giveaways
+        and airdrops. Stick with us for a thrilling journey and enjoy reaping
+        the rewards! <br /> Follow us on social media and join our Discord channel:
+        <Link href="#" color={'#0C0B30'}> Instagram</Link> |<Link href="#"> Twitter </Link>  | <Link href="#"> Discord</Link> 
+      </Alert>
+      <Typography component="h4" variant="h4" marginBottom={4}>
+        Watching Counter: {userData.nfTokenAndUser?.length}
+      </Typography>
+      <Grid container spacing={2} padding={10}>
+        {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
+          <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+            <Card
+              sx={{
+                minHeight: 300,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                borderRadius: 2,
+                backgroundColor: "#191761",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <CardContent>
+                <Typography
+                  sx={{
+                    fontSize: 14,
+                    color: "white",
+                    textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
                   }}
+                  gutterBottom
                 >
-                  <div>
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        color: "white",
-                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
-                      }}
-                      gutterBottom
-                    >
-                      <b>{tokenAndUser.nftoken.name}</b>
-                    </Typography>
-                  </div>
-                  <div style={{ marginTop: 8 }}>
-                    <Typography
-                      sx={{
-                        textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
-                      }}
-                      color="white"
-                    >
-                      {tokenAndUser.nftoken.token}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)" }}
-                      color="white"
-                    >
-                      {tokenAndUser.nftoken.hash}
-                    </Typography>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </Stack>
-        </Box>
-      </Box>
-    </Container>
+                  <b>{tokenAndUser.nftoken.name}</b>
+                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <img
+                    src={'./assets/nftMemes.png'}
+                    alt={tokenAndUser.nftoken.name}
+                    style={{ width: 200, height: 200 }}
+                  />
+                </Box>
+                
+                <div style={{ marginTop: 8 }}>
+                  <Typography
+                    sx={{
+                      textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+                    }}
+                    color="white"
+                  >
+                    {tokenAndUser.nftoken.token}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)" }}
+                    color="white"
+                  >
+                    {tokenAndUser.nftoken.hash}
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
