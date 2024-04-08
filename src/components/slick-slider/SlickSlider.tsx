@@ -72,7 +72,7 @@ function SlideItem2({ item }: SlideItemProps) {
         pr: { xs: 0.5, sm: 1 },
         mb: 10,
         ml: { xs: 2, sm: 2, md: 2},
-        width: { xs: "180px", sm: "180px", md: "160px", lg: "250px", xl: "320px" }
+        width: { xs: "180px", sm: "180px", md: "200px", lg: "270px", xl: "320px" }
       }}
     >
       <VideoFeaturedItemWithHover video={item} />
