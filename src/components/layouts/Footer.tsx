@@ -125,6 +125,17 @@ export default function Footer() {
           <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
             Blog
           </Link>
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            flexItem
+            sx={{
+              borderWidth: 1,
+              borderColor: "white",
+              mr: 1,
+              ml: 1,
+            }}
+          />
           <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
             Join the newsletter
           </Link>
