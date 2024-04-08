@@ -81,7 +81,8 @@ export default function Wallet() {
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 16,
-        height: { xs: "100%", md: "100vh" },
+        height: { xs: "100%", sm: "100%", md: "100%" },
+        padding: 10,
       }}
     >
       <Typography component="h1" variant="h1" marginBottom={4} marginTop={10}>
@@ -100,7 +101,7 @@ export default function Wallet() {
       <Typography component="h4" variant="h4" marginBottom={4}>
         Watching Counter: {userData.nfTokenAndUser?.length}
       </Typography>
-      <Grid container spacing={2} padding={10}>
+      <Grid container spacing={2} padding={10} mb={16}>
         {userData.nfTokenAndUser?.map((tokenAndUser: any, index: any) => (
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
             <Card
