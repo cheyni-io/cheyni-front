@@ -291,7 +291,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                 setShowExplore(false);
               }}
             >
-              {`${genre.name} Movies `}
+              {`${genre.name} `}
               {/* <MotionContainer
                 open={showExplore}
                 initial="initial"
