@@ -55,9 +55,24 @@ function SlideItem({ item }: SlideItemProps) {
   return (
     <Box
       sx={{
-        pr: { xs: 0.5, sm: 1 },
+        pr: { xs: 0.5, sm: 2 },
         mb: { xs: 2, sm: 4, md: 4 },
-        width: { xs: "140px", sm: "180px", md: "160px", lg: "250px", xl: "320px" },
+        width: {
+          xs: "140px",
+          sm: "180px",
+          md: "160px",
+          lg: "250px",
+          xl: "320px",
+        },
+        "&:hover": {
+          width: {
+            xs: "160px",
+            sm: "190px",
+            md: "180px",
+            lg: "260px",
+            xl: "340px",
+          }
+        },
       }}
     >
       <VideoItemWithHover video={item} />
@@ -71,8 +86,23 @@ function SlideItem2({ item }: SlideItemProps) {
       sx={{
         pr: { xs: 0.5, sm: 1 },
         mb: 10,
-        ml: { xs: 2, sm: 2, md: 2},
-        width: { xs: "180px", sm: "180px", md: "200px", lg: "270px", xl: "320px" }
+        ml: { xs: 2, sm: 2, md: 2 },
+        width: {
+          xs: "180px",
+          sm: "180px",
+          md: "200px",
+          lg: "270px",
+          xl: "320px",
+        },
+        "&:hover": {
+          width: {
+            xs: "190px",
+            sm: "190px",
+            md: "220px",
+            lg: "290px",
+            xl: "340px",
+          },
+        },
       }}
     >
       <VideoFeaturedItemWithHover video={item} />
@@ -169,26 +199,26 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
       s.moveToIdx(s.track.details.abs + 2, true, animation);
     },
     breakpoints: {
-      '(max-width: 720px)': {
+      "(max-width: 720px)": {
         loop: true,
         slides: {
           perView: 2,
           spacing: 5,
-        }
+        },
       },
-      '(min-width: 720px) and (max-width: 1000px)': {
+      "(min-width: 720px) and (max-width: 1000px)": {
         loop: true,
         slides: {
           perView: 3,
           spacing: 10,
-        }
+        },
       },
-      '(min-width: 1000px)': {
+      "(min-width: 1000px)": {
         loop: true,
         slides: {
           perView: 3,
           spacing: 10,
-        }
+        },
       },
       "(min-width: 1200px)": {
         loop: true,
