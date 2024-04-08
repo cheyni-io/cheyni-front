@@ -73,7 +73,7 @@ export default function VideoItemWithHover({ video }: VideoItemWithHoverProps) {
               padding: "5px 10px",
               opacity: "0.9",
               overflow: "hidden",
-              display: { xs: "none", sm: "block"}
+              display: "none"
             }}
           >
             <Stack direction="row" spacing={1} p={1}>
