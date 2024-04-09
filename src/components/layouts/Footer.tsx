@@ -14,44 +14,110 @@ import {
 
 export default function Footer() {
   return (
-    <Box
-      display="flex"
-      justifyContent={"space-between"}
-      bgcolor="black"
-      height={400}
-      boxShadow={20}
-    >
-      <Container maxWidth="xl">
-      <Box
-        display="flex"
-        mt={4}
-        flexDirection={"column"}
-        alignItems={"center"}
-        ml={24}
-      >
-        <Box>
-          <img
-            src="/assets/logo-light.png"
-            alt="Cheyni"
-            style={{ width: "40%", marginRight: 2 }}
-          />
-          <Typography color="#FFF">
-            UNLOCK LOYALTY WITH <b>STREAMING COLLECTIBLES</b>
-          </Typography>
-          <Typography color="#FFF">
-            © 2024 CHEYNI. All Rights reserved.
-          </Typography>
+    <Box bgcolor="#0C0B30" height={300}>
+      <Container maxWidth={"xl"}>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+          <Box display="flex" flexDirection={"row"} alignItems={"center"}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              flexDirection={"column"}
+              mt={6}
+            >
+              <img
+                src="/assets/logo-light.png"
+                alt="Cheyni"
+                style={{ width: "40%", marginRight: 2 }}
+              />
+              <Typography color="#FFF" mt={2}>
+                © 2024 Cheyni. All Rights reserved.
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Box
+              display="flex"
+              justifyContent="center"
+              flexDirection={"column"}
+              mt={6}
+              mr={10}
+            >
+              <Typography color="#FFF">Menu</Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Main Page
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  White Paper
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Terms & Conditions
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Submit your film
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Contact us
+                </Link>
+              </Typography>
+            </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              flexDirection={"column"}
+              mt={6}
+            >
+              <Typography color="#FFF">Social</Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Instagram
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Twitter
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Linkedin
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Telegram
+                </Link>
+              </Typography>
+              <Typography color="#FFF">
+                <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
+                  Discord
+                </Link>
+              </Typography>
+            </Box>
+          </Box>
         </Box>
-      </Box>
-      <Box>
-        <Box display="flex" justifyContent="left" mt={4}>
-          <ListItem>
+        <Box display="flex" justifyContent="center" mt={6}>
+          <Typography color="#FFF" fontSize={12}>
+            75008, Rue de Monceau, Paris, France. |
             <Link href="#" sx={{ color: "#FFF", fontSize: 12 }}>
-              Main Page
-            </Link>
-          </ListItem>
+              {" "}
+              Join the newsletter
+            </Link>{" "}
+          </Typography>
         </Box>
-      </Box>
       </Container>
     </Box>
   );
