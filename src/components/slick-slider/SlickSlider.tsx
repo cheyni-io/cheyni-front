@@ -20,6 +20,7 @@ import { useKeenSlider } from "keen-slider/react";
 
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { transform } from "framer-motion";
 
 const RootStyle = styled("div")(() => ({
   position: "relative",
@@ -57,21 +58,18 @@ function SlideItem({ item }: SlideItemProps) {
       sx={{
         pr: { xs: 0.5, sm: 2 },
         mb: { xs: 2, sm: 4, md: 4 },
+        pt: { xs: 2, sm: 4, md: 4 },
+        pb: { xs: 2, sm: 4, md: 4 },
+        pl: { xs: 2, sm: 2, md: 2 },
         width: {
           xs: "140px",
           sm: "180px",
-          md: "160px",
+          md: "200px",
           lg: "250px",
           xl: "320px",
         },
         "&:hover": {
-          width: {
-            xs: "160px",
-            sm: "190px",
-            md: "180px",
-            lg: "260px",
-            xl: "340px",
-          }
+          transform: "scale(1.1)",  
         },
       }}
     >
@@ -86,6 +84,9 @@ function SlideItem2({ item }: SlideItemProps) {
       sx={{
         pr: { xs: 0.5, sm: 1 },
         mb: 10,
+        pt: { xs: 2, sm: 4, md: 4 },
+        pb: { xs: 2, sm: 4, md: 4 },
+        pl: { xs: 2, sm: 2, md: 2 },
         ml: { xs: 2, sm: 2, md: 2 },
         width: {
           xs: "180px",
@@ -95,13 +96,7 @@ function SlideItem2({ item }: SlideItemProps) {
           xl: "320px",
         },
         "&:hover": {
-          width: {
-            xs: "190px",
-            sm: "190px",
-            md: "220px",
-            lg: "290px",
-            xl: "340px",
-          },
+          transform: "scale(1.1)",
         },
       }}
     >
@@ -183,10 +178,6 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
   const [sliderRef2] = useKeenSlider<HTMLDivElement>({
     loop: true,
     mode: "free",
-    // slides: {
-    //   perView: 6,
-    //   spacing: 0,
-    // },
     renderMode: "performance",
     drag: false,
     created(s) {
@@ -344,7 +335,7 @@ export default function SlickSlider({ data, genre }: SlickSliderProps) {
                           !!item.genre && item.genre.includes(genre.name)
                       )
                       .map((item: Video) => (
-                        <div className="keen-slider__slide number-slide1">
+                        <div className="keen-slider__slide number-slide1" key={item.id}>
                           <SlideItem item={item} key={item.id} />
                         </div>
                       ))}
