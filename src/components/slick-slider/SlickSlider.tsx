@@ -69,8 +69,10 @@ function SlideItem({ item }: SlideItemProps) {
           xl: "320px",
         },
         "&:hover": {
-          transform: "scale(1.1)",  
+          transform: "scale(1.1)",
+          transition: "transform 0.5s",
         },
+        transition: "transform 0.5s",
       }}
     >
       <VideoItemWithHover video={item} />
@@ -97,7 +99,9 @@ function SlideItem2({ item }: SlideItemProps) {
         },
         "&:hover": {
           transform: "scale(1.1)",
+          transition: "transform 0.5s",
         },
+        transition: "transform 0.5s",
       }}
     >
       <VideoFeaturedItemWithHover video={item} />
