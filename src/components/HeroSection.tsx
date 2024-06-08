@@ -43,7 +43,7 @@ export default function TopTrailer({ mediaType }: TopTrailerProps) {
               }}
             >
               <video
-                src="./assets/CheyniBg.mp4"
+                src="./assets/CheyniLoopBackground.mp4"
                 autoPlay
                 muted
                 loop
