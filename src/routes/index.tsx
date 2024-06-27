@@ -57,7 +57,11 @@ const router = createBrowserRouter([
       {
         path: MAIN_PATH.forgotPassword,
         lazy: () => import("src/pages/ForgetPassword"),
-      }
+      },
+      {
+        path: MAIN_PATH.author,
+        lazy: () => import("src/pages/AuthorPage")
+      },
     ],
   },
 ]);
