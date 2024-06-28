@@ -15,8 +15,9 @@ export default function AuthorProfileScreen() {
     <Box
       sx={{
         marginBottom: 16,
-        height: "100%",
         backgroundColor: "#FFF",
+        height: { xs: "100%", sm: "100%", md: "100%" },
+        paddingY: 16,
       }}
     >
       {/* Capa de fundo */}
@@ -24,7 +25,7 @@ export default function AuthorProfileScreen() {
         sx={{
           width: "100%",
           height: "300px", // Defina a altura da capa
-          backgroundImage: 'url("https://via.placeholder.com/1200x300")', // URL da imagem de fundo
+          backgroundImage: `url("/assets/cheyniBackProfile.png")`,
           backgroundSize: "cover", // Faz a imagem cobrir todo o espaço disponível
           backgroundPosition: "center", // Centraliza a imagem
           marginBottom: 4,
@@ -34,10 +35,10 @@ export default function AuthorProfileScreen() {
         <Box
           sx={{
             position: "absolute",
-            top: "200px", // Ajuste este valor conforme necessário para posicionar a box
-            left: "16px", // Ajuste este valor conforme necessário para posicionar a box
+            top: { xs: "160px", sm: "200px" }, // Ajuste este valor conforme necessário para posicionar a box
+            left: { xs: "8px", sm: "16px" }, // Ajuste este valor conforme necessário para posicionar a box
             zIndex: 1, // Garante que a box esteja sobre a imagem de fundo
-            width: "300px", // Ajuste a largura conforme necessário
+            width: { xs: "90%", sm: "300px" }, // Ajuste a largura conforme necessário
             backgroundColor: "#0c0b30",
             alignItems: "center",
             display: "flex",
@@ -97,9 +98,9 @@ export default function AuthorProfileScreen() {
       </Box>
 
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-        <Box gridColumn="span 3"></Box>{" "}
+        <Box gridColumn={{ xs: "span 12", md: "span 3" }}></Box>{" "}
         {/* Esta box está vazia, pois a box esquerda está agora em posição absoluta */}
-        <Box gridColumn="span 8">
+        <Box gridColumn={{ xs: "span 12", md: "span 8" }}>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography variant="h4" sx={{ color: "#0c0b30" }}>
               Author's Videos
