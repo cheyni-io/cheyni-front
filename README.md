@@ -1,4 +1,11 @@
 
+![Logo](https://i.imgur.com/wAaXykH.png)
+
+
+# Cheyni Streamming
+
+A brief description of how to install and use Cheyni Streamming
+
 ## Run Cheyni Locally
 
 Clone the project
@@ -62,4 +69,14 @@ Start the server
 Open http://localhost:8080 with your browser to see the result.
 
 
+
+
+## Demo
+
+https://app.cheyni.io/browse
+
+
+## Screenshots
+
+![Cheyni Screenshot](https://i.imgur.com/yPhYKSz.jpg)
 
